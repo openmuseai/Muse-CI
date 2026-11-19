@@ -1,0 +1,24 @@
+name: muse-ci-development
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: muse_ci
+      POSTGRES_USER: muse_ci
+      POSTGRES_PASSWORD: ${CI_DATABASE_PASSWORD:?required}
+    ports: ["127.0.0.1:15436:5432"]
+    volumes: ["ci-postgres:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U muse_ci -d muse_ci"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  temporal:
+    user: "0:0"
+    image: temporalio/temporal@sha256:b228dadf9cdb6c7c02a1394b89dd76f827aac9760e458fce42f0899a10141225
+    command: ["server", "start-dev", "--ip", "0.0.0.0", "--port", "7233", "--ui-ip", "0.0.0.0", "--ui-port", "8233", "--db-filename", "/data/temporal.db", "--ui-disable-news-fetch"]
+    ports: ["127.0.0.1:17236:7233", "127.0.0.1:18236:8233"]
+    volumes: ["ci-temporal:/data"]
+volumes:
+  ci-postgres:
+  ci-temporal:

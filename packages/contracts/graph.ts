@@ -1,0 +1,22 @@
+import vm from 'node:vm';
+import { readFileSync } from 'node:fs';
+import type { Graph, GraphNode, Attempt } from './index.ts';
+const context: any = {};
+vm.runInNewContext(readFileSync(new URL('../../../Muse-Plugin-Ecosystem/plugins/muse-ci/web/graph-model.js', import.meta.url), 'utf8'), context, { timeout: 1000 });
+export const G = context.CIGraph as {
+    initial(): Graph;
+    validate(g: unknown): boolean;
+    get(g: Graph, id: string): GraphNode;
+    save(g: Graph, id: string, patch: any): GraphNode;
+    add(g: Graph, kind: string, stage: string): GraphNode;
+    connect(g: Graph, from: string, to: string): GraphNode;
+    remove(g: Graph, id: string): void;
+    ready(g: Graph, n: GraphNode): boolean;
+    readyNodes(g: Graph): GraphNode[];
+    run(g: Graph, id: string): Attempt;
+    affected(g: Graph, id: string): string[];
+    orderedStage(g: Graph, stage: string): GraphNode[];
+    skillCatalog: any[];
+    toolCatalog: any[];
+    templates: any[];
+};

@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mobileTrialDefinition} from '../packages/workflows/mobile-isolation.ts';
+import {definitionSchema} from '../packages/contracts/index.ts';
+import {newProject,applyDefinition} from '../apps/api/service.ts';
+import {tick} from '../packages/policy/engine.ts';
+import {mobileCommand} from '../packages/providers/mobile.ts';
+import {uid} from '../apps/api/store.ts';
+test('real pilot imports all M/R acceptance tasks with explicit independent machine checks',async()=>{const result=await mobileTrialDefinition();definitionSchema.parse(result.definition);assert.equal(result.taskMap.isolation.length,12);assert.equal(result.taskMap.recovery.length,12);assert.equal(result.definition.nodes.filter(n=>/^[MR]\d\d$/.test(n.id)).length,24);assert.ok(result.definition.nodes.filter(n=>/^[MR]\d\d$/.test(n.id)).every(n=>n.kind==='approval'));const p=await newProject({id:'test'},'pilot','mobile');applyDefinition(p,result.definition);assert.ok(p.graph.nodes.every(n=>n.status==='pending'&&n.attempts.length===0));const r={id:uid(),projectId:p.id,revision:p.graph.revision,graphDigest:'test',status:'queued',auto:true,selected:p.graph.nodes.map(n=>n.id),budget:100,spent:0,startedAt:'test',decisionScope:'development' as const,jobs:[],commands:[{id:uid(),action:'start',applied:false}]};p.runs.push(r);const first=tick(p,r.id);assert.deepEqual(first.jobs.map(j=>j.nodeId),['product-spec','ui-spec']);assert.ok(result.definition.nodes.find(n=>n.id==='C03')!.depends.every(d=>!['M01','R01'].includes(d)));assert.deepEqual(result.definition.nodes.find(n=>n.id==='gate-submit')!.depends,['gate-upload']);});
+test('mobile commands cannot choose arbitrary paths, shells, signing or upload',()=>{assert.equal(mobileCommand('unknown-shell'),null);assert.equal(mobileCommand('mobile-regression')!.args[1],'--no-pub');const gate=mobileCommand('mobile-submit-gate')!;assert.ok(gate.args.includes('09-submit'));assert.ok(!gate.args.includes('upload'));});

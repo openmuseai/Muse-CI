@@ -1,0 +1,11 @@
+import { NativeConnection, Worker } from '@temporalio/worker';
+import { fileURLToPath } from 'node:url';
+import { Store } from '../api/store.ts';
+import { activities } from './activities.ts';
+const store = new Store();
+await store.init();
+const connection = await NativeConnection.connect({ address: process.env.CI_TEMPORAL_ADDRESS || '127.0.0.1:17236' });
+const worker = await Worker.create({ connection, namespace: 'default', taskQueue: process.env.CI_TASK_QUEUE || 'muse-ci-v1', workflowsPath: fileURLToPath(new URL('./workflows.ts', import.meta.url)), activities: activities(store), maxConcurrentActivityTaskExecutions: 6, maxCachedWorkflows: 0, shutdownGraceTime: '3 seconds' });
+await worker.run();
+await store.close();
+await connection.close();

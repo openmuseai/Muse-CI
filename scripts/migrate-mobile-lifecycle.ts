@@ -1,0 +1,41 @@
+// Idempotent metadata migration. The original 50-node project and its waiting
+// Run remain untouched; new flows reference that fixed historical baseline.
+import {readFile,writeFile,mkdir}from'node:fs/promises';
+import {createHash}from'node:crypto';
+import{Client,StreamableHTTPClientTransport}from'@modelcontextprotocol/client';
+const env=Object.fromEntries((await readFile(new URL('../.data/development.env',import.meta.url),'utf8')).trim().split('\n').map(l=>{const i=l.indexOf('=');return[l.slice(0,i),l.slice(i+1)]}));
+const client=new Client({name:'Muse-CI lifecycle migration',version:'2'});await client.connect(new StreamableHTTPClientTransport(new URL('http://127.0.0.1:4180/mcp'),{requestInit:{headers:{authorization:'Bearer '+env.CI_MCP_TOKEN}}}));
+async function call(name:string,args:any={}){const r=await client.callTool({name,arguments:args});if(r.isError)throw Error(r.content.map((c:any)=>c.text||'').join('\n'));return r.structuredContent as any;}
+const get=async(id:string)=>(await call('ci_project_get',{projectId:id})).project;
+const oldId='db29cc8e05c2609607efac6224b8ea30',old=await get(oldId);
+const root=(await call('ci_lifecycle_create',{kind:'version',title:'OpenMuse Mobile 1.0.2 · 版本交付',versionName:'1.0.2',goal:'以版本定义、视觉 UI、需求拆分、版本回归与四渠道上架管理 Mobile 文档隔离和 Apple 拒审整改。国内 Android、中国区 iOS、Google Play、美区 iOS；历史任务仅作基线，未核验的许可、名称、最终包和渠道回执保持待决定。',legacyProjectId:oldId,commandId:'mobile-102-lifecycle-v2'})).project;
+const groups=[
+ {key:'dependency',title:'REQ-01 · Mobile 文档依赖与插件隔离',ids:['M02','M03','M08','M09','M12','C01','C02'],scope:['移除 Mobile 对 SiYuan、GenOffice、Slides 的直接和传递依赖及旧预装资源；保留 SDK、MCP、WebView 等通用连接层。','第三方实现留在独立插件，不通过改名、编码或删除必要许可规避包检查。','覆盖源码、解析依赖、构建资源、嵌套插件包、压缩版权清单与二进制字符串；最终结果以实际签名包为准。'],cases:['解析 mobile 依赖闭包，禁止依赖缺失且通用连接层可用','首次安装没有旧预装插件，允许的独立插件入口不被误删','检查器发现嵌套包、二进制与压缩清单中的禁入项并失败','最终候选包未提供时禁止报告包检查通过']},
+ {key:'smartdoc',title:'REQ-02 · SmartDoc 原生入口、链接与升级迁移',ids:['M04','M05','M06','A01','A02','A05','V01','V02','C05'],scope:['以 SmartDoc 组件承接通用文档和数据集入口，保留打开、编辑、保存、关闭与会话撤回生命周期。','识别旧 URI 和原生文件格式；不把不支持的 URI 静默重写，不删除用户旧文档；迁移留在独立插件。','旧安装数据升级到 1.0.2 时移除不可分发的执行入口，保留可恢复的文档与备份，错误给出可操作说明。'],cases:['现有 SmartDoc 原生文件读写往返，关闭后重新打开内容一致','账户切换与撤权关闭旧文档访问并保留本机副本','旧 URI 明确提示不支持，原内容和导出备份不改变','升级、离线、失败重试、未安装迁移插件均有可恢复路径']},
+ {key:'provenance',title:'REQ-03 · 来源、版权与必要许可审查',ids:['M07','A04','V04','C07','R07'],scope:['列明 SmartDoc、原生桥、上游代码、构建工具和资源的来源、版本、许可证及实际分发边界。','对旧 URI 和上游实现逐项判定保留、替换或隔离；仍被分发的上游代码必须保留必要许可与署名。','归档源码输入摘要、审查材料、未决问题与最终包检查记录；技术移除不等于取得版权分发结论。'],cases:['来源表覆盖本次分发的源码和资源并包含证据位置','修改依赖后重新生成构建来源清单与摘要','缺少许可或权利证据时维持阻塞而非自动标为无风险','检查报告可追溯到当前源码与最终候选包的摘要']},
+ {key:'privacy',title:'REQ-04 · AI 发送授权、品牌与拒审整改',ids:['R01','R02','R03','R04','R05','R06','R10','R11','M11','A03','A06','V03','C04'],scope:['逐一审计 Native DSH、转发 DSH、附件和资源发送入口；发送前说明数据、接收方和用途，并取得该次明确同意。','取消、撤回、账号切换后不得继续新发送；记录真实服务端接收方，不能仅把网关展示为已验证的最终模型服务商。','按 Apple 4.1 和隐私拒审意见整理名称/权利路线、双语 UI、政策及商店材料；OpenMuse 工程工作名不等于商店名称已获准。'],cases:['首次、再次、附件与资源发送均在网络发送前展示真实披露','拒绝、取消或撤回后无对应数据发送，已发送内容不能虚假承诺撤回','中英文与窄屏披露完整可读，不因切换模式绕过授权','品牌与版权相关未决事项未得到明确证据时不自动批准提审']},
+ {key:'regression',title:'REQ-05 · 设备、升级与四渠道回归准备',ids:['M01','M10','R08','C03','C06','C08'],scope:['版本固定 1.0.2，覆盖国内 Android、中国区 iOS、Google Play、美区 iOS；构建号查询各渠道记录后分配。','冻结跨仓库源码和候选包输入，交付详细用例与真实设备测试报告；区分开发构建和正式签名包。','版本层复用子需求用例形成回归矩阵，标出设备、地区、安装、升级、离线、授权与文档保存覆盖缺项。'],cases:['用例关联需求编号、前置数据、操作、预期和设备环境','报告绑定提交、构建号、包摘要、用例修订与原始日志','未连接 iOS 设备或未拿到签名包时相关项保持未执行','任一子需求修订变化后，旧版本回归结论不能继续作为当前证据']},
+ {key:'publish',title:'REQ-06 · 签名、渠道材料与上架回执',ids:['R09','R12','gate-upload','gate-submit','gate-review','gate-publish','archive'],scope:['整理真实签名、渠道素材、拒审逐条回复、候选包、测试报告与商店隐私信息。','上传、提审、审核和上架分别记录真实状态与平台回执；人员决定不能代替外部平台状态。','在版本回归、权限、必要许可和品牌路线等前置未满足时保持阻塞，不自动对外提交。'],cases:['缺任一发布前置材料时不能报告可提审','上传回执、审核结果和发布状态分别核验并保留来源','同一候选包重试不产生无法解释的重复提交','发布失败或审核拒绝后明确回退范围并保留原证据']},
+];
+async function contribute(project:any,nodeId:string,paragraphs:string[],key:string){
+ project=await get(project.id);const doc=project.lifecycle.documents.find((d:any)=>d.nodeId===nodeId);if(!doc)return;
+ const current=(await call('ci_document_get',{projectId:project.id,documentId:doc.id})).document;
+ if(current.versions.some((v:any)=>v.summary===key))return;
+ await call('ci_agent_document_edit',{projectId:project.id,expectedVersion:project.version,commandId:key,documentId:doc.id,expectedRevision:current.revision,summary:key,edits:paragraphs.map(text=>({op:'append',type:'paragraph',text}))});
+}
+await contribute(root,'version-scope',['版本：1.0.2；范围：Mobile 文档依赖隔离、SmartDoc 原生替换、版权来源审查及 Apple 拒审整改。','版本目标：将工程改造、验证、人员决定与渠道事实分开，交付可审查的四渠道候选版本。','纳入范围：'+groups.map(g=>g.title).join('；'),'明确不做：本轮流程整理不宣称旧代码和最终包已获版权清理、不代批名称或权利证明、不伪造真机或商店通过。','历史输入：项目 '+oldId+' v'+old.version+'；50 个节点及已有 Attempt/产物作为基线，只读归档，未转成新流程的当前成功结果。','版本验收：全部子需求交付、版本用例与真实回归报告、候选包来源摘要、必要授权与许可、分渠道真实回执；缺项保持阻塞。'],'migration-v2-version-prd');
+await contribute(root,'version-ui',['版本主画布只显示五个 Step；“需求拆分与交付”列显示六个子流程入口，点击后进入该需求自己的五 Step 画布，可返回版本。','节点纵排，Step 横向有序。只画同 Step 节点依赖；不画跨 Step 节点线；手机用分组列表保持同一语义。','流程总文档为唯一材料入口；每个 Step 的 PRD、UI、用例、报告与回执均有原生 SmartDoc 文档和可定位修订。','人工标过使用独立状态，显示原因与操作者；测试报告、MR 合并和上架状态须由真实证据核验。'],'migration-v2-version-ui');
+const children=[];
+for(const g of groups){
+ const parent=await get(root.id),commandId='mobile-102-v2-'+g.key,expectedId=createHash('sha256').update(parent.id+':requirement:'+commandId).digest('hex').slice(0,32);const existing=parent.lifecycle.children.find((c:any)=>c.projectId===expectedId);const created=existing?{childProjectId:existing.projectId}:await call('ci_requirement_create',{projectId:parent.id,expectedVersion:parent.version,commandId,title:g.title,goal:g.scope.join('\n')});let child=await get(created.childProjectId);
+ await contribute(child,'feature-prd',['需求目标：'+g.title,...g.scope,'输入与范围依据：旧流程节点 '+g.ids.join('、')+'；旧结果是待复核基线，不自动认定本需求通过。','角色与权限：开发者和 CI Agent 在项目授权内共同维护文档；隐私、品牌、许可与正式发布决定保留人员关口。','范围与异常约束：不破坏已有用户数据；不隐式安装不受信实现；操作失败保留输入、原始证据及可恢复路径。','验收条件：'+g.cases.map((c,i)=>`AC-${i+1} ${c}`).join('\n'),'研发交付：详细 PRD、UI/状态说明、方案与代码证据、可执行测试用例、真实测试报告、MR 提审及合并回执。'],'migration-v2-prd-'+g.key);
+ await contribute(child,'feature-ui',['交互入口与平台：Desktop/Web 和 Mobile 共用同一需求定义、材料和执行状态；页面不自行推进后台结果。','需要覆盖：正常、空数据、加载、权限不足、网络失败、冲突、取消、重试、旧内容不可编辑等状态。','界面验收点：'+g.cases.join('；'),'设计交付位置：本需求“视觉与 UI 设计” Step 的 SmartDoc；截图、UI 源文件及可复现设备环境以子文档链接归档，尚无稿件不能标为设计完成。'],'migration-v2-ui-'+g.key);
+ await contribute(child,'feature-solution',['实施范围：'+g.scope.join('\n'),'工程定位：Muse-Client/app/openmuse_mobile、共享插件 SDK/连接层，以及 Muse-Plugin-Ecosystem 的独立插件与 SmartDoc 组件；按实际改动逐文件归档。','验证策略：先冻结输入，再按需求用例执行受控测试；源码、解析依赖、设备行为与最终包检查分别保留证据，不互相替代。','并发与失败：文档以修订防止覆盖，节点执行固定材料快照；上游变化导致下游过期；重跑新增 Attempt，不覆盖旧结果。'],'migration-v2-solution-'+g.key);
+ await contribute(child,'feature-cases',g.cases.map((c,i)=>`TC-${g.key}-${String(i+1).padStart(2,'0')}\n关联：AC-${i+1}\n环境/前置：冻结本次源提交、目标渠道、构建/设备与用例修订；准备允许和不允许的输入。\n步骤：执行“${c}”对应流程，采集原始输出、网络/生命周期事件和产物位置；再执行失败与恢复路径。\n预期：满足该验收条件；未提供环境或材料时记为未执行。\n结果/证据/缺陷：待真实执行。`),'migration-v2-cases-'+g.key);
+ children.push({id:child.id,title:g.title,legacyNodes:g.ids});
+}
+await contribute(root,'requirement-plan',children.map(c=>`${c.title}\n子流程：${c.id}\n历史基线节点：${c.legacyNodes.join('、')}\n子流程交付条件：SmartDoc PRD/UI/方案/用例/报告齐备；测试与 MR 合并回执可核验；版本回归以子流程交付修订为固定输入。`),'migration-v2-requirements');
+await contribute(root,'regression-cases',['VR-01 安装与升级：四渠道的首次安装、旧版升级和旧内容恢复，记录设备、包与数据基线。','VR-02 文档主链路：创建、打开、编辑、保存、关闭、重新打开及离线恢复，核对内容摘要和权限。','VR-03 插件/依赖隔离：解析依赖、运行入口、构建资源、嵌套包、压缩清单与最终包逐层核验。','VR-04 隐私与品牌：每条 AI 发送路径的事前披露、拒绝、取消、撤回与账号切换；双语和窄屏。','VR-05 需求变更：修改任一子需求输入后，检查旧版本回归与后续发布关口失效。','VR-06 发布准备：签名、构建号、许可、名称路线、政策、截图、审核回复及四渠道真实回执逐项核对。','本版本用例为执行计划，不是测试结果。报告需关联实际执行日志与未覆盖项。'],'migration-v2-regression-cases');
+const after=await get(oldId);if(after.version!==old.version)throw Error('LEGACY_PROJECT_CHANGED');
+const receipt={versionProjectId:root.id,versionName:'1.0.2',children,legacy:{projectId:oldId,version:old.version,preserved:true},documents:'native SmartDoc / muse.smart-document/phase1',agentContributions:true,completedAt:new Date().toISOString()};
+const out=new URL('../../Muse-Plugin-Ecosystem/plugins/muse-ci/docs/evidence/lifecycle-v2/',import.meta.url);await mkdir(out,{recursive:true});await writeFile(new URL('mobile-migration.json',out),JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt));await client.close();

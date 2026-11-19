@@ -1,0 +1,35 @@
+{
+  "name": "@openmuse/ci-backend",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx apps/api/main.ts",
+    "worker": "tsx apps/worker/main.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "e2e": "tsx scripts/e2e.ts",
+    "dev": "node scripts/dev.mjs",
+    "stack:up": "node scripts/stack.mjs up",
+    "stack:stop": "node scripts/stack.mjs stop",
+    "pilot:mobile": "tsx scripts/start-mobile-pilot.ts --wait"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/client": "2.3.1",
+    "@modelcontextprotocol/server": "2.3.1",
+    "@temporalio/activity": "1.26.0",
+    "@temporalio/client": "1.26.0",
+    "@temporalio/worker": "1.26.0",
+    "@temporalio/workflow": "1.26.0",
+    "pg": "8.23.1",
+    "ws": "8.23.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "@types/pg": "8.15.6",
+    "@types/ws": "^8.18.1",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
+  }
+}
