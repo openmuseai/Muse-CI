@@ -1,0 +1,26 @@
+{
+  "version": "0.4.0",
+  "versionProjectId": "28f3b64ebea1be399461053ce13b32a8",
+  "title": "Muse-CI 0.4.0 · 清晰画布与 SmartDoc 驱动",
+  "handbookId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+  "children": [
+    {
+      "id": "66878b4722f6ac2772f3da7a9ad40327",
+      "key": "compact-nodes",
+      "title": "精简节点卡片与清晰操作",
+      "goal": "卡片仅保留标题、状态、运行/重跑、产物与更多操作；默认字号增大，描述、Skill、工具、材料与依赖移入详情。保留人工标过/撤回、日志、历史、列内依赖和执行门禁。Desktop/Web/Mobile 可操作。",
+      "handbookId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7"
+    },
+    {
+      "id": "06a221ab461e2ed18b06af11dfef6644",
+      "key": "smartdoc-steps",
+      "title": "SmartDoc 驱动 Step 与文档产物直达",
+      "goal": "每个 Step 有归档到总文档的原生配置 SmartDoc；发布配置时校验受信 Skill/工具/节点覆盖并固定修订，执行使用固定快照，修改后过期并阻止旧输入运行。节点文档与 .sydoc 产物点击直接打开智能文档，历史产物保持只读固定快照。Web 直接渲染富文档，Desktop/Mobile 进入完整原生编辑器，不先展示 JSON/段落编辑弹窗。",
+      "handbookId": "d997b21a-87d5-4427-860f-df9d818e31ee"
+    }
+  ],
+  "baseline": "9e87978",
+  "repository": "openmuseai/Muse-CI",
+  "branch": "feat/0.4-smartdoc-steps",
+  "startedAt": "2026-11-19T10:41:46.671Z"
+}
