@@ -15,7 +15,7 @@ const admin=new Store(env.CI_DATABASE_URL);await admin.pool.query(`CREATE SCHEMA
 const isolatedDatabase=new URL(env.CI_DATABASE_URL);isolatedDatabase.searchParams.set('options','-csearch_path='+schema);env.CI_DATABASE_URL=isolatedDatabase.href;
 const origin = 'http://127.0.0.1:4181', checks: string[] = [];
 let api!: ChildProcess, worker!: ChildProcess, client!: Client, projectId!: string;
-const out = new URL('../Muse-Plugin-Ecosystem/plugins/muse-ci/docs/evidence/live-e2e/', cwd);
+const out = new URL('plugin/docs/evidence/live-e2e/', cwd);
 await mkdir(out, { recursive: true });
 await mkdir(new URL('.data/', cwd), { recursive: true });
 async function launch(file: string) { const log = await open(new URL('.data/e2e-' + file.split('/').at(-2) + '.log', cwd), 'a'); const child = spawn(process.execPath, ['--import', 'tsx', file], { cwd, env, stdio: ['ignore', log.fd, log.fd] }); await log.close(); return child; }

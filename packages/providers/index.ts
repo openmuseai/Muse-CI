@@ -8,7 +8,7 @@ import { Client, StreamableHTTPClientTransport } from '@modelcontextprotocol/cli
 import type { GraphNode, Attempt, Artifact, Project } from '../contracts/index.ts';
 import { skillRegistry } from './registry.ts';
 import { digest, fail } from '../../apps/api/store.ts';
-const backend = fileURLToPath(new URL('../../', import.meta.url)), plugin = fileURLToPath(new URL('../../../Muse-Plugin-Ecosystem/plugins/muse-ci/', import.meta.url));
+const backend = fileURLToPath(new URL('../../', import.meta.url)), plugin = fileURLToPath(new URL('../../plugin/', import.meta.url));
 const knownTools = new Set([...mobileTools,'smartdoc-publish','doc-compile', 'ci-inspect', 'ci-plugin-test', 'ci-build', 'ci-test', 'ci-policy', 'ci-artifact-verify', 'ci-release-check', 'artifact-read']);
 export async function command(command: string, args: string[], cwd: string, signal: AbortSignal, maxOutput = 128000) { return new Promise<{
     stdout: string;

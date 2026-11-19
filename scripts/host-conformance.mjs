@@ -1,7 +1,7 @@
 import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {spawn} from 'node:child_process';
 const root=new URL('../',import.meta.url),envText=await readFile(new URL('.data/development.env',root),'utf8'),vars=Object.fromEntries(envText.trim().split('\n').map(s=>{const i=s.indexOf('=');return [s.slice(0,i),s.slice(i+1)];}));
-const directory=new URL('../Muse-Client/app/openmuse_host/',root),out=new URL('../Muse-Plugin-Ecosystem/plugins/muse-ci/docs/evidence/live-e2e/',root);await mkdir(out,{recursive:true});
-const version=JSON.parse(await readFile(new URL('../Muse-Plugin-Ecosystem/plugins/muse-ci/package.json',root),'utf8')).version;
-const child=spawn('flutter',['test','--no-pub','test/mcp_remote_bundle_conformance_test.dart','--reporter','expanded'],{cwd:directory,env:{...process.env,OPENMUSE_MCPB_SMOKE_BUNDLE:new URL(`../Muse-Plugin-Ecosystem/plugins/muse-ci/dist/muse-ci-${version}.mcpb`,root).pathname,OPENMUSE_MCPB_SMOKE_CONFIG:JSON.stringify({backend_url:'http://127.0.0.1:4180/mcp',backend_token:vars.CI_MCP_TOKEN}),OPENMUSE_MCPB_SMOKE_TOOL:'ci_capabilities'},stdio:['ignore','pipe','pipe']});
+const directory=new URL('../Muse-Client/app/openmuse_host/',root),out=new URL('plugin/docs/evidence/live-e2e/',root);await mkdir(out,{recursive:true});
+const version=JSON.parse(await readFile(new URL('plugin/package.json',root),'utf8')).version;
+const child=spawn('flutter',['test','--no-pub','test/mcp_remote_bundle_conformance_test.dart','--reporter','expanded'],{cwd:directory,env:{...process.env,OPENMUSE_MCPB_SMOKE_BUNDLE:new URL(`plugin/dist/muse-ci-${version}.mcpb`,root).pathname,OPENMUSE_MCPB_SMOKE_CONFIG:JSON.stringify({backend_url:'http://127.0.0.1:4180/mcp',backend_token:vars.CI_MCP_TOKEN}),OPENMUSE_MCPB_SMOKE_TOOL:'ci_capabilities'},stdio:['ignore','pipe','pipe']});
 let text='';for(const stream of [child.stdout,child.stderr])stream.on('data',b=>{text+=b;});child.on('exit',async code=>{text=text.replaceAll(vars.CI_MCP_TOKEN,'[redacted]');await writeFile(new URL('desktop-host-conformance.log',out),text);process.stdout.write(text.slice(-3000));process.exitCode=code||0;});

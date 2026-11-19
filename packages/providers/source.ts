@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { mobileInputManifest,isMobileTool } from './mobile-inputs.ts';
 import type {Graph} from '../contracts/index.ts';
 import { digest } from '../../apps/api/store.ts';
-const backend = fileURLToPath(new URL('../../', import.meta.url)), plugin = fileURLToPath(new URL('../../../Muse-Plugin-Ecosystem/plugins/muse-ci/', import.meta.url));
+const backend = fileURLToPath(new URL('../../', import.meta.url)), plugin = fileURLToPath(new URL('../../plugin/', import.meta.url));
 export async function sourceManifest(graph?:Graph) {
     const files: {
         file: string;

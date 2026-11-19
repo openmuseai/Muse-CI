@@ -82,7 +82,7 @@ export async function newProject(actor: Principal, title: string, goal: string, 
     for (const [nodeId, file] of docs) {
         let text = '';
         try {
-            text = await readFile(new URL(`../../../Muse-Plugin-Ecosystem/plugins/muse-ci/docs/${file}`, import.meta.url), 'utf8');
+            text = await readFile(new URL(`../../plugin/docs/${file}`, import.meta.url), 'utf8');
         }
         catch {
             text = '请补齐 ' + file;
