@@ -1,42 +1,42 @@
 {
-  "at": "2026-11-19T11:33:30.010Z",
+  "at": "2026-11-19T12:20:30.692Z",
   "receipts": [
     {
       "projectId": "66878b4722f6ac2772f3da7a9ad40327",
       "title": "精简节点卡片与清晰操作",
-      "sourceDigest": "5a1e061454611a64defb0f3c7efebf3169e9eeb0a2a5e205fd2cb416ec593cce",
+      "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
       "run": {
-        "id": "657896d9-936f-4e1c-9d2c-840370f23aa8",
+        "id": "f18390ba-477b-4532-85d1-28db48789a67",
         "auto": true,
         "jobs": [
           {
             "nodeId": "feature-prd",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "feature-ui",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "feature-solution",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "implementation",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "feature-cases",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "feature-report",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           }
         ],
@@ -45,7 +45,7 @@
         "status": "succeeded",
         "commands": [
           {
-            "id": "65750a02-39de-4a44-b8e5-7ffe879dd5bf",
+            "id": "0e16a4c6-4b6a-49a8-91b1-6dac2b4298cd",
             "action": "start",
             "applied": true
           }
@@ -60,17 +60,17 @@
           "feature-report"
         ],
         "projectId": "66878b4722f6ac2772f3da7a9ad40327",
-        "startedAt": "2026-11-19T11:33:22.303Z",
-        "finishedAt": "2026-11-19T11:33:24.675Z",
+        "startedAt": "2026-11-19T12:20:17.921Z",
+        "finishedAt": "2026-11-19T12:20:21.262Z",
         "graphDigest": "c4b4fe819339069a50f765252c97a17e3876074afae6967f18f2715add4d6688",
-        "sourceDigest": "5a1e061454611a64defb0f3c7efebf3169e9eeb0a2a5e205fd2cb416ec593cce",
+        "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
         "decisionScope": "development"
       },
       "nodes": [
         {
           "id": "feature-prd",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "细化范围、规则与每一项验收条件.sydoc",
@@ -87,7 +87,7 @@
         {
           "id": "feature-ui",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "界面、交互状态与多端设计.sydoc",
@@ -104,7 +104,7 @@
         {
           "id": "feature-solution",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "架构、协议、数据与实施方案.sydoc",
@@ -121,7 +121,7 @@
         {
           "id": "implementation",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "source-manifest.json",
@@ -138,7 +138,7 @@
         {
           "id": "feature-cases",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "功能测试用例与覆盖矩阵.sydoc",
@@ -155,16 +155,16 @@
         {
           "id": "feature-report",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "process-report.json",
-              "sha256": "5e74ea414c2b2737aba6b87f05b0e201a5aca369bb5e5d11c2b65b4085d9f082",
+              "sha256": "3f9a634e1fced1192b6f2f3826ceb464ae348446a81982bb8df959f26d1cdee6",
               "producer": "ci-test"
             },
             {
               "name": "process-report.json",
-              "sha256": "42287db48df96124a4aad2b469760807291e7076b01f7838e22d8e2944283cae",
+              "sha256": "e38f9ce781ff7f34a78241566d26804b058880c203c10ecad01e75742f279352",
               "producer": "ci-plugin-test"
             },
             {
@@ -194,39 +194,39 @@
     {
       "projectId": "06a221ab461e2ed18b06af11dfef6644",
       "title": "SmartDoc 驱动 Step 与文档产物直达",
-      "sourceDigest": "5a1e061454611a64defb0f3c7efebf3169e9eeb0a2a5e205fd2cb416ec593cce",
+      "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
       "run": {
-        "id": "01e71b41-185d-4277-a560-8442cebbf942",
+        "id": "cbccb9e4-1261-4ac1-aec3-86ab7980bf63",
         "auto": true,
         "jobs": [
           {
             "nodeId": "feature-prd",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "feature-ui",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "feature-solution",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "implementation",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "feature-cases",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "feature-report",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           }
         ],
@@ -235,7 +235,7 @@
         "status": "succeeded",
         "commands": [
           {
-            "id": "43cd71ed-e986-4a76-897e-9f4e876cee36",
+            "id": "1b3821c6-76bc-4110-b5b2-46fd2a5420ca",
             "action": "start",
             "applied": true
           }
@@ -250,17 +250,17 @@
           "feature-report"
         ],
         "projectId": "06a221ab461e2ed18b06af11dfef6644",
-        "startedAt": "2026-11-19T11:33:25.795Z",
-        "finishedAt": "2026-11-19T11:33:27.965Z",
+        "startedAt": "2026-11-19T12:20:23.122Z",
+        "finishedAt": "2026-11-19T12:20:26.277Z",
         "graphDigest": "d36d55beb80c337242d7b6fdac133533aff1cfc53a4793ca86037e052d9f899f",
-        "sourceDigest": "5a1e061454611a64defb0f3c7efebf3169e9eeb0a2a5e205fd2cb416ec593cce",
+        "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
         "decisionScope": "development"
       },
       "nodes": [
         {
           "id": "feature-prd",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "细化范围、规则与每一项验收条件.sydoc",
@@ -277,7 +277,7 @@
         {
           "id": "feature-ui",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "界面、交互状态与多端设计.sydoc",
@@ -294,7 +294,7 @@
         {
           "id": "feature-solution",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "架构、协议、数据与实施方案.sydoc",
@@ -311,7 +311,7 @@
         {
           "id": "implementation",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "source-manifest.json",
@@ -328,7 +328,7 @@
         {
           "id": "feature-cases",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "功能测试用例与覆盖矩阵.sydoc",
@@ -345,16 +345,16 @@
         {
           "id": "feature-report",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "process-report.json",
-              "sha256": "be96e7807f814a42d493f37233ce173922ffe1017b271f3b97dd304d1b7e4229",
+              "sha256": "f510246f14ce585c67d6805b3a31e52e36e09097acf1d22edcb65343498f721b",
               "producer": "ci-test"
             },
             {
               "name": "process-report.json",
-              "sha256": "a01eae616fe9e5a3633a3adb3d045748aa12a86f3208a669fa5e58b57afede36",
+              "sha256": "8cdb77e9ee8758deaeafe90aac5c71447560d4ddc0890e349c80eb0abc9cb233",
               "producer": "ci-plugin-test"
             },
             {
@@ -384,24 +384,24 @@
     {
       "projectId": "28f3b64ebea1be399461053ce13b32a8",
       "title": "Muse-CI 0.4.0 · 清晰画布与 SmartDoc 驱动",
-      "sourceDigest": "5a1e061454611a64defb0f3c7efebf3169e9eeb0a2a5e205fd2cb416ec593cce",
+      "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
       "run": {
-        "id": "0c4aae25-3dcd-4b20-9ca7-c80a02e4cc7c",
+        "id": "59205607-0c49-4208-9c93-e4193e3a78fe",
         "auto": true,
         "jobs": [
           {
             "nodeId": "version-scope",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "version-ui",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           },
           {
             "nodeId": "requirement-plan",
-            "attempt": 2,
+            "attempt": 3,
             "completed": true
           }
         ],
@@ -410,63 +410,63 @@
         "status": "succeeded",
         "commands": [
           {
-            "id": "e0bd8a84-7208-4df1-aae0-1c56b96a4064",
+            "id": "ee20cbd2-1080-4fc2-80d7-a3856806ce66",
             "action": "start",
             "applied": true
           }
         ],
-        "revision": 5,
+        "revision": 7,
         "selected": [
           "version-scope",
           "version-ui",
           "requirement-plan"
         ],
         "projectId": "28f3b64ebea1be399461053ce13b32a8",
-        "startedAt": "2026-11-19T11:33:29.003Z",
-        "finishedAt": "2026-11-19T11:33:29.667Z",
-        "graphDigest": "056d18f229768029a941396fe4f834b9ac2c40625b724934bedfd143db48821d",
-        "sourceDigest": "5a1e061454611a64defb0f3c7efebf3169e9eeb0a2a5e205fd2cb416ec593cce",
+        "startedAt": "2026-11-19T12:20:29.105Z",
+        "finishedAt": "2026-11-19T12:20:30.523Z",
+        "graphDigest": "eb741179eb8ad1163b18463f664568a3b09fb6283b5164a88394a7f04977cbfc",
+        "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
         "decisionScope": "development"
       },
       "nodes": [
         {
           "id": "version-scope",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "圈定版本范围与粗粒度 PRD.sydoc",
-              "sha256": "56bcac5d29a08c2b85675467fcdadb863293a60e20a6d7ef4a48f1e465f08052",
+              "sha256": "068fa77b942c1e5e2e7132d57b5e24112f68ac10a078f448633118c31dab6458",
               "producer": "smartdoc.snapshot"
             }
           ],
           "stepConfiguration": {
             "documentId": "0fc7db9e-ac32-434a-8c9c-493d00de8d45",
-            "revision": 2,
-            "sha256": "6e6768b54479908349afd465021481051730b95d3e5d8d1577d298cfe123323a"
+            "revision": 5,
+            "sha256": "58e6818fa9d21c4454d37d13c9f3b01d42e838264c942392e6c0f32444a02bce"
           }
         },
         {
           "id": "version-ui",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "版本视觉方向与 UI 设计.sydoc",
-              "sha256": "20da9e17d02ef34ac3265033fdd4028311f6f75fc5c5ddef757d007313320992",
+              "sha256": "ab2eb8bc91d271295cbcee438428b53832558a4f7c65d2ffba8857e059d1d545",
               "producer": "smartdoc.snapshot"
             }
           ],
           "stepConfiguration": {
             "documentId": "6a934296-73ec-425a-a41c-42a358dd8f4e",
-            "revision": 2,
-            "sha256": "b11a2505e095f9566bcb89bcaa975f9e7f11830d038b16874bcb6aa2bc349573"
+            "revision": 3,
+            "sha256": "e087fef22d60eb56b5b318ce2df9c9a3aacd6d1ee895fab0b907d7d4ef7ac2e6"
           }
         },
         {
           "id": "requirement-plan",
           "status": "succeeded",
-          "attempt": 2,
+          "attempt": 3,
           "artifacts": [
             {
               "name": "拆分子需求与验收边界.sydoc",

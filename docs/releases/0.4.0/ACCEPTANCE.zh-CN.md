@@ -29,20 +29,26 @@
 | Desktop Host MCPB | 实际加载测试通过 | [Host 回执](evidence/desktop-host-conformance.json)；最终包重跑通过 |
 | Android PKM110 | 12 项里程碑通过 | [原生回执](evidence/mobile-artifact-111861.json)、[测试套件](evidence/mobile-artifact-111861-suite.json)：普通安装入口、CN 账号、0.4 UI、真实 MCP 原生数据读取、完整 SmartDoc 正文、只读且不连接可变云文档 |
 | Web 实际交互 | 通过 | 100% 画布、创建/发布配置、已发布头部、原生正文快照、查看不保存；见截图 |
-| Desktop 实际点击 | 待完成 | QA 已构建并安装；本轮末 Mac 自动锁屏，系统禁止窗口自动化，已请求解锁。不可将 MCPB 加载测试等同于此项通过 |
+| Desktop 实际点击 | 10 项里程碑通过 | [实际点击回执](evidence/desktop-ui-acceptance.json)：DSH 右侧普通入口、0.4 画布、完整原生阶段编辑器、历史产物原生只读视图，以及云端修订失效后重新发布/执行 |
 
 手机测试构建为 `1.0.2+111861`，已恢复普通 QA `1.0.2+111862`；最后的表单按钮修复已更新到同一安装配置。未操作其他设备。Host 通用实现提交为 Muse-Client `b84c2bc0`，真机测试提交为 `096521f1`。正式安装的 OpenMuse.app 未替换。
 
 ## 后续门禁与限制
 
-- MR 保持草稿，等待 Desktop 实际点击验收及评审；未合并、未上架。版本回归与渠道发布节点仍保留门禁。
+- [MR #1](https://github.com/openmuseai/Muse-CI/pull/1) 保持草稿，等待评审；未合并、未上架。Desktop 实际点击已补齐，版本回归与渠道发布节点仍保留门禁。
 - 本地后端和手机 USB 转发是本轮环境；没有据此宣称生产市场、OAuth 或 iOS 真机验证完成。
 - Web 阅读器支持正文、标题、富文本、列表、引用、代码与表格；完整原生编辑与复杂块使用 Host SmartDoc。图片不会由 Web 自动向外部地址发送请求。
 - 构建使用相邻 Ecosystem 工程生成的 SmartDoc WASM 资产；当前仓库尚不是脱离工程组的独立离线构建包。相关上游许可证不移除。
 - 推送前扫描公开源码、证据与原生文档状态，确保不包含已授权账号密码、MCP Token 或 GitHub Token。
+
+Desktop 补验中，首次原生云端接入为配置、PRD 与 UI 文档产生了新修订。CI 正确将消费者标为过期；逐块比较 PRD/UI 与此前已发布修订，正文一致后重新发布，并更新配置材料修订后重新执行。两个需求测试与版本前三节点均再次成功。自迭代脚本亦修正为检查当前节点状态，不能因存在旧成功 Run 而跳过已过期的结果。
 
 ![清晰画布](evidence/web-canvas.png)
 
 ![已发布阶段 SmartDoc](evidence/web-step-smartdoc.png)
 
 ![原生文档产物正文](evidence/web-artifact-smartdoc.png)
+
+![Desktop 完整原生阶段 SmartDoc](evidence/desktop-step-smartdoc.png)
+
+![Desktop 历史只读产物与重跑后的流程](evidence/desktop-artifact-smartdoc.png)

@@ -1,22 +1,22 @@
 {
-  "at": "2026-11-19T11:34:31.573Z",
+  "at": "2026-11-19T12:20:56.329Z",
   "authority": "Retained native SmartDoc revisions; immutable file exports, online IDs remain authoritative",
   "projects": [
     {
       "id": "28f3b64ebea1be399461053ce13b32a8",
       "title": "Muse-CI 0.4.0 · 清晰画布与 SmartDoc 驱动",
       "kind": "version",
-      "version": 38,
+      "version": 62,
       "documents": [
         {
           "id": "0fc7db9e-ac32-434a-8c9c-493d00de8d45",
           "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
           "title": "版本定义 · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "version/01-definition/stage-configuration.sydoc",
-          "sha256": "6e6768b54479908349afd465021481051730b95d3e5d8d1577d298cfe123323a"
+          "sha256": "58e6818fa9d21c4454d37d13c9f3b01d42e838264c942392e6c0f32444a02bce"
         },
         {
           "id": "2059d7da-abad-46e4-a0ee-51bb046efb57",
@@ -33,10 +33,10 @@
           "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
           "title": "版本视觉方向与 UI 设计",
           "kind": "ui-design",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "version/02-visual/version-ui.sydoc",
-          "sha256": "20da9e17d02ef34ac3265033fdd4028311f6f75fc5c5ddef757d007313320992"
+          "sha256": "ab2eb8bc91d271295cbcee438428b53832558a4f7c65d2ffba8857e059d1d545"
         },
         {
           "id": "4afd85b8-bd1f-4059-925f-096bcd08e04b",
@@ -71,18 +71,18 @@
           "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
           "title": "版本视觉与 UI · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "version/02-visual/stage-configuration.sydoc",
-          "sha256": "b11a2505e095f9566bcb89bcaa975f9e7f11830d038b16874bcb6aa2bc349573"
+          "sha256": "e087fef22d60eb56b5b318ce2df9c9a3aacd6d1ee895fab0b907d7d4ef7ac2e6"
         },
         {
           "id": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
           "title": "00 · Muse-CI 0.4.0 · 清晰画布与 SmartDoc 驱动 · 流程总文档",
           "kind": "handbook",
-          "revision": 13,
+          "revision": 20,
           "path": "version/00-index/94a9b0f0-f11b-4ce9-a653-f3f8055b958f.sydoc",
-          "sha256": "6e2e679bdb7d7274efaf57fc3a861000b57bba74ff0b2d317788578173506e70"
+          "sha256": "02a791f39af003c695a445140d2c80563c78b22cf0a00ad57e822a818154dd22"
         },
         {
           "id": "95839fce-42e3-44d3-a2f2-8b75195a61c6",
@@ -107,10 +107,10 @@
           "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
           "title": "圈定版本范围与粗粒度 PRD",
           "kind": "version-prd",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "version/01-definition/version-scope.sydoc",
-          "sha256": "56bcac5d29a08c2b85675467fcdadb863293a60e20a6d7ef4a48f1e465f08052"
+          "sha256": "068fa77b942c1e5e2e7132d57b5e24112f68ac10a078f448633118c31dab6458"
         }
       ]
     },
@@ -119,7 +119,7 @@
       "title": "精简节点卡片与清晰操作",
       "kind": "requirement",
       "parentId": "28f3b64ebea1be399461053ce13b32a8",
-      "version": 62,
+      "version": 87,
       "documents": [
         {
           "id": "056bf45e-d4b5-45b7-a5fd-4efe54abb8df",
@@ -144,10 +144,10 @@
           "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
           "title": "实现功能与研发验证",
           "kind": "implementation",
-          "revision": 4,
-          "publishedRevision": 4,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "compact-nodes/03-solution/implementation.sydoc",
-          "sha256": "fe61b1901b4846b86af5e17d73717ebd874d5e20d555009b17ce9a75251cb2c7"
+          "sha256": "54b18888076f6c85189e5d4dc2fdb7ecfe32f3c79950d546b2360257f066f4b8"
         },
         {
           "id": "11d9e159-b8ff-45c9-a42d-7e67568875cd",
@@ -174,10 +174,10 @@
           "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 4,
+          "publishedRevision": 4,
           "path": "compact-nodes/04-testing/feature-report.sydoc",
-          "sha256": "5d5168045858c0269fd36ec6c336673a2b35aa845ef2c88067903a9c54042863"
+          "sha256": "d827022f67dd21884eb0f0397c9dd8a84eba6be28fea910bc7435e038dcd5e1c"
         },
         {
           "id": "247dffa1-cf31-46ae-8f16-73f64eedabee",
@@ -264,7 +264,7 @@
       "title": "SmartDoc 驱动 Step 与文档产物直达",
       "kind": "requirement",
       "parentId": "28f3b64ebea1be399461053ce13b32a8",
-      "version": 62,
+      "version": 85,
       "documents": [
         {
           "id": "11bdc91a-7ce8-4b6c-8e91-d4d9a21b85f8",
@@ -310,20 +310,20 @@
           "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 4,
+          "publishedRevision": 4,
           "path": "smartdoc-steps/04-testing/feature-report.sydoc",
-          "sha256": "f54cf7a7b2dab6f98edcb10c3bacdb466e4eb88340ee854070153a486ebe52d5"
+          "sha256": "15992163691f50d927135c51527205c32752c3de114d0994696150e95a0791f9"
         },
         {
           "id": "76b4a5c7-80e9-49d4-8e27-55c0e70cb980",
           "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
           "title": "实现功能与研发验证",
           "kind": "implementation",
-          "revision": 4,
-          "publishedRevision": 4,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "smartdoc-steps/03-solution/implementation.sydoc",
-          "sha256": "abee8cfac006097c09fafc8e6e768b172fd51bcfceb14ecf43e17cb6710999b0"
+          "sha256": "a4bb58799821d10977344a2ccdcd75eb4809423b21fad58e0e83bff7b881e52d"
         },
         {
           "id": "7bcbb47a-e23c-4a68-b49d-06c568689d61",

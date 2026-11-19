@@ -1,0 +1,54 @@
+{
+  "at": "2026-11-19T12:22:22.705Z",
+  "passed": true,
+  "method": "Actual CUA clicks in installed OpenMuse CI QA followed by MCP readback; no mock editor or browser reader",
+  "profile": "com.openmuseai.office.ciqa",
+  "projectId": "28f3b64ebea1be399461053ce13b32a8",
+  "milestones": [
+    "ordinary Muse-CI entry loads in Desktop DSH right pane",
+    "0.4 version project selected through installed UI",
+    "compact node cards and stage configuration entry visible",
+    "stage configuration opens full native SmartDoc editor with native JSON code block",
+    "native cloud import creates new revision and invalidates old CI results",
+    "unchanged PRD/UI bodies compared with published revisions before republishing",
+    "published updated stage configurations and reran affected version nodes",
+    "historical attempt 2 opens original full native SmartDoc with Read only title and disabled editing controls",
+    "historical attempt 2 stays readable after current attempt 3 succeeds",
+    "artifact viewing does not submit node configuration"
+  ],
+  "graphRevision": 7,
+  "artifact": {
+    "nodeId": "version-scope",
+    "attempt": 2,
+    "index": 0,
+    "name": "圈定版本范围与粗粒度 PRD.sydoc",
+    "sha256": "56bcac5d29a08c2b85675467fcdadb863293a60e20a6d7ef4a48f1e465f08052",
+    "readOnly": true
+  },
+  "readbackGraphUnchanged": true,
+  "versionNodes": [
+    {
+      "id": "version-scope",
+      "status": "succeeded",
+      "attempt": 3
+    },
+    {
+      "id": "version-ui",
+      "status": "succeeded",
+      "attempt": 3
+    },
+    {
+      "id": "requirement-plan",
+      "status": "succeeded",
+      "attempt": 3
+    }
+  ],
+  "screenshots": [
+    "desktop-canvas.png",
+    "desktop-step-smartdoc.png",
+    "desktop-artifact-smartdoc.png"
+  ],
+  "limitations": [
+    "QA installed build and local backend; production channel and iOS are not covered"
+  ]
+}
