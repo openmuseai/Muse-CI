@@ -1,0 +1,408 @@
+{
+  "at": "2026-11-19T11:34:31.573Z",
+  "authority": "Retained native SmartDoc revisions; immutable file exports, online IDs remain authoritative",
+  "projects": [
+    {
+      "id": "28f3b64ebea1be399461053ce13b32a8",
+      "title": "Muse-CI 0.4.0 · 清晰画布与 SmartDoc 驱动",
+      "kind": "version",
+      "version": 38,
+      "documents": [
+        {
+          "id": "0fc7db9e-ac32-434a-8c9c-493d00de8d45",
+          "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "版本定义 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "version/01-definition/stage-configuration.sydoc",
+          "sha256": "6e6768b54479908349afd465021481051730b95d3e5d8d1577d298cfe123323a"
+        },
+        {
+          "id": "2059d7da-abad-46e4-a0ee-51bb046efb57",
+          "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "需求拆分与交付 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "version/03-requirements/stage-configuration.sydoc",
+          "sha256": "9d65803b504794e6cde8dc911d7ea6109b9ad329419fb0db6441eddd0d75527c"
+        },
+        {
+          "id": "36c4a373-2240-48da-ae9b-66220f1e31b0",
+          "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "版本视觉方向与 UI 设计",
+          "kind": "ui-design",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "version/02-visual/version-ui.sydoc",
+          "sha256": "20da9e17d02ef34ac3265033fdd4028311f6f75fc5c5ddef757d007313320992"
+        },
+        {
+          "id": "4afd85b8-bd1f-4059-925f-096bcd08e04b",
+          "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "执行版本回归与测试报告",
+          "kind": "test-report",
+          "revision": 1,
+          "path": "version/04-regression/regression-report.sydoc",
+          "sha256": "b85b10edae1f902253e5dc850a8f6c8d61fa658d06257208bb083c5caf99f7b1"
+        },
+        {
+          "id": "54cac7c7-2325-405a-8096-ebd2b1e8152c",
+          "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "拆分子需求与验收边界",
+          "kind": "requirement-plan",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "version/03-requirements/requirement-plan.sydoc",
+          "sha256": "2c2df473f28273cbd2cb4e7f97f97bafa3c68c186577fc6395de4965b6773a83"
+        },
+        {
+          "id": "5a9ac603-73d1-4ae3-bcd8-5364165d2c03",
+          "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "候选包、上架材料与渠道计划",
+          "kind": "release-plan",
+          "revision": 1,
+          "path": "version/05-release/release-materials.sydoc",
+          "sha256": "cca89e4c81bea290b9669d148c217f927179c8090d7efb885b7dd649a26520e5"
+        },
+        {
+          "id": "6a934296-73ec-425a-a41c-42a358dd8f4e",
+          "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "版本视觉与 UI · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "version/02-visual/stage-configuration.sydoc",
+          "sha256": "b11a2505e095f9566bcb89bcaa975f9e7f11830d038b16874bcb6aa2bc349573"
+        },
+        {
+          "id": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "00 · Muse-CI 0.4.0 · 清晰画布与 SmartDoc 驱动 · 流程总文档",
+          "kind": "handbook",
+          "revision": 13,
+          "path": "version/00-index/94a9b0f0-f11b-4ce9-a653-f3f8055b958f.sydoc",
+          "sha256": "6e2e679bdb7d7274efaf57fc3a861000b57bba74ff0b2d317788578173506e70"
+        },
+        {
+          "id": "95839fce-42e3-44d3-a2f2-8b75195a61c6",
+          "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "版本回归测试用例",
+          "kind": "test-cases",
+          "revision": 1,
+          "path": "version/04-regression/regression-cases.sydoc",
+          "sha256": "4c633b43c85859a881df58f834b1177cc340171893447b226d4a06d402ea0f09"
+        },
+        {
+          "id": "f2817840-e7a9-40f2-9d55-00eaa8d6ad2b",
+          "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "渠道上架与真实回执",
+          "kind": "release-receipt",
+          "revision": 1,
+          "path": "version/05-release/release-result.sydoc",
+          "sha256": "1e3820e91cc46d713f026543982fb7bb936bd980ff2ed5e80c307aa9bdaeb3c4"
+        },
+        {
+          "id": "faecf7e3-1bf7-4a87-a3e4-90759897d545",
+          "parentId": "94a9b0f0-f11b-4ce9-a653-f3f8055b958f",
+          "title": "圈定版本范围与粗粒度 PRD",
+          "kind": "version-prd",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "version/01-definition/version-scope.sydoc",
+          "sha256": "56bcac5d29a08c2b85675467fcdadb863293a60e20a6d7ef4a48f1e465f08052"
+        }
+      ]
+    },
+    {
+      "id": "66878b4722f6ac2772f3da7a9ad40327",
+      "title": "精简节点卡片与清晰操作",
+      "kind": "requirement",
+      "parentId": "28f3b64ebea1be399461053ce13b32a8",
+      "version": 62,
+      "documents": [
+        {
+          "id": "056bf45e-d4b5-45b7-a5fd-4efe54abb8df",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "界面、交互状态与多端设计",
+          "kind": "ui-design",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "compact-nodes/02-design/feature-ui.sydoc",
+          "sha256": "b67bec552e92b75990d200598c9634b22ae3e9bfdcdf04f074e416ed7718b684"
+        },
+        {
+          "id": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "00 · 精简节点卡片与清晰操作 · 流程总文档",
+          "kind": "handbook",
+          "revision": 14,
+          "path": "compact-nodes/00-index/0680af32-7a6f-4b34-814b-c9dbe245d4f7.sydoc",
+          "sha256": "50d3fd329e348dcf7c1846206469dac42aba50a00e46cff7df87a4506293d57d"
+        },
+        {
+          "id": "0fc7cbf5-29bc-4e55-b3aa-300e99c69a60",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "实现功能与研发验证",
+          "kind": "implementation",
+          "revision": 4,
+          "publishedRevision": 4,
+          "path": "compact-nodes/03-solution/implementation.sydoc",
+          "sha256": "fe61b1901b4846b86af5e17d73717ebd874d5e20d555009b17ce9a75251cb2c7"
+        },
+        {
+          "id": "11d9e159-b8ff-45c9-a42d-7e67568875cd",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "架构、协议、数据与实施方案",
+          "kind": "solution",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "compact-nodes/03-solution/feature-solution.sydoc",
+          "sha256": "be5218d65157b2e91b4ff5c6a27864263c397f5e503be67e4d162cc1af3caf18"
+        },
+        {
+          "id": "11ed5e0b-aa81-42b0-be8f-5e798512265c",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "功能需求 PRD · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "compact-nodes/01-prd/stage-configuration.sydoc",
+          "sha256": "7298150f4d03de4681ddc79519b21d1612b83f3efa0584104076c2ef0b3506f1"
+        },
+        {
+          "id": "1c34b7b3-0e0a-4446-b4b1-501a899405d4",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "执行测试并交付测试报告",
+          "kind": "test-report",
+          "revision": 3,
+          "publishedRevision": 3,
+          "path": "compact-nodes/04-testing/feature-report.sydoc",
+          "sha256": "5d5168045858c0269fd36ec6c336673a2b35aa845ef2c88067903a9c54042863"
+        },
+        {
+          "id": "247dffa1-cf31-46ae-8f16-73f64eedabee",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "细化范围、规则与每一项验收条件",
+          "kind": "feature-prd",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "compact-nodes/01-prd/feature-prd.sydoc",
+          "sha256": "a43475347e60ba08409e6d56c92555e8f2c439daa73b409b1d363c5c3d9dc5b8"
+        },
+        {
+          "id": "2b2fb63e-a0cd-4f59-943b-0a73f4cad949",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "MR 提审与合并 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "compact-nodes/05-merge/stage-configuration.sydoc",
+          "sha256": "0dc2b50d4dbee6492b0b08db24b450fe784347bc2d06fa673ad7028a0bd97d2d"
+        },
+        {
+          "id": "4cc2bfeb-320c-46fd-a33a-61389096ee83",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "视觉与 UI 设计 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "compact-nodes/02-design/stage-configuration.sydoc",
+          "sha256": "304ebaff90a4e937f69072f7d143366c0501e5f6d2954454a142dd5ce44dba17"
+        },
+        {
+          "id": "9a85a820-adcb-4c70-978b-196572288086",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "功能测试用例与覆盖矩阵",
+          "kind": "test-cases",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "compact-nodes/04-testing/feature-cases.sydoc",
+          "sha256": "4dc2a50b8548755f7924284a0551641fcd4e900654b7f577c5d893c0e7dd8164"
+        },
+        {
+          "id": "a5de2e3b-cd55-4dcd-9887-ace830600fda",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "合并与来源提交核验",
+          "kind": "merge-receipt",
+          "revision": 1,
+          "path": "compact-nodes/05-merge/mr-merge.sydoc",
+          "sha256": "cba0d476f21b5d2d7f53fdd028d53cc0c4503b2329b7372feed067d5da650c15"
+        },
+        {
+          "id": "e06cb795-f5aa-4c22-a1cb-50af6350e5b7",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "方案设计与研发 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "compact-nodes/03-solution/stage-configuration.sydoc",
+          "sha256": "01085dc68047ff87c79617a3435447d18b9b3726cc138fca32a3f715b812b428"
+        },
+        {
+          "id": "e47f1cca-fd27-4ffe-b247-31d9073aae54",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "MR 提审、评审与修订",
+          "kind": "mr-review",
+          "revision": 1,
+          "path": "compact-nodes/05-merge/mr-review.sydoc",
+          "sha256": "de185ec7ad6c7f6622ff00289ee9985d3ec2b40caf87d3f0b0f0b2aa85f5e97c"
+        },
+        {
+          "id": "f305b0a4-4a25-42f1-8852-6ea78a7cfef4",
+          "parentId": "0680af32-7a6f-4b34-814b-c9dbe245d4f7",
+          "title": "需求测试 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "compact-nodes/04-testing/stage-configuration.sydoc",
+          "sha256": "b39147c722a9e42f677bc8ad04d942bab2ba12582a49526ab768183a90e3fe69"
+        }
+      ]
+    },
+    {
+      "id": "06a221ab461e2ed18b06af11dfef6644",
+      "title": "SmartDoc 驱动 Step 与文档产物直达",
+      "kind": "requirement",
+      "parentId": "28f3b64ebea1be399461053ce13b32a8",
+      "version": 62,
+      "documents": [
+        {
+          "id": "11bdc91a-7ce8-4b6c-8e91-d4d9a21b85f8",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "需求测试 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "smartdoc-steps/04-testing/stage-configuration.sydoc",
+          "sha256": "2c3afc21386aa498df33150de6ceefa7d2917b2c7f25661d0d687fe6248d590a"
+        },
+        {
+          "id": "34c1d504-09b2-4d21-bd3d-697cec87a6c6",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "MR 提审与合并 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "smartdoc-steps/05-merge/stage-configuration.sydoc",
+          "sha256": "d24f5f096dc556d850060cb1a0f827208bb9ce60ce593068bf5fa292a81ad7fb"
+        },
+        {
+          "id": "3d92e4c2-d5e6-423c-8b15-bb247a57aa18",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "合并与来源提交核验",
+          "kind": "merge-receipt",
+          "revision": 1,
+          "path": "smartdoc-steps/05-merge/mr-merge.sydoc",
+          "sha256": "4081db25ce5e886c7f44bc249979b67761977ec9d3886679584ccaae92007482"
+        },
+        {
+          "id": "536d9c92-3b05-423a-8a44-79f8db7cc327",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "界面、交互状态与多端设计",
+          "kind": "ui-design",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "smartdoc-steps/02-design/feature-ui.sydoc",
+          "sha256": "7f012250367fa8c282b58f71822eedde0caf5373aa28bb8d38d38950619f7d4d"
+        },
+        {
+          "id": "72af29b9-3019-4473-9fb9-e8367c542b6a",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "执行测试并交付测试报告",
+          "kind": "test-report",
+          "revision": 3,
+          "publishedRevision": 3,
+          "path": "smartdoc-steps/04-testing/feature-report.sydoc",
+          "sha256": "f54cf7a7b2dab6f98edcb10c3bacdb466e4eb88340ee854070153a486ebe52d5"
+        },
+        {
+          "id": "76b4a5c7-80e9-49d4-8e27-55c0e70cb980",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "实现功能与研发验证",
+          "kind": "implementation",
+          "revision": 4,
+          "publishedRevision": 4,
+          "path": "smartdoc-steps/03-solution/implementation.sydoc",
+          "sha256": "abee8cfac006097c09fafc8e6e768b172fd51bcfceb14ecf43e17cb6710999b0"
+        },
+        {
+          "id": "7bcbb47a-e23c-4a68-b49d-06c568689d61",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "细化范围、规则与每一项验收条件",
+          "kind": "feature-prd",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "smartdoc-steps/01-prd/feature-prd.sydoc",
+          "sha256": "3110eca274f2c3b70f572b2bb12f0325d2a018f44e1ec2d0ad0feb2a6ede4910"
+        },
+        {
+          "id": "8048a773-b49d-477e-b83d-10bf6a8e9a13",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "MR 提审、评审与修订",
+          "kind": "mr-review",
+          "revision": 1,
+          "path": "smartdoc-steps/05-merge/mr-review.sydoc",
+          "sha256": "b7e1d858a646d48b70e2b41f6d60ef5f5771376e5bb0e71ae490087e0810a2ee"
+        },
+        {
+          "id": "898e83af-2c5a-4091-a3e1-37bf9ba4cbcf",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "架构、协议、数据与实施方案",
+          "kind": "solution",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "smartdoc-steps/03-solution/feature-solution.sydoc",
+          "sha256": "67bae44f3e9a54155d463dc6f4216bd2ef97fba27f313cc67a757b1c59b1d129"
+        },
+        {
+          "id": "a675b6fd-febb-48ca-9891-9907e721002d",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "方案设计与研发 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "smartdoc-steps/03-solution/stage-configuration.sydoc",
+          "sha256": "b646fb604e19bb89597741c0dad357720b2f511d3604b7d763bbef7b4c973be9"
+        },
+        {
+          "id": "c4ded65d-af68-43cf-aef4-6285bf832ab4",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "功能测试用例与覆盖矩阵",
+          "kind": "test-cases",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "smartdoc-steps/04-testing/feature-cases.sydoc",
+          "sha256": "07692f644b62e4cee6131387754276dfd15d4f3ebd0796b01e3187395cf3e4e6"
+        },
+        {
+          "id": "c55acc4f-e281-46f5-b071-594806076faf",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "视觉与 UI 设计 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "smartdoc-steps/02-design/stage-configuration.sydoc",
+          "sha256": "d54ea9dca823494cc94d176f69080ac4b161edd11b5e7d8aabbb54b0ad97b0a4"
+        },
+        {
+          "id": "d4b663d2-587b-4ca2-80f7-87603e61c864",
+          "parentId": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "功能需求 PRD · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "smartdoc-steps/01-prd/stage-configuration.sydoc",
+          "sha256": "643c7f7a9ace9340ef410a19a06baebeef2285a08cdc5677178a4a24592453a2"
+        },
+        {
+          "id": "d997b21a-87d5-4427-860f-df9d818e31ee",
+          "title": "00 · SmartDoc 驱动 Step 与文档产物直达 · 流程总文档",
+          "kind": "handbook",
+          "revision": 14,
+          "path": "smartdoc-steps/00-index/d997b21a-87d5-4427-860f-df9d818e31ee.sydoc",
+          "sha256": "8b41b5ad653ad50effbf4cecebabe70ee9f3b06e5ead8fa472481115556cee92"
+        }
+      ]
+    }
+  ]
+}
