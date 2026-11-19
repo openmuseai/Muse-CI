@@ -5,6 +5,7 @@ import type { Project, Run, GraphNode, Attempt, Artifact } from '../contracts/in
 import { digest, event, uid, fail } from '../../apps/api/store.ts';
 import { archiveExecutionDocument } from '../documents/smartdoc.ts';
 import { stepAdmission, collectDocumentInputs } from '../lifecycle/model.ts';
+import {stepConfigurationSnapshot} from '../lifecycle/step-config.ts';
 const terminal = (r: Run) => ['succeeded', 'failed', 'canceled'].includes(r.status);
 export function complete(p: Project, r: Run, n: GraphNode, a: Attempt, status: string, logs: {
     level: string;
@@ -104,6 +105,7 @@ export function tick(p: Project, runId: string) {
             continue;
         }
         a.inputSnapshot.lifecycle=p.lifecycle?.kind;
+        a.inputSnapshot.stepConfiguration=stepConfigurationSnapshot(p,n.stage);
         a.runId = r.id;
         a.startedAt = new Date().toISOString();
         a.logs = [{ level: 'info', text: '服务端已固定产品、设计、能力与上游输入。' }];

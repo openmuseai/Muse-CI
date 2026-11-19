@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-19T11:36:29.286Z",
+  "headSha": "86085274d717312a977979ec50ee62dfffa59ce3",
+  "receipt": {
+    "provider": "github",
+    "repository": "openmuseai/Muse-CI",
+    "number": 1,
+    "url": "https://github.com/openmuseai/Muse-CI/pull/1",
+    "state": "open",
+    "headSha": "86085274d717312a977979ec50ee62dfffa59ce3",
+    "baseBranch": "master",
+    "draft": true,
+    "verifiedAt": "2026-11-19T11:36:27.356Z"
+  },
+  "projects": [
+    "66878b4722f6ac2772f3da7a9ad40327",
+    "06a221ab461e2ed18b06af11dfef6644"
+  ],
+  "scope": "Draft creation and provider verification only; no submission approval or merge"
+}

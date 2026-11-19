@@ -2,7 +2,7 @@ import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
 import type { Graph, GraphNode, Attempt } from './index.ts';
 const context: any = {};
-vm.runInNewContext(readFileSync(new URL('../../../Muse-Plugin-Ecosystem/plugins/muse-ci/web/graph-model.js', import.meta.url), 'utf8'), context, { timeout: 1000 });
+vm.runInNewContext(readFileSync(new URL('../../plugin/web/graph-model.js', import.meta.url), 'utf8'), context, { timeout: 1000 });
 export const G = context.CIGraph as {
     initial(): Graph;
     validate(g: unknown): boolean;

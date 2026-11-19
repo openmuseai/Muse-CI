@@ -1,0 +1,488 @@
+{
+  "at": "2026-11-19T12:20:30.692Z",
+  "receipts": [
+    {
+      "projectId": "66878b4722f6ac2772f3da7a9ad40327",
+      "title": "精简节点卡片与清晰操作",
+      "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
+      "run": {
+        "id": "f18390ba-477b-4532-85d1-28db48789a67",
+        "auto": true,
+        "jobs": [
+          {
+            "nodeId": "feature-prd",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-ui",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-solution",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "implementation",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-cases",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-report",
+            "attempt": 3,
+            "completed": true
+          }
+        ],
+        "spent": 6,
+        "budget": 50,
+        "status": "succeeded",
+        "commands": [
+          {
+            "id": "0e16a4c6-4b6a-49a8-91b1-6dac2b4298cd",
+            "action": "start",
+            "applied": true
+          }
+        ],
+        "revision": 7,
+        "selected": [
+          "feature-prd",
+          "feature-ui",
+          "feature-solution",
+          "implementation",
+          "feature-cases",
+          "feature-report"
+        ],
+        "projectId": "66878b4722f6ac2772f3da7a9ad40327",
+        "startedAt": "2026-11-19T12:20:17.921Z",
+        "finishedAt": "2026-11-19T12:20:21.262Z",
+        "graphDigest": "c4b4fe819339069a50f765252c97a17e3876074afae6967f18f2715add4d6688",
+        "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
+        "decisionScope": "development"
+      },
+      "nodes": [
+        {
+          "id": "feature-prd",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "细化范围、规则与每一项验收条件.sydoc",
+              "sha256": "a43475347e60ba08409e6d56c92555e8f2c439daa73b409b1d363c5c3d9dc5b8",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "11ed5e0b-aa81-42b0-be8f-5e798512265c",
+            "revision": 2,
+            "sha256": "7298150f4d03de4681ddc79519b21d1612b83f3efa0584104076c2ef0b3506f1"
+          }
+        },
+        {
+          "id": "feature-ui",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "界面、交互状态与多端设计.sydoc",
+              "sha256": "b67bec552e92b75990d200598c9634b22ae3e9bfdcdf04f074e416ed7718b684",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "4cc2bfeb-320c-46fd-a33a-61389096ee83",
+            "revision": 2,
+            "sha256": "304ebaff90a4e937f69072f7d143366c0501e5f6d2954454a142dd5ce44dba17"
+          }
+        },
+        {
+          "id": "feature-solution",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "架构、协议、数据与实施方案.sydoc",
+              "sha256": "be5218d65157b2e91b4ff5c6a27864263c397f5e503be67e4d162cc1af3caf18",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "e06cb795-f5aa-4c22-a1cb-50af6350e5b7",
+            "revision": 2,
+            "sha256": "01085dc68047ff87c79617a3435447d18b9b3726cc138fca32a3f715b812b428"
+          }
+        },
+        {
+          "id": "implementation",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "source-manifest.json",
+              "sha256": "54062be554d143b5578467607b42fb5a7c7f3179f942b8b901b56ea46971966c",
+              "producer": "ci-inspect"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "e06cb795-f5aa-4c22-a1cb-50af6350e5b7",
+            "revision": 2,
+            "sha256": "01085dc68047ff87c79617a3435447d18b9b3726cc138fca32a3f715b812b428"
+          }
+        },
+        {
+          "id": "feature-cases",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "功能测试用例与覆盖矩阵.sydoc",
+              "sha256": "4dc2a50b8548755f7924284a0551641fcd4e900654b7f577c5d893c0e7dd8164",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "f305b0a4-4a25-42f1-8852-6ea78a7cfef4",
+            "revision": 2,
+            "sha256": "b39147c722a9e42f677bc8ad04d942bab2ba12582a49526ab768183a90e3fe69"
+          }
+        },
+        {
+          "id": "feature-report",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "process-report.json",
+              "sha256": "3f9a634e1fced1192b6f2f3826ceb464ae348446a81982bb8df959f26d1cdee6",
+              "producer": "ci-test"
+            },
+            {
+              "name": "process-report.json",
+              "sha256": "e38f9ce781ff7f34a78241566d26804b058880c203c10ecad01e75742f279352",
+              "producer": "ci-plugin-test"
+            },
+            {
+              "name": "process-report.json",
+              "sha256": "3d296392f0da1617dc5e668ade67042e612cd214417db00d8d51c2bdd3c8ebc8",
+              "producer": "ci-build"
+            },
+            {
+              "name": "muse-ci-ui.html",
+              "sha256": "2c579a424549460c0957b7bed877da352ac64af42c5c77610920a37e3213a50a",
+              "producer": "ci-build"
+            },
+            {
+              "name": "ui-integrity.json",
+              "sha256": "ec6c2280c5714ea1f864c6ea199736ce3dd6c0fdabb1e0ba8778f686428fa3e4",
+              "producer": "ci-artifact-verify"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "f305b0a4-4a25-42f1-8852-6ea78a7cfef4",
+            "revision": 2,
+            "sha256": "b39147c722a9e42f677bc8ad04d942bab2ba12582a49526ab768183a90e3fe69"
+          }
+        }
+      ]
+    },
+    {
+      "projectId": "06a221ab461e2ed18b06af11dfef6644",
+      "title": "SmartDoc 驱动 Step 与文档产物直达",
+      "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
+      "run": {
+        "id": "cbccb9e4-1261-4ac1-aec3-86ab7980bf63",
+        "auto": true,
+        "jobs": [
+          {
+            "nodeId": "feature-prd",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-ui",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-solution",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "implementation",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-cases",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-report",
+            "attempt": 3,
+            "completed": true
+          }
+        ],
+        "spent": 6,
+        "budget": 50,
+        "status": "succeeded",
+        "commands": [
+          {
+            "id": "1b3821c6-76bc-4110-b5b2-46fd2a5420ca",
+            "action": "start",
+            "applied": true
+          }
+        ],
+        "revision": 7,
+        "selected": [
+          "feature-prd",
+          "feature-ui",
+          "feature-solution",
+          "implementation",
+          "feature-cases",
+          "feature-report"
+        ],
+        "projectId": "06a221ab461e2ed18b06af11dfef6644",
+        "startedAt": "2026-11-19T12:20:23.122Z",
+        "finishedAt": "2026-11-19T12:20:26.277Z",
+        "graphDigest": "d36d55beb80c337242d7b6fdac133533aff1cfc53a4793ca86037e052d9f899f",
+        "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
+        "decisionScope": "development"
+      },
+      "nodes": [
+        {
+          "id": "feature-prd",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "细化范围、规则与每一项验收条件.sydoc",
+              "sha256": "3110eca274f2c3b70f572b2bb12f0325d2a018f44e1ec2d0ad0feb2a6ede4910",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "d4b663d2-587b-4ca2-80f7-87603e61c864",
+            "revision": 2,
+            "sha256": "643c7f7a9ace9340ef410a19a06baebeef2285a08cdc5677178a4a24592453a2"
+          }
+        },
+        {
+          "id": "feature-ui",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "界面、交互状态与多端设计.sydoc",
+              "sha256": "7f012250367fa8c282b58f71822eedde0caf5373aa28bb8d38d38950619f7d4d",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "c55acc4f-e281-46f5-b071-594806076faf",
+            "revision": 2,
+            "sha256": "d54ea9dca823494cc94d176f69080ac4b161edd11b5e7d8aabbb54b0ad97b0a4"
+          }
+        },
+        {
+          "id": "feature-solution",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "架构、协议、数据与实施方案.sydoc",
+              "sha256": "67bae44f3e9a54155d463dc6f4216bd2ef97fba27f313cc67a757b1c59b1d129",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "a675b6fd-febb-48ca-9891-9907e721002d",
+            "revision": 2,
+            "sha256": "b646fb604e19bb89597741c0dad357720b2f511d3604b7d763bbef7b4c973be9"
+          }
+        },
+        {
+          "id": "implementation",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "source-manifest.json",
+              "sha256": "54062be554d143b5578467607b42fb5a7c7f3179f942b8b901b56ea46971966c",
+              "producer": "ci-inspect"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "a675b6fd-febb-48ca-9891-9907e721002d",
+            "revision": 2,
+            "sha256": "b646fb604e19bb89597741c0dad357720b2f511d3604b7d763bbef7b4c973be9"
+          }
+        },
+        {
+          "id": "feature-cases",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "功能测试用例与覆盖矩阵.sydoc",
+              "sha256": "07692f644b62e4cee6131387754276dfd15d4f3ebd0796b01e3187395cf3e4e6",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "11bdc91a-7ce8-4b6c-8e91-d4d9a21b85f8",
+            "revision": 2,
+            "sha256": "2c3afc21386aa498df33150de6ceefa7d2917b2c7f25661d0d687fe6248d590a"
+          }
+        },
+        {
+          "id": "feature-report",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "process-report.json",
+              "sha256": "f510246f14ce585c67d6805b3a31e52e36e09097acf1d22edcb65343498f721b",
+              "producer": "ci-test"
+            },
+            {
+              "name": "process-report.json",
+              "sha256": "8cdb77e9ee8758deaeafe90aac5c71447560d4ddc0890e349c80eb0abc9cb233",
+              "producer": "ci-plugin-test"
+            },
+            {
+              "name": "process-report.json",
+              "sha256": "3d296392f0da1617dc5e668ade67042e612cd214417db00d8d51c2bdd3c8ebc8",
+              "producer": "ci-build"
+            },
+            {
+              "name": "muse-ci-ui.html",
+              "sha256": "2c579a424549460c0957b7bed877da352ac64af42c5c77610920a37e3213a50a",
+              "producer": "ci-build"
+            },
+            {
+              "name": "ui-integrity.json",
+              "sha256": "ec6c2280c5714ea1f864c6ea199736ce3dd6c0fdabb1e0ba8778f686428fa3e4",
+              "producer": "ci-artifact-verify"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "11bdc91a-7ce8-4b6c-8e91-d4d9a21b85f8",
+            "revision": 2,
+            "sha256": "2c3afc21386aa498df33150de6ceefa7d2917b2c7f25661d0d687fe6248d590a"
+          }
+        }
+      ]
+    },
+    {
+      "projectId": "28f3b64ebea1be399461053ce13b32a8",
+      "title": "Muse-CI 0.4.0 · 清晰画布与 SmartDoc 驱动",
+      "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
+      "run": {
+        "id": "59205607-0c49-4208-9c93-e4193e3a78fe",
+        "auto": true,
+        "jobs": [
+          {
+            "nodeId": "version-scope",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "version-ui",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "requirement-plan",
+            "attempt": 3,
+            "completed": true
+          }
+        ],
+        "spent": 3,
+        "budget": 50,
+        "status": "succeeded",
+        "commands": [
+          {
+            "id": "ee20cbd2-1080-4fc2-80d7-a3856806ce66",
+            "action": "start",
+            "applied": true
+          }
+        ],
+        "revision": 7,
+        "selected": [
+          "version-scope",
+          "version-ui",
+          "requirement-plan"
+        ],
+        "projectId": "28f3b64ebea1be399461053ce13b32a8",
+        "startedAt": "2026-11-19T12:20:29.105Z",
+        "finishedAt": "2026-11-19T12:20:30.523Z",
+        "graphDigest": "eb741179eb8ad1163b18463f664568a3b09fb6283b5164a88394a7f04977cbfc",
+        "sourceDigest": "6dc8dd615e8e55f10c93f74c4ba9738217c2207441c66f3ff8ea28c0e38a2ed4",
+        "decisionScope": "development"
+      },
+      "nodes": [
+        {
+          "id": "version-scope",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "圈定版本范围与粗粒度 PRD.sydoc",
+              "sha256": "068fa77b942c1e5e2e7132d57b5e24112f68ac10a078f448633118c31dab6458",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "0fc7db9e-ac32-434a-8c9c-493d00de8d45",
+            "revision": 5,
+            "sha256": "58e6818fa9d21c4454d37d13c9f3b01d42e838264c942392e6c0f32444a02bce"
+          }
+        },
+        {
+          "id": "version-ui",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "版本视觉方向与 UI 设计.sydoc",
+              "sha256": "ab2eb8bc91d271295cbcee438428b53832558a4f7c65d2ffba8857e059d1d545",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "6a934296-73ec-425a-a41c-42a358dd8f4e",
+            "revision": 3,
+            "sha256": "e087fef22d60eb56b5b318ce2df9c9a3aacd6d1ee895fab0b907d7d4ef7ac2e6"
+          }
+        },
+        {
+          "id": "requirement-plan",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "拆分子需求与验收边界.sydoc",
+              "sha256": "2c2df473f28273cbd2cb4e7f97f97bafa3c68c186577fc6395de4965b6773a83",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "2059d7da-abad-46e4-a0ee-51bb046efb57",
+            "revision": 2,
+            "sha256": "9d65803b504794e6cde8dc911d7ea6109b9ad329419fb0db6441eddd0d75527c"
+          }
+        }
+      ]
+    }
+  ],
+  "releaseReady": false,
+  "pending": "MR review/merge and version regression/release remain explicit later gates"
+}

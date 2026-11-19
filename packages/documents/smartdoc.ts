@@ -49,7 +49,7 @@ export function blocks(state: any) {
 }
 export function nativeProjection(body: SmartDocRecord['body']) { return session(body, blocks); }
 function node(text: string, type = 'paragraph', href?: string) {
-  return { id: randomUUID(), type, data: { ...(type === 'heading' ? { level: 2 } : {}), delta: [{ insert: text, ...(href ? { attributes: { href } } : {}) }] } };
+  return { id: randomUUID(), type, data: { ...(type === 'heading' ? { level: 2 } : {}), ...(type === 'code' ? {language:'json'} : {}), delta: [{ insert: text, ...(href ? { attributes: { href } } : {}) }] } };
 }
 export function createDocument(p: Project, title: string, kind: string, text: string[], options: { stepId?: string; nodeId?: string; parentId?: string } = {}) {
   p.documents ??= {};
@@ -76,7 +76,7 @@ export function documentView(p: Project, id: string, revision?: number) {
   const doc = getDocument(p, id);
   const version = revision ? doc.versions.find(v => v.revision === revision) : doc.versions.at(-1);
   if (!version) fail('SMARTDOC_REVISION_NOT_FOUND');
-  return { document: { ...doc, body: version.body, revision: version.revision, versions: doc.versions.map(({ body, ...rest }) => rest) }, blocks: nativeProjection(version.body), nativeFile: { name: doc.title.replace(/[\\/:]/g, '-') + '.sydoc', mediaType: 'application/vnd.openmuse.smart-document+json', content: JSON.stringify(version.body) } };
+  return { document: { ...doc, body: version.body, revision: version.revision, versions: doc.versions.map(({ body, ...rest }) => rest) }, tree:documentTree(version.body), blocks: nativeProjection(version.body), nativeFile: { name: doc.title.replace(/[\\/:]/g, '-') + '.sydoc', mediaType: 'application/vnd.openmuse.smart-document+json', content: JSON.stringify(version.body) } };
 }
 export function editDocument(p: Project, id: string, revision: number, edits: any[], actor: Principal, asAgent: boolean, summary: string) {
   const doc = getDocument(p, id);

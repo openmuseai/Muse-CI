@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "errors": [],
+  "configuration": {
+    "liveAccount": true,
+    "liveDesktop": true,
+    "liveAI": true,
+    "deleteAccount": false
+  },
+  "milestones": [
+    "normal installed Host started",
+    "existing China account restored",
+    "native resource Hub ready",
+    "normal CI entry ready",
+    "normal CI entry visible",
+    "actual installed 0.4 UI connected through MCP",
+    "historical artifact digest and original native document verified",
+    "artifact reached normal native resource dispatch",
+    "historical artifact opened full SmartDocumentView",
+    "original artifact content rendered by native SmartDoc",
+    "snapshot is read-only and never attaches to the mutable cloud document",
+    "generic MCP data provider validated exact bytes and current account"
+  ],
+  "tests": {
+    "installed CI artifact opens digest-pinned read-only native SmartDoc": "success"
+  }
+}

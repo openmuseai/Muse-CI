@@ -16,7 +16,7 @@ const service = new CIService(store), handler = createHandler(service);
 const port = Number(process.env.CI_PORT || 4180), origin = `http://127.0.0.1:${port}`, token = process.env.CI_MCP_TOKEN;
 if (!token)
     throw Error('MCP_TOKEN_CONFIGURATION_REQUIRED');
-const web = fileURLToPath(new URL('../../../Muse-Plugin-Ecosystem/plugins/muse-ci/web/', import.meta.url));
+const web = fileURLToPath(new URL('../../plugin/web/', import.meta.url));
 let client: Client | undefined;
 async function host() { if (!client) {
     const candidate = new Client({ name: 'Muse-CI development web host', version: '0.1.0' });
@@ -85,7 +85,7 @@ const server = createServer(async (req, res) => {
             return json(res, 200, { result });
         }
         if (url.pathname === '/host') {
-            const html = await readFile(new URL('../../../Muse-Plugin-Ecosystem/plugins/muse-ci/host/index.html', import.meta.url), 'utf8');
+            const html = await readFile(new URL('../../plugin/host/index.html', import.meta.url), 'utf8');
             res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' });
             return res.end(html);
         }

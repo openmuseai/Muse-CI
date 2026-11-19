@@ -11,6 +11,8 @@ import {readMergeRequest,writeMergeRequest,validateRepository,trustedRepositorie
 import { documentView, createDocument, getDocument, editDocument, publishDocument, archiveExecutionDocument } from '../../packages/documents/smartdoc.ts';
 import {cloudConfigured,cloudResourceUri} from '../../packages/cloud/workspace.ts';
 import {connectCloudDocumentTree} from '../../packages/cloud/document-tree.ts';
+import {createStepConfiguration,compileStepConfiguration,stepConfigDigest} from '../../packages/lifecycle/step-config.ts';
+import {artifactView} from '../../packages/documents/artifacts.ts';
 import {publicGitProfiles,gitProfiles,verifyGitProfile}from'../../packages/providers/git-profiles.ts';
 import {synchronizeCloud} from '../../packages/cloud/reconcile.ts';
 import {announceAgent,closeProjectAgentPresence} from '../../packages/cloud/realtime.ts';
@@ -82,7 +84,7 @@ export async function newProject(actor: Principal, title: string, goal: string, 
     for (const [nodeId, file] of docs) {
         let text = '';
         try {
-            text = await readFile(new URL(`../../../Muse-Plugin-Ecosystem/plugins/muse-ci/docs/${file}`, import.meta.url), 'utf8');
+            text = await readFile(new URL(`../../plugin/docs/${file}`, import.meta.url), 'utf8');
         }
         catch {
             text = '请补齐 ' + file;
@@ -238,15 +240,14 @@ export class CIService {
         if (name === 'ci_release_check')
             return p.graph.nodes.some(n=>n.config.tools.some(isMobileTool))?await mobileReleaseStatus():releaseCheck(p);
         if (name === 'ci_artifact_get') {
-            const artifact = G.get(p.graph, a.nodeId).attempts.find(x => x.id === a.attempt)?.artifacts[a.index];
-            if (!artifact)
-                fail('ARTIFACT_NOT_FOUND');
-            if (digest(artifact.content) !== artifact.sha256)
-                fail('ARTIFACT_INTEGRITY_FAILED');
-            return { artifact };
+            return artifactView(p,a.nodeId,a.attempt,a.index);
         }
         const mrWrite=['ci_mr_create','ci_mr_submit','ci_mr_merge'].includes(name);
         const changed=await this.store.mutate(a.projectId, actor, a.expectedVersion, a.commandId, { name, ...a }, async (p, c) => {
+            if(name==='ci_step_config_create'){
+                if(active(p))fail('RUN_ACTIVE_PLAN_LOCKED');
+                const doc=createStepConfiguration(p,a.stepId,actor);return {documentId:doc.id,applied:true};
+            }
             if(mrWrite){
                 if(p.lifecycle?.kind!=='requirement'||!p.repository)fail('REPOSITORY_BINDING_REQUIRED');
                 if(p.members[actor.id]!=='owner')fail('PROJECT_OWNER_REQUIRED');if(active(p))fail('RUN_ACTIVE_PLAN_LOCKED');
@@ -311,6 +312,12 @@ export class CIService {
                 }
                 const doc=getDocument(p,a.documentId);
                 if(name==='ci_document_publish'){
+                    if(doc.kind==='step-config'){
+                        if(a.expectedRevision!==doc.revision)fail('SMARTDOC_REVISION_CONFLICT');
+                        applyDefinition(p,compileStepConfiguration(p,doc.id));
+                        p.stepConfigurations![doc.stepId!]={documentId:doc.id,publishedRevision:doc.revision,configDigest:stepConfigDigest(p,doc.stepId!)};
+                        event(p,'step.configuration_published',{stepId:doc.stepId,documentId:doc.id,revision:doc.revision,actor:actor.id});
+                    }
                     publishDocument(p,doc.id,a.expectedRevision);bindPublishedDocument(p,doc.id);
                     event(p,'document.published',{documentId:doc.id,revision:doc.revision,actor:actor.id});return {applied:true};
                 }
@@ -335,6 +342,7 @@ export class CIService {
                 return result;
             }
             if (name === 'ci_graph_save') {
+                for(const next of a.definition.nodes){const old=p.graph.nodes.find(n=>n.id===next.id);if(old&&p.stepConfigurations?.[old.stage]&&digest(old.config)!==digest(next.config))fail('STEP_CONFIG_DOCUMENT_REQUIRED');}
                 for (const n of a.definition.nodes)
                     for (const m of n.config.materials)
                         if(p.lifecycle&&['note','file'].includes(m.kind))fail('USE_SMARTDOC_FOR_DOCUMENT_MATERIALS');

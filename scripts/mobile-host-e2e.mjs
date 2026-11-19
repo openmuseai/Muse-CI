@@ -13,8 +13,9 @@ const version=Number(process.env.CI_ANDROID_TEST_BUILD||Math.max(111805,Number(c
 if(!Number.isSafeInteger(version)||version<=0||version>2100000000)throw Error('Invalid QA build number');
 if(current&&Number(current)>version)throw Error('REFUSE_QA_DOWNGRADE: choose CI_ANDROID_TEST_BUILD >= installed version');
 const smartdoc=process.argv.includes('--smartdoc');
-const normalEntry=process.argv.includes('--normal-entry')||smartdoc;
-const target=smartdoc?'integration_test/ci_smartdoc_live_test.dart':normalEntry?'integration_test/ci_normal_entry_live_test.dart':'integration_test/ci_host_live_e2e_test.dart';
+const artifact=process.argv.includes('--artifact');
+const normalEntry=process.argv.includes('--normal-entry')||smartdoc||artifact;
+const target=artifact?'integration_test/ci_artifact_live_test.dart':smartdoc?'integration_test/ci_smartdoc_live_test.dart':normalEntry?'integration_test/ci_normal_entry_live_test.dart':'integration_test/ci_host_live_e2e_test.dart';
 const env={...process.env,OPENMUSE_ANDROID_DEBUG_APPLICATION_ID_SUFFIX:'.acceptance'};
 const run=(cmd,args)=>{const r=spawnSync(cmd,args,{cwd,env,stdio:'inherit'});if(r.status!==0)throw Error(cmd+' failed; no uninstall fallback');};
 let forwardedPort, testInstalled=false;
@@ -23,6 +24,8 @@ try{
  const apk=cwd+'/build/app/outputs/flutter-apk/app-debug.apk';
  if(!process.argv.includes('--skip-install'))run('adb',['install','-t','-r',apk]);
  testInstalled=true;
+ if(artifact){const info=await readFile(new URL('../.data/artifact-e2e.json',import.meta.url),'utf8');const r=spawnSync('adb',['shell','run-as',pkg,'sh','-c',"'cat > files/ci-artifact-e2e.json && chmod 600 files/ci-artifact-e2e.json'"],{input:info,encoding:'utf8',env});if(r.status!==0)throw Error('Artifact acceptance setup failed');}
+
  if(smartdoc){const info=await readFile(new URL('../.data/cloud-acceptance.json',import.meta.url),'utf8');const r=spawnSync('adb',['shell','run-as',pkg,'sh','-c',"'cat > files/ci-cloud-e2e.json && chmod 600 files/ci-cloud-e2e.json'"],{input:info,encoding:'utf8',env});if(r.status!==0)throw Error('Native Cloud acceptance setup failed');}
  if(normalEntry){
    run('adb',['reverse','tcp:4180','tcp:4180']);

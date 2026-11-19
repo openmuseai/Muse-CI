@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { mobileInputManifest,isMobileTool } from './mobile-inputs.ts';
 import type {Graph} from '../contracts/index.ts';
 import { digest } from '../../apps/api/store.ts';
-const backend = fileURLToPath(new URL('../../', import.meta.url)), plugin = fileURLToPath(new URL('../../../Muse-Plugin-Ecosystem/plugins/muse-ci/', import.meta.url));
+const backend = fileURLToPath(new URL('../../', import.meta.url)), plugin = fileURLToPath(new URL('../../plugin/', import.meta.url));
 export async function sourceManifest(graph?:Graph) {
     const files: {
         file: string;
@@ -18,10 +18,11 @@ export async function sourceManifest(graph?:Graph) {
         else if (!['bridge.js'].includes(entry.name) && /\.(ts|js|mjs|html|css)$/.test(entry.name))
             files.push({ file: prefix + file, sha256: digest(await readFile(base + file, 'utf8')) });
     } }
-    for (const directory of ['apps', 'packages', 'tests'])
+    for (const directory of ['apps', 'packages', 'tests', 'scripts'])
         await walk(backend, directory, 'backend/');
     for (const directory of ['web', 'scripts', 'tests'])
         await walk(plugin, directory, 'plugin/');
+    for(const file of ['package.json','package-lock.json','plugin/package.json'])files.push({file:'backend/'+file,sha256:digest(await readFile(backend+file,'utf8'))});
     if(graph?.nodes.some(n=>n.config.tools.some(isMobileTool))){const mobile=await mobileInputManifest();files.push(...mobile.files);}
     return { digest: digest(files), files };
 }
