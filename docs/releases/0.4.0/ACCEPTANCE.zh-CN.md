@@ -26,7 +26,7 @@
 | 插件 | 23 项通过，MCPB 构建通过 | 图模型、状态、SmartDoc 安全渲染；最终 UI 修复后重跑 |
 | 持久执行端到端 | 28 项通过 | 实际 MCP、PostgreSQL、Temporal；配置固定与原始产物读取 |
 | Host 通用资源层 | 9 项通过，1 项可选实际后端测试跳过 | 原生资源摘要、账号边界、只读；另有实际 MCPB 与手机验证 |
-| Desktop Host MCPB | 实际加载测试通过 | [Host 日志](../../../plugin/docs/evidence/live-e2e/desktop-host-conformance.log)；最终包重跑通过 |
+| Desktop Host MCPB | 实际加载测试通过 | [Host 回执](evidence/desktop-host-conformance.json)；最终包重跑通过 |
 | Android PKM110 | 12 项里程碑通过 | [原生回执](evidence/mobile-artifact-111861.json)、[测试套件](evidence/mobile-artifact-111861-suite.json)：普通安装入口、CN 账号、0.4 UI、真实 MCP 原生数据读取、完整 SmartDoc 正文、只读且不连接可变云文档 |
 | Web 实际交互 | 通过 | 100% 画布、创建/发布配置、已发布头部、原生正文快照、查看不保存；见截图 |
 | Desktop 实际点击 | 待完成 | QA 已构建并安装；本轮末 Mac 自动锁屏，系统禁止窗口自动化，已请求解锁。不可将 MCPB 加载测试等同于此项通过 |

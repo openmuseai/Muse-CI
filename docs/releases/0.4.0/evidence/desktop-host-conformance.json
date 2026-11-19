@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "scope": "Actual Flutter Host MCPB loading and MCP tool discovery; not Desktop click acceptance",
+  "tests": 1,
+  "bundle": "muse-ci-0.4.0.mcpb",
+  "bundleSha256": "65777c6921ac0cacc21d2186f68e468476dcd97c462abb8d701ed3f545b37884",
+  "hostTest": "app/openmuse_host/test/mcp_remote_bundle_conformance_test.dart"
+}
