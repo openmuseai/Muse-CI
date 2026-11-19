@@ -1,6 +1,7 @@
 import type { Project, Principal, GraphNode } from '../contracts/index.ts';
 import { digest, event, fail } from '../../apps/api/store.ts';
 import { createDocument, documentIndex, documentPin, editDocument, getDocument } from '../documents/smartdoc.ts';
+import {assertStepConfiguration} from './step-config.ts';
 
 type NodeSpec = [string, string, string, string];
 const templates: Record<'version' | 'requirement', { id: string; name: string; nodes: NodeSpec[] }[]> = {
@@ -69,6 +70,7 @@ export function lifecycleSummary(p: Project) {
 }
 export function stepAdmission(p: Project, n: GraphNode, externalVerification=false) {
   if (!p.lifecycle) return;
+  assertStepConfiguration(p,n.stage);
   if(['mr-review','mr-merge'].includes(n.id)&&!externalVerification)fail('USE_MR_RECEIPT_VERIFICATION');
   if(n.id==='release-result'||n.id==='mr-merge'&&p.mergeRequest?.state!=='merged')fail('EXTERNAL_RECEIPT_PROVIDER_NOT_CONFIGURED');
   const index = p.graph.stages.findIndex(s => s.id === n.stage);
@@ -108,7 +110,7 @@ export function markNode(p: Project, nodeId: string, marked: boolean, reason: st
 }
 export function invalidateDocumentConsumers(p: Project, documentId: string) {
   const doc = getDocument(p, documentId);
-  const seeds=p.graph.nodes.filter(n=>n.id===doc.nodeId||n.config.materials.some(m=>m.kind==='smartdoc'&&m.documentId===documentId));
+  const seeds=p.graph.nodes.filter(n=>n.id===doc.nodeId||doc.kind==='step-config'&&n.stage===doc.stepId||n.config.materials.some(m=>m.kind==='smartdoc'&&m.documentId===documentId));
   const index=Math.min(...seeds.map(n=>p.graph.stages.findIndex(s=>s.id===n.stage)));
   const affected=new Set(seeds.map(n=>n.id));let changed=true;while(changed){changed=false;for(const n of p.graph.nodes)if(!affected.has(n.id)&&n.depends.some(id=>affected.has(id))){affected.add(n.id);changed=true;}}
   for (const n of p.graph.nodes) if (affected.has(n.id) || Number.isFinite(index) && p.graph.stages.findIndex(s => s.id === n.stage) > index) {

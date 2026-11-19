@@ -9,7 +9,7 @@ import type { GraphNode, Attempt, Artifact, Project } from '../contracts/index.t
 import { skillRegistry } from './registry.ts';
 import { digest, fail } from '../../apps/api/store.ts';
 const backend = fileURLToPath(new URL('../../', import.meta.url)), plugin = fileURLToPath(new URL('../../plugin/', import.meta.url));
-const knownTools = new Set([...mobileTools,'smartdoc-publish','doc-compile', 'ci-inspect', 'ci-plugin-test', 'ci-build', 'ci-test', 'ci-policy', 'ci-artifact-verify', 'ci-release-check', 'artifact-read']);
+export const knownTools = new Set([...mobileTools,'smartdoc-publish','doc-compile', 'ci-inspect', 'ci-plugin-test', 'ci-build', 'ci-test', 'ci-policy', 'ci-artifact-verify', 'ci-release-check', 'artifact-read']);
 export async function command(command: string, args: string[], cwd: string, signal: AbortSignal, maxOutput = 128000) { return new Promise<{
     stdout: string;
     exitCode: number;
@@ -41,7 +41,7 @@ export async function execute(node: GraphNode, attempt: Attempt, consent: Projec
             const client = new Client({ name: 'muse-ci-worker', version: '0.1.0' });
             try {
                 await client.connect(new StreamableHTTPClientTransport(new URL(url), { requestInit: { headers: process.env.CI_AI_MCP_TOKEN ? { authorization: 'Bearer ' + process.env.CI_AI_MCP_TOKEN } : {} } }));
-                const result = await client.callTool({ name: process.env.CI_AI_MCP_TOOL || 'plan_propose', arguments: { goal: node.config.goal, materials: [...node.config.materials.filter(m => m.kind === 'note'), ...(attempt.inputSnapshot.boundMaterials || [])], skills: node.config.skills, allowedTools: node.config.tools, inputDigest: attempt.inputDigest } }, { signal } as any);
+                const result = await client.callTool({ name: process.env.CI_AI_MCP_TOOL || 'plan_propose', arguments: { goal: [attempt.inputSnapshot.stepConfiguration?.goal,attempt.inputSnapshot.stepConfiguration?.instructions,node.config.goal].filter(Boolean).join('\n\n'), materials: [...node.config.materials.filter(m => m.kind === 'note'), ...(attempt.inputSnapshot.boundMaterials || [])], skills: node.config.skills, allowedTools: node.config.tools, inputDigest: attempt.inputDigest } }, { signal } as any);
                 if (result.isError)
                     fail('AI_PROVIDER_FAILED');
                 artifacts.push(artifact('ai-proposal.json', JSON.stringify({ proposal: result, applied: false, recipient: url }, null, 2), 'ai.mcp', attempt.inputDigest!));

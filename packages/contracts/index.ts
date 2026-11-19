@@ -95,6 +95,7 @@ export interface Run {
     }[];
 }
 export interface Project {
+    stepConfigurations?: Record<string,{documentId:string;publishedRevision?:number;configDigest?:string}>;
     id: string;
     title: string;
     goal: string;
@@ -152,6 +153,7 @@ export interface Principal {
 }
 export const commandSchema = z.object({ projectId: id, commandId: id, expectedVersion: z.number().int().positive(), action: z.enum(['start', 'pause', 'resume', 'cancel', 'approve', 'reject', 'stop-node']), nodeIds: z.array(id).max(60).optional(), auto: z.boolean().optional(), nodeId: id.optional(), inputDigest: z.string().length(64).optional() }).strict();
 export const toolsSchemas = {
+    ci_step_config_create:z.object({projectId:id,stepId:id,commandId:id,expectedVersion:z.number().int().positive()}).strict(),
     ci_git_profiles_list:z.object({}).strict(),
     ci_git_profile_verify:z.object({profileId:id,repository:z.string().max(160).optional()}).strict(),
     ci_mr_reconcile:z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),operationId:id}).strict(),
@@ -187,7 +189,7 @@ export const toolsSchemas = {
     ,ci_coding_apply: z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),nodeId:id,attempt:z.number().int().positive(),inputDigest:z.string().length(64)}).strict()
 };
 function documentEditSchema(){return z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),documentId:id,expectedRevision:z.number().int().positive(),summary:z.string().min(1).max(200),edits:z.array(z.discriminatedUnion('op',[
-    z.object({op:z.literal('append'),text:z.string().max(20000),type:z.enum(['paragraph','heading']).default('paragraph')}).strict(),
+    z.object({op:z.literal('append'),text:z.string().max(20000),type:z.enum(['paragraph','heading','code']).default('paragraph')}).strict(),
     z.object({op:z.literal('replace'),blockId:id,text:z.string().max(20000)}).strict(),
     z.object({op:z.literal('link'),text:z.string().min(1).max(200),documentId:id,projectId:id.optional()}).strict()
 ])).min(1).max(60)}).strict();}
