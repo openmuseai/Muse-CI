@@ -45,6 +45,7 @@
 | 产物 | 手机打开上述 Run 第 7 次尝试的真实测试 JSON；历史 `.sydoc` 产物在完整原生 SmartDocument 中只读打开。[本次产物](evidence/find-n6-run-artifact.png)、[历史原生文档快照](evidence/find-n6-artifact.png) |
 | MR 与 Diff | 手机真实同步 [MR #2](https://github.com/openmuseai/Muse-CI/pull/2)，读取提交 `388ea1d77da69756f8d318b46032fc5db15c627b` 的实际 GitHub Diff 第 1 页。保留草稿，未批准或合并。[Diff 截图](evidence/find-n6-mr-diff.png) |
 | Desktop 回读与审查 | DSH 右侧实际读回手机 Run 的第 7 次报告，并打开相同源提交的真实 Diff。[报告](evidence/desktop-phone-run-readback.png)、[Diff](evidence/desktop-mr-diff.png) |
+| 手机云端原生文档 | 从流程总文档直接进入国内云端 SmartDoc，显示协作服务已接收；点击文档内链接打开版本 PRD 子文档。本项证明打开与导航，不声称新增编辑。[总文档](evidence/find-n6-cloud-handbook.png)、[子文档](evidence/find-n6-cloud-subdocument.png) |
 | 已连接设备刷新 | 普通 QA `1.0.2+112309` 实际点击同账号 Desktop 刷新按钮，再从应用 Tab 打开 Muse-CI，加载后端流程。[截图](evidence/find-n6-reconnected-app.png) |
 | 云端 SmartDoc 与 Agent | 初始 49 份流程材料接入国内云端。Agent 以现有账号明确委托身份写入本轮测试报告，云端接受且实时协作连接成功；不是独立云端 Agent 账号。[云端回执](evidence/cloud-documents.json)、[本轮操作回执](evidence/foldable-ordinary-operations.json) |
 

@@ -87,6 +87,14 @@
       "ordinaryQaBuild": "1.0.2+112309",
       "sameAccountAndDevice": true,
       "screenshot": "find-n6-reconnected-app.png"
+    },
+    "cloudNativeHandbookAndSubdocument": {
+      "passed": true,
+      "ordinaryQaBuild": "1.0.2+112309",
+      "collaborationServiceAcceptedVisible": true,
+      "handbookScreenshot": "find-n6-cloud-handbook.png",
+      "subdocumentScreenshot": "find-n6-cloud-subdocument.png",
+      "editNotClaimed": true
     }
   },
   "cloudReport": {
