@@ -13,10 +13,11 @@ import {cloudConfigured,cloudResourceUri} from '../../packages/cloud/workspace.t
 import {connectCloudDocumentTree} from '../../packages/cloud/document-tree.ts';
 import {createStepConfiguration,compileStepConfiguration,stepConfigDigest} from '../../packages/lifecycle/step-config.ts';
 import {artifactView} from '../../packages/documents/artifacts.ts';
+import {projectWithArtifactMetadata} from '../../packages/documents/project-view.ts';
 import {publicGitProfiles,gitProfiles,verifyGitProfile}from'../../packages/providers/git-profiles.ts';
 import {synchronizeCloud} from '../../packages/cloud/reconcile.ts';
 import {announceAgent,closeProjectAgentPresence} from '../../packages/cloud/realtime.ts';
-const expose = (p:Project) => p.lifecycle ? {...p,documents:undefined,lifecycle:lifecycleSummary(p)} : p;
+const expose = (p:Project) => {const view=projectWithArtifactMetadata(p);return p.lifecycle ? {...view,documents:undefined,lifecycle:lifecycleSummary(p)} : view;};
 const active = (p: Project) => p.runs.find(r => !['succeeded', 'failed', 'canceled'].includes(r.status));
 const definition = (g: Graph) => structuredClone({ stages: g.stages, nodes: g.nodes.map(({ id, title, stage, kind, depends, config }) => ({ id, title, stage, kind, depends, config })) });
 function recordMRReceipt(p:Project,receipt:NonNullable<Project['mergeRequest']>){
