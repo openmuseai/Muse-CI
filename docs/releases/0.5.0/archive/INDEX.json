@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-22T08:06:56.273Z",
+  "at": "2026-11-22T08:42:29.270Z",
   "authority": "Retained native SmartDoc revisions; immutable file exports, online IDs remain authoritative",
   "projects": [
     {
@@ -242,16 +242,17 @@
       "title": "手机代码 Diff 与 MR 验收",
       "kind": "requirement",
       "parentId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
-      "version": 41,
+      "version": 71,
       "documents": [
         {
           "id": "29f20911-b995-45d9-a0e6-ef176effe226",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "实现功能与研发验证",
           "kind": "implementation",
-          "revision": 1,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "mr-review/03-solution/implementation.sydoc",
-          "sha256": "1ae224aa9c8887a49930a3b9c1ae8dbafc19d3461c61043b4e434a49c8974904"
+          "sha256": "188f4cbd07a68470ae7e59d5715d53ec0cce781b50a4baebcaaaa1ec3cdceb51"
         },
         {
           "id": "353fd5f7-4a9a-4199-89f6-93b064c78cf7",
@@ -261,6 +262,16 @@
           "revision": 1,
           "path": "mr-review/05-merge/mr-merge.sydoc",
           "sha256": "e03f986deca9123af5e7c4b11ed77e17af00d8f02a82d1f099707df63a4454f8"
+        },
+        {
+          "id": "38b7ea09-acc7-4ee8-abb0-fde1ccc78fb0",
+          "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
+          "title": "需求测试 · 阶段配置",
+          "kind": "step-config",
+          "revision": 3,
+          "publishedRevision": 3,
+          "path": "mr-review/04-testing/stage-configuration.sydoc",
+          "sha256": "6fa51664a592ca34a71173c3478ba8a0e14f972035d76c928df16ca0d1a9874e"
         },
         {
           "id": "4d687e39-23e5-4f62-9ce4-fe5d2eff86be",
@@ -312,13 +323,24 @@
           "sha256": "ca2a962bf4ffa2ad3f67467383e8515710621c23d04e1e86f3ad9ffe698d4ce8"
         },
         {
+          "id": "b1e301f6-c526-435b-9abd-baa22c5b539e",
+          "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
+          "title": "MR 提审与合并 · 阶段配置",
+          "kind": "step-config",
+          "revision": 2,
+          "publishedRevision": 2,
+          "path": "mr-review/05-merge/stage-configuration.sydoc",
+          "sha256": "229d551cc2fda4dc4382491ab578356523add9cfb5d030ab08a0f89e73e5795f"
+        },
+        {
           "id": "c5c47377-bd55-4179-af6d-e663cb9b7869",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 1,
+          "revision": 2,
+          "publishedRevision": 2,
           "path": "mr-review/04-testing/feature-report.sydoc",
-          "sha256": "037d636c7783cfe46922abb4e7c86fdef3cbf1760d5271a1c3e944bfa4325ef1"
+          "sha256": "797f0a25dfe6a689de9951a3508e1ac2937c6e1d0f934467b33879a4833316c3"
         },
         {
           "id": "d4326b34-dfc9-4d4d-9d2b-4c2f13a4b0f3",
@@ -334,9 +356,9 @@
           "id": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "00 · 手机代码 Diff 与 MR 验收 · 流程总文档",
           "kind": "handbook",
-          "revision": 12,
+          "revision": 14,
           "path": "mr-review/00-index/e89542c9-034f-4ae5-826a-3b48091bd819.sydoc",
-          "sha256": "0208295a48fb1e69b5f90ad885386ca2cbc97aca2e9142f1083931567924352d"
+          "sha256": "3dd0dea2fee46bb9cbd8a5e02352421437eca44a177621e9de39a576454ccf23"
         },
         {
           "id": "eaf6451d-f749-49d4-84a7-6385d1cd6556",
@@ -353,10 +375,10 @@
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "方案设计与研发 · 阶段配置",
           "kind": "step-config",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 4,
+          "publishedRevision": 4,
           "path": "mr-review/03-solution/stage-configuration.sydoc",
-          "sha256": "d057ecd3186b807c626372192a0a1050b95736386ea915bba22c684a65822e93"
+          "sha256": "56a9b1cb414ebb1bfe4456f36a8f413265e6e4432698c1074f54094e772cf944"
         }
       ]
     },

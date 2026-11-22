@@ -1,0 +1,194 @@
+{
+  "at": "2026-11-22T08:41:14.634Z",
+  "receipt": {
+    "projectId": "ce679443dacb09731a392f0e58c48830",
+    "title": "手机代码 Diff 与 MR 验收",
+    "sourceDigest": "46db24c69774e8c4d9122638207a5944a5b4eff20805bb528369dc723a71974e",
+    "run": {
+      "id": "0db1c755-eab3-4bb7-8c1e-09558bb66c92",
+      "auto": true,
+      "jobs": [
+        {
+          "nodeId": "feature-prd",
+          "attempt": 3,
+          "completed": true
+        },
+        {
+          "nodeId": "feature-ui",
+          "attempt": 3,
+          "completed": true
+        },
+        {
+          "nodeId": "feature-solution",
+          "attempt": 3,
+          "completed": true
+        },
+        {
+          "nodeId": "implementation",
+          "attempt": 1,
+          "completed": true
+        },
+        {
+          "nodeId": "feature-cases",
+          "attempt": 1,
+          "completed": true
+        },
+        {
+          "nodeId": "feature-report",
+          "attempt": 1,
+          "completed": true
+        }
+      ],
+      "spent": 6,
+      "budget": 50,
+      "status": "succeeded",
+      "commands": [
+        {
+          "id": "2eee581d-7e38-4527-b221-da6a22301c26",
+          "action": "start",
+          "applied": true
+        }
+      ],
+      "revision": 9,
+      "selected": [
+        "feature-prd",
+        "feature-ui",
+        "feature-solution",
+        "implementation",
+        "feature-cases",
+        "feature-report"
+      ],
+      "projectId": "ce679443dacb09731a392f0e58c48830",
+      "startedAt": "2026-11-22T08:41:12.908Z",
+      "finishedAt": "2026-11-22T08:41:14.546Z",
+      "graphDigest": "2848955e5b0e0a62e10f7ffdd442e3232cf4cc2c3dd0f33d00e42fc017d68b71",
+      "sourceDigest": "46db24c69774e8c4d9122638207a5944a5b4eff20805bb528369dc723a71974e",
+      "decisionScope": "development"
+    },
+    "nodes": [
+      {
+        "id": "feature-prd",
+        "status": "succeeded",
+        "attempt": 3,
+        "artifacts": [
+          {
+            "name": "细化范围、规则与每一项验收条件.sydoc",
+            "sha256": "b132d847f36153efb29c75fe8883430dc62c33703a5ac9fc1d8970a112cba1ad",
+            "producer": "smartdoc.snapshot"
+          }
+        ],
+        "stepConfiguration": {
+          "documentId": "59990ea0-e517-45fe-a8de-e199cb9ef751",
+          "revision": 2,
+          "sha256": "0d4dbb42b3b8672122979a2d9eb872b94dbcdb9bf11e4f1a925799bcd1f909b6"
+        }
+      },
+      {
+        "id": "feature-ui",
+        "status": "succeeded",
+        "attempt": 3,
+        "artifacts": [
+          {
+            "name": "界面、交互状态与多端设计.sydoc",
+            "sha256": "a3cf372f7d1c2e7c277b21431d66f7e5509171dbce972b9ea951b6a7026a83a0",
+            "producer": "smartdoc.snapshot"
+          }
+        ],
+        "stepConfiguration": {
+          "documentId": "eaf6451d-f749-49d4-84a7-6385d1cd6556",
+          "revision": 2,
+          "sha256": "651dcb812eae6011dae91c5dfd192d50fd798f10a72599ca60b9490c57729aea"
+        }
+      },
+      {
+        "id": "feature-solution",
+        "status": "succeeded",
+        "attempt": 3,
+        "artifacts": [
+          {
+            "name": "架构、协议、数据与实施方案.sydoc",
+            "sha256": "ca2a962bf4ffa2ad3f67467383e8515710621c23d04e1e86f3ad9ffe698d4ce8",
+            "producer": "smartdoc.snapshot"
+          }
+        ],
+        "stepConfiguration": {
+          "documentId": "f786fa99-a1d0-4021-8f30-5dbea52ce3d7",
+          "revision": 4,
+          "sha256": "56a9b1cb414ebb1bfe4456f36a8f413265e6e4432698c1074f54094e772cf944"
+        }
+      },
+      {
+        "id": "implementation",
+        "status": "succeeded",
+        "attempt": 1,
+        "artifacts": [
+          {
+            "name": "source-manifest.json",
+            "sha256": "a6ba4563cb93bf03797c51c3ee106eaf5aeaf795a3608126eebe876fe0fbcf21",
+            "producer": "ci-inspect"
+          }
+        ],
+        "stepConfiguration": {
+          "documentId": "f786fa99-a1d0-4021-8f30-5dbea52ce3d7",
+          "revision": 4,
+          "sha256": "56a9b1cb414ebb1bfe4456f36a8f413265e6e4432698c1074f54094e772cf944"
+        }
+      },
+      {
+        "id": "feature-cases",
+        "status": "succeeded",
+        "attempt": 1,
+        "artifacts": [
+          {
+            "name": "功能测试用例与覆盖矩阵.sydoc",
+            "sha256": "4d9e9ebdb26d3e1eb468273614ac4cf2980ec664e9211945b10f964dfe724e0c",
+            "producer": "smartdoc.snapshot"
+          }
+        ],
+        "stepConfiguration": {
+          "documentId": "38b7ea09-acc7-4ee8-abb0-fde1ccc78fb0",
+          "revision": 3,
+          "sha256": "6fa51664a592ca34a71173c3478ba8a0e14f972035d76c928df16ca0d1a9874e"
+        }
+      },
+      {
+        "id": "feature-report",
+        "status": "succeeded",
+        "attempt": 1,
+        "artifacts": [
+          {
+            "name": "process-report.json",
+            "sha256": "c21566938b547cad461d17ca9fad11b927c54491315320e178a7e96ebdf87c31",
+            "producer": "ci-test"
+          },
+          {
+            "name": "process-report.json",
+            "sha256": "f5dd72eba3f9a293ab2bb5a548a0762190995a46789ea50f58de8f038cbe8a80",
+            "producer": "ci-plugin-test"
+          },
+          {
+            "name": "process-report.json",
+            "sha256": "3d296392f0da1617dc5e668ade67042e612cd214417db00d8d51c2bdd3c8ebc8",
+            "producer": "ci-build"
+          },
+          {
+            "name": "muse-ci-ui.html",
+            "sha256": "edceb2be6a2fbd2aaab8229c80ceba99e283e5cb15381ae7265e1810f22aa95c",
+            "producer": "ci-build"
+          },
+          {
+            "name": "ui-integrity.json",
+            "sha256": "53ae4eab75a26c4f45de5f277e9368ce9cac09e70f1cc34b75fbb1cd0e4b378f",
+            "producer": "ci-artifact-verify"
+          }
+        ],
+        "stepConfiguration": {
+          "documentId": "38b7ea09-acc7-4ee8-abb0-fde1ccc78fb0",
+          "revision": 3,
+          "sha256": "6fa51664a592ca34a71173c3478ba8a0e14f972035d76c928df16ca0d1a9874e"
+        }
+      }
+    ]
+  },
+  "publicAcceptancePassed": false
+}
