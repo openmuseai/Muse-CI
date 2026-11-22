@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-22T09:44:25.227Z",
+  "origin": "https://cn.openmuseai.com",
+  "authenticated": true,
+  "exactPasswordUsed": true,
+  "serverCommit": "302c840",
+  "recovery": "normal-instance-reboot",
+  "swapMiB": 2048,
+  "cloudSync": null,
+  "agentRealtimeConnected": false,
+  "projectId": "47ddd3e327dcc6609ac8bbb235f05224",
+  "documentId": "b233772e-18a0-472b-9cf0-165ad8ffc020",
+  "revision": 2,
+  "publicAcceptancePassed": false,
+  "deviceState": "Find N6 sleeping; QA Activity paused; Mac locked"
+}

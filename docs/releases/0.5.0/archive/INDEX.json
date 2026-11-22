@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-22T08:42:29.270Z",
+  "at": "2026-11-22T09:44:36.342Z",
   "authority": "Retained native SmartDoc revisions; immutable file exports, online IDs remain authoritative",
   "projects": [
     {
@@ -242,7 +242,7 @@
       "title": "手机代码 Diff 与 MR 验收",
       "kind": "requirement",
       "parentId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
-      "version": 71,
+      "version": 75,
       "documents": [
         {
           "id": "29f20911-b995-45d9-a0e6-ef176effe226",
@@ -387,7 +387,7 @@
       "title": "国内生产服务公网端到端验收",
       "kind": "requirement",
       "parentId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
-      "version": 41,
+      "version": 43,
       "documents": [
         {
           "id": "0082705e-62cd-4acf-8c91-0b7cfc34a2fd",
@@ -489,9 +489,10 @@
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 1,
+          "revision": 2,
+          "publishedRevision": 2,
           "path": "cn-public-e2e/04-testing/feature-report.sydoc",
-          "sha256": "4676e4a5d161eed2332614f32ed171e9cb23ff7b166e84d847a5b21d118396c2"
+          "sha256": "d990126f6d865867d16e7f7ca607f2c496e7d4f86ecbe109ac36351a62dc63d5"
         },
         {
           "id": "bc1da408-38ec-46eb-9db3-26afae6146c9",

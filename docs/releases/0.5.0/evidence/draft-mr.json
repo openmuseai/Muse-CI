@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-22T08:53:52.459Z",
+  "receipt": {
+    "provider": "github",
+    "repository": "openmuseai/Muse-CI",
+    "number": 2,
+    "url": "https://github.com/openmuseai/Muse-CI/pull/2",
+    "state": "open",
+    "headSha": "757399e3b46886d3f9cd3cc7f1ecd3bbc72e649a",
+    "baseBranch": "feat/0.4-smartdoc-steps",
+    "draft": true,
+    "verifiedAt": "2026-11-22T08:53:52.388Z"
+  },
+  "projectId": "ce679443dacb09731a392f0e58c48830",
+  "publicAcceptancePassed": false
+}
