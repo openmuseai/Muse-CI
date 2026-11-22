@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-22T10:31:20.388Z",
+  "at": "2026-11-22T18:55:57.677Z",
   "authority": "Retained native SmartDoc revisions; immutable file exports, online IDs remain authoritative",
   "projects": [
     {
       "id": "7a35a6ccfcd907d092e3d2dd5cb068c5",
       "title": "Muse-CI 0.5.0 · Mobile 公网接管与 MR 审查",
       "kind": "version",
-      "version": 56,
+      "version": 60,
       "documents": [
         {
           "id": "08b58057-117e-4dab-a9c9-903577da5462",
@@ -242,17 +242,17 @@
       "title": "手机代码 Diff 与 MR 验收",
       "kind": "requirement",
       "parentId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
-      "version": 124,
+      "version": 227,
       "documents": [
         {
           "id": "29f20911-b995-45d9-a0e6-ef176effe226",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "实现功能与研发验证",
           "kind": "implementation",
-          "revision": 5,
-          "publishedRevision": 5,
+          "revision": 8,
+          "publishedRevision": 8,
           "path": "mr-review/03-solution/implementation.sydoc",
-          "sha256": "ba895605b9d96757a052e261004d6713e419567c8a41aa7abdd3309df2d6305e"
+          "sha256": "659798dbd6ced8f20a809648b269eea62b7ec8c2c4289da338e710cb921db675"
         },
         {
           "id": "353fd5f7-4a9a-4199-89f6-93b064c78cf7",
@@ -268,10 +268,10 @@
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "需求测试 · 阶段配置",
           "kind": "step-config",
-          "revision": 8,
-          "publishedRevision": 8,
+          "revision": 14,
+          "publishedRevision": 14,
           "path": "mr-review/04-testing/stage-configuration.sydoc",
-          "sha256": "40051ec59874e42364a4e1b5c040464c98d88fbe9dff59231b93cdddfc63df10"
+          "sha256": "ed9ae942ccce8480e1eefd7ea312d75a560bb97a8b62c913f6f8d3a5967f5734"
         },
         {
           "id": "4d687e39-23e5-4f62-9ce4-fe5d2eff86be",
@@ -337,10 +337,10 @@
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 4,
-          "publishedRevision": 4,
+          "revision": 9,
+          "publishedRevision": 9,
           "path": "mr-review/04-testing/feature-report.sydoc",
-          "sha256": "cebfcc626df08a9dc293c939937783315ae8774d3ae2a7eaad016eb2023ea8b1"
+          "sha256": "cd608cd7ce438bba6106a09caca277efe58565b049217c72748ec67579492f85"
         },
         {
           "id": "d4326b34-dfc9-4d4d-9d2b-4c2f13a4b0f3",
@@ -375,10 +375,10 @@
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "方案设计与研发 · 阶段配置",
           "kind": "step-config",
-          "revision": 9,
-          "publishedRevision": 9,
+          "revision": 15,
+          "publishedRevision": 15,
           "path": "mr-review/03-solution/stage-configuration.sydoc",
-          "sha256": "00defead409bf450bd51c50ab3a79e67b1c82a1420bdda626443be241ff0274c"
+          "sha256": "b55059ad8da7bcfab8cef66e78bbd89a7be80b4ee8a49a59f855cc6a24a7fcd0"
         }
       ]
     },
@@ -387,7 +387,7 @@
       "title": "国内生产服务公网端到端验收",
       "kind": "requirement",
       "parentId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
-      "version": 61,
+      "version": 67,
       "documents": [
         {
           "id": "0082705e-62cd-4acf-8c91-0b7cfc34a2fd",
@@ -489,10 +489,10 @@
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 4,
-          "publishedRevision": 4,
+          "revision": 6,
+          "publishedRevision": 6,
           "path": "cn-public-e2e/04-testing/feature-report.sydoc",
-          "sha256": "0b0274f2ac1384441e18e125945189a0c82f54f69abb6fe0db2178ba28dbec56"
+          "sha256": "5fee6ad29d76f37cda64fa9eb42cd64fcb48f7d81563f585781bfd818d23fac5"
         },
         {
           "id": "bc1da408-38ec-46eb-9db3-26afae6146c9",

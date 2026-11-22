@@ -19,7 +19,7 @@
 ## 工程边界
 
 - CI 业务在插件和后端；复用 MobileWorkbenchContributor 的应用卡片、通用 MCP 会话及 SmartDoc 路由。
-- 当前 RemoteMcpApp 已有工作台贡献接口，Mobile 应用 Tab 也已有通用注册表展示。但 main.dart 只在调试模式加载本机 remote-mcp-apps；这不构成生产安装交付。
+- RemoteMcpApp 通过通用配对发现接入 Mobile 注册表与应用 Tab，普通 QA 启动入口已实际使用。本机 remote-mcp-apps 开发目录仍受调试限制；配对安装的验证不等同于正式市场安装与发行包交付。
 - Release 的插件市场还会拒绝非固定包的远端安装。需扩展通用受信安装和账号会话绑定，不可通过移除 `kDebugMode` 或摘要校验绕过。
 - Diff 复用后端的受信仓库、Git profile 与平台 API 边界；Host 不执行仓库命令，GitHub Token 不进入手机 UI。后续版本管理插件可以复用同一合同，避免重复装载 Git 引擎。
 - 公网 API 必须验证国内生产账号并将 uid 绑定到项目成员，使用 HTTPS、隔离持久存储和受信执行器。现有开发 HTTP 服务自动创建 local-developer 会话，不能直接经反向代理开放公网。
@@ -34,16 +34,28 @@
 
 ## 本轮进展与门禁
 
-已实现 `ci_mr_diff` 合同、平台读取和插件 Diff 视图；新增源 SHA 竞态与缺失补丁测试。实际本地 MCP → GitHub MR #1 读取成功，只作为后端预检，不能作为手机公网验收。
+2026-11-23，OPPO Find N6 展开屏已完成普通 QA 的国内公网操作验收。链路是既有国内生产 HTTPS 配对中转，手机使用蜂窝网络，无 `adb reverse` 业务转发。USB 仅安装、镜像和诊断。保留原有日常 App 与资料，验收包使用独立 `com.openmuseai.mobile.acceptance`，并以普通 `main.dart` 启动。
 
-Host 通用配对 App 转发已提交 `b42f2066`；Mobile 侧通过现有插件注册表展示应用卡片，复用原生 MCP App 沙箱与资源提供器。改动没有去掉 release 安装摘要门禁，也没有将 CI 状态机加入 Host。新增 3 项运行时边界测试及配对网关在途撤销测试通过，网关相关 4 项回归通过。
+| 验收项 | 当前证据与结论 |
+| --- | --- |
+| 国内账号与应用入口 | 使用 `.account` 原始完整密码（末尾 `!`）；真实生产登录、同账号 Desktop 发现、HTTPS 授权、应用 Tab 卡片打开与实际 MCP 查询通过。[入口回执](evidence/foldable-public-entry.json) |
+| 版本与需求画布 | 手机实际进入 0.5 主流程及 MR 独立子需求，保持主子流程边界。 |
+| 节点人工标过 | 手机及 Desktop 实际记录临时原因，再撤回；原状态已恢复，不作为测试通过或发布批准。[手机截图](evidence/find-n6-node-mark.png)、[Desktop 截图](evidence/desktop-node-mark.png) |
+| 手机触发重跑 | `feature-report` Run `39651c42-2175-435c-a144-396159288445`，2026-11-22T18:01:59.080Z 至 18:02:29.385Z，实际成功。[运行截图](evidence/find-n6-node-run.png) |
+| 产物 | 手机打开上述 Run 第 7 次尝试的真实测试 JSON；历史 `.sydoc` 产物在完整原生 SmartDocument 中只读打开。[本次产物](evidence/find-n6-run-artifact.png)、[历史原生文档快照](evidence/find-n6-artifact.png) |
+| MR 与 Diff | 手机真实同步 [MR #2](https://github.com/openmuseai/Muse-CI/pull/2)，读取提交 `388ea1d77da69756f8d318b46032fc5db15c627b` 的实际 GitHub Diff 第 1 页。保留草稿，未批准或合并。[Diff 截图](evidence/find-n6-mr-diff.png) |
+| Desktop 回读与审查 | DSH 右侧实际读回手机 Run 的第 7 次报告，并打开相同源提交的真实 Diff。[报告](evidence/desktop-phone-run-readback.png)、[Diff](evidence/desktop-mr-diff.png) |
+| 已连接设备刷新 | 普通 QA `1.0.2+112309` 实际点击同账号 Desktop 刷新按钮，再从应用 Tab 打开 Muse-CI，加载后端流程。[截图](evidence/find-n6-reconnected-app.png) |
+| 云端 SmartDoc 与 Agent | 初始 49 份流程材料接入国内云端。Agent 以现有账号明确委托身份写入本轮测试报告，云端接受且实时协作连接成功；不是独立云端 Agent 账号。[云端回执](evidence/cloud-documents.json)、[本轮操作回执](evidence/foldable-ordinary-operations.json) |
 
-国内生产登录超时已于 2026-11-22 恢复：已定位现有北京实例，VNC 确认严重内存回收阻塞。正常重启恢复入口后，使用 `.account` 的原始完整密码（包括末尾 `!`）两次真实登录成功。新增 2 GiB swap 与持久配置，修复故障时会丢失数据的内存采样，服务器提交 `302c840`。GoTrue、数据库、Cloud、DSH 健康，数据库查询正常；尚未认定某个进程存在泄漏。见 [认证恢复回执](evidence/production-auth-recovery.json)。继续复用国内既有中转，无需另部署公网 CI。
+本轮 CI 修复已提交并推送：安全随机命令 ID（`db78e4e`）、沙箱本地表单提交（`9c491b0`）、表单内持久错误提示（`cb27b30`）、画布产物元数据与按需读取（`388ea1d`）。历史产物内容仍保留在持久存储，不扩大 Host 沙箱或响应大小边界。相关检查为 64 项后端测试、29 项插件测试、类型检查与构建通过；Muse-CI 自身六节点 Run `e49d2cbb-4c5f-46aa-9d1b-79098ec5dda7` 成功，随后由手机独立触发上述重跑。
 
-验收设备为 OPPO Find N6（PLP110，展开屏 2248×2480），原有 `com.openmuseai.mobile` 保留。用户已完成安装保护确认，并当次授权代理点击首次协议；真实界面处理完成，未注入同意状态。入口验收包 `1.0.2+112205` 已全部通过真实测试：国内账号登录、发现同账号 Desktop、取得 HTTPS 配对授权、插件注册到应用 Tab、卡片打开和实际 CI 项目查询。确认无 adb reverse 业务转发。随后安装普通启动 QA `1.0.2+112206`，检查 APK 不含 integration_test 入口，保留账号和插件配对。见 [折叠屏入口回执](evidence/foldable-public-entry.json)。普通 QA 的后续操作尚未通过：镜像日志发现点击按下与松开坐标不一致，已编译本机隔离镜像修正，仍待 Mac 解锁验证。Wi-Fi 尚未关闭。
+Host 通用能力修复在 Muse-Client 的当前发布恢复分支中细粒度提交：已配对时允许设备重选（`f44e0297`）、只输出安全错误码（`cb7347b7`）、为已连接设备提供刷新按钮（`1e7dfe53`）。13 项 Mobile 工作台、2 项错误脱敏测试通过。未推送混有其他工作的整个 Host 分支。
 
-已由 `ci_mr_create` 创建真实草稿 [MR #2](https://github.com/openmuseai/Muse-CI/pull/2)，绑定手机 Diff 子需求，以 `feat/0.4-smartdoc-steps` 为基线。保留草稿状态，未提审或合并；手机尚未完成对该 MR 的验收。
+验收中曾观察到“操作已落盘，但回复被通道拒绝”；后续刷新读取到已成功结果，手机后来可正常打开 Diff。此情况不能视为稳定性已完全验证，也不能盲目重试写操作。安全错误码现区分网络、超时、授权与响应问题，原始异常消息不会进入插件 UI。
 
-公网验收保持未通过。完整真机节点/产物/Diff 操作与折叠/展开布局仍需执行；不将上一版 QA/USB 转发证据复用为此版本的公网证明。
+国内生产认证服务曾因严重内存回收阻塞而超时，已正常重启恢复，配置持久 2 GiB swap 和有时限的诊断采样；服务器修复提交 `302c840`。已真实登录核验；未认定某个进程存在泄漏。[恢复回执](evidence/production-auth-recovery.json)。
 
-本轮 49 份 SmartDoc 已接入国内云端；CI Agent 通过现有账号明确委托完成编辑、云端同步和实时协作连接。迁移后将已发布材料重新固定到阶段配置修订。见 [云端协作回执](evidence/cloud-documents.json)。迁移后由 Muse-CI 再次执行 Diff 子需求，Run `aad849bd-6643-44c8-a08d-9240039ddf53` 成功；仍不代表手机完整验收。
+**完整发布门禁仍未通过**：实际折叠外屏、当前版本卸载重装/离线/撤回回归、正式市场与签名候选包尚需验收。普通 QA 与国内生产网络的结果分别记录，不据此宣称正式渠道发行完成。本轮实际业务默认网络核验为蜂窝网络；结束检查 Wi-Fi 开关已开启，未改动热点配置。最新普通 QA 已安装为 `1.0.2+112309`。
+
+在线 SmartDoc 是协作权威来源，仓库 [archive/INDEX.json](archive/INDEX.json) 按版本/需求、Step、文档 ID 和修订归档原生快照；执行事实、测试产物和截图保存在 evidence，不用人工标过覆盖真实测试或平台结果。

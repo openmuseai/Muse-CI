@@ -1,41 +1,41 @@
 {
-  "at": "2026-11-22T10:30:41.618Z",
+  "at": "2026-11-22T17:05:20.100Z",
   "receipt": {
     "projectId": "ce679443dacb09731a392f0e58c48830",
     "title": "手机代码 Diff 与 MR 验收",
-    "sourceDigest": "46db24c69774e8c4d9122638207a5944a5b4eff20805bb528369dc723a71974e",
+    "sourceDigest": "c0933b296e134dc2d1eb9e7d81925a6fbc16d6b0cf1b1737695bada4944acef4",
     "run": {
-      "id": "aad849bd-6643-44c8-a08d-9240039ddf53",
+      "id": "e49d2cbb-4c5f-46aa-9d1b-79098ec5dda7",
       "auto": true,
       "jobs": [
         {
           "nodeId": "feature-prd",
-          "attempt": 4,
+          "attempt": 7,
           "completed": true
         },
         {
           "nodeId": "feature-ui",
-          "attempt": 4,
+          "attempt": 7,
           "completed": true
         },
         {
           "nodeId": "feature-solution",
-          "attempt": 4,
+          "attempt": 7,
           "completed": true
         },
         {
           "nodeId": "implementation",
-          "attempt": 2,
+          "attempt": 5,
           "completed": true
         },
         {
           "nodeId": "feature-cases",
-          "attempt": 2,
+          "attempt": 5,
           "completed": true
         },
         {
           "nodeId": "feature-report",
-          "attempt": 2,
+          "attempt": 6,
           "completed": true
         }
       ],
@@ -44,12 +44,12 @@
       "status": "succeeded",
       "commands": [
         {
-          "id": "c44b64ec-8180-43a1-9e18-2708a320bdb2",
+          "id": "aaa74913-549e-4efe-8de4-471603b6e5b4",
           "action": "start",
           "applied": true
         }
       ],
-      "revision": 16,
+      "revision": 22,
       "selected": [
         "feature-prd",
         "feature-ui",
@@ -59,17 +59,17 @@
         "feature-report"
       ],
       "projectId": "ce679443dacb09731a392f0e58c48830",
-      "startedAt": "2026-11-22T10:30:33.548Z",
-      "finishedAt": "2026-11-22T10:30:41.183Z",
+      "startedAt": "2026-11-22T17:04:02.329Z",
+      "finishedAt": "2026-11-22T17:05:19.491Z",
       "graphDigest": "3cd3ab751f63de844a21b468dfb3212a451dd262735a9e87b157a56dab6b334f",
-      "sourceDigest": "46db24c69774e8c4d9122638207a5944a5b4eff20805bb528369dc723a71974e",
+      "sourceDigest": "c0933b296e134dc2d1eb9e7d81925a6fbc16d6b0cf1b1737695bada4944acef4",
       "decisionScope": "development"
     },
     "nodes": [
       {
         "id": "feature-prd",
         "status": "succeeded",
-        "attempt": 4,
+        "attempt": 7,
         "artifacts": [
           {
             "name": "细化范围、规则与每一项验收条件.sydoc",
@@ -86,7 +86,7 @@
       {
         "id": "feature-ui",
         "status": "succeeded",
-        "attempt": 4,
+        "attempt": 7,
         "artifacts": [
           {
             "name": "界面、交互状态与多端设计.sydoc",
@@ -103,7 +103,7 @@
       {
         "id": "feature-solution",
         "status": "succeeded",
-        "attempt": 4,
+        "attempt": 7,
         "artifacts": [
           {
             "name": "架构、协议、数据与实施方案.sydoc",
@@ -113,31 +113,31 @@
         ],
         "stepConfiguration": {
           "documentId": "f786fa99-a1d0-4021-8f30-5dbea52ce3d7",
-          "revision": 9,
-          "sha256": "00defead409bf450bd51c50ab3a79e67b1c82a1420bdda626443be241ff0274c"
+          "revision": 15,
+          "sha256": "b55059ad8da7bcfab8cef66e78bbd89a7be80b4ee8a49a59f855cc6a24a7fcd0"
         }
       },
       {
         "id": "implementation",
         "status": "succeeded",
-        "attempt": 2,
+        "attempt": 5,
         "artifacts": [
           {
             "name": "source-manifest.json",
-            "sha256": "a6ba4563cb93bf03797c51c3ee106eaf5aeaf795a3608126eebe876fe0fbcf21",
+            "sha256": "021b57691c17b094d95fd2a11dd9c500d7423a3af1cec3c26c943590513ccd5f",
             "producer": "ci-inspect"
           }
         ],
         "stepConfiguration": {
           "documentId": "f786fa99-a1d0-4021-8f30-5dbea52ce3d7",
-          "revision": 9,
-          "sha256": "00defead409bf450bd51c50ab3a79e67b1c82a1420bdda626443be241ff0274c"
+          "revision": 15,
+          "sha256": "b55059ad8da7bcfab8cef66e78bbd89a7be80b4ee8a49a59f855cc6a24a7fcd0"
         }
       },
       {
         "id": "feature-cases",
         "status": "succeeded",
-        "attempt": 2,
+        "attempt": 5,
         "artifacts": [
           {
             "name": "功能测试用例与覆盖矩阵.sydoc",
@@ -147,23 +147,23 @@
         ],
         "stepConfiguration": {
           "documentId": "38b7ea09-acc7-4ee8-abb0-fde1ccc78fb0",
-          "revision": 8,
-          "sha256": "40051ec59874e42364a4e1b5c040464c98d88fbe9dff59231b93cdddfc63df10"
+          "revision": 14,
+          "sha256": "ed9ae942ccce8480e1eefd7ea312d75a560bb97a8b62c913f6f8d3a5967f5734"
         }
       },
       {
         "id": "feature-report",
         "status": "succeeded",
-        "attempt": 2,
+        "attempt": 6,
         "artifacts": [
           {
             "name": "process-report.json",
-            "sha256": "d66c41fa2e54634493a03f5a55b0992d8153ae2ddfa0ec7a19483803629facb8",
+            "sha256": "76fe073c4c60740df38dba09ff09c83f2eb320e71ccc5376e0b6b5cf36c44480",
             "producer": "ci-test"
           },
           {
             "name": "process-report.json",
-            "sha256": "00cc94c29fa82fdc46b2ffaebdb410552ac7df8d1e22b558feb259940d5e7d52",
+            "sha256": "b00fa0442eb955e9e5396b34afceae71de7f250a6504c7bcb593ac68d318c579",
             "producer": "ci-plugin-test"
           },
           {
@@ -173,19 +173,19 @@
           },
           {
             "name": "muse-ci-ui.html",
-            "sha256": "edceb2be6a2fbd2aaab8229c80ceba99e283e5cb15381ae7265e1810f22aa95c",
+            "sha256": "3b599719f1c5a26e4cb1ef348b6172d24a64e11de16c2cd8d1aca90d82083215",
             "producer": "ci-build"
           },
           {
             "name": "ui-integrity.json",
-            "sha256": "53ae4eab75a26c4f45de5f277e9368ce9cac09e70f1cc34b75fbb1cd0e4b378f",
+            "sha256": "db4831148c5c6b049b5345b0baddb1c54f48f21a2c737554333bc8b272f68254",
             "producer": "ci-artifact-verify"
           }
         ],
         "stepConfiguration": {
           "documentId": "38b7ea09-acc7-4ee8-abb0-fde1ccc78fb0",
-          "revision": 8,
-          "sha256": "40051ec59874e42364a4e1b5c040464c98d88fbe9dff59231b93cdddfc63df10"
+          "revision": 14,
+          "sha256": "ed9ae942ccce8480e1eefd7ea312d75a560bb97a8b62c913f6f8d3a5967f5734"
         }
       }
     ]
