@@ -108,7 +108,7 @@ document.addEventListener('submit',async e=>{const id=e.target.id;if(!['lc-creat
  if(id==='lc-child'){const result=await R.mutate('ci_requirement_create',{title:data.get('title'),goal:data.get('goal')});document.getElementById('lifecycle-dialog').close();await R.select(result.childProjectId);}
  if(id==='lc-mark'){await R.mutate('ci_node_mark',{nodeId:data.get('nodeId'),marked:data.get('marked')==='true',reason:data.get('reason')});document.getElementById('lifecycle-dialog').close();}
  if(id==='sd-edit'){const blockId=data.get('blockId'),text=data.get('text');await saveEdits([blockId?{op:'replace',blockId,text}:{op:'append',text,type:'paragraph'}],blockId?'编辑文档段落':'补充文档内容');}
- }catch(error){const target=document.getElementById('sd-error');if(target)target.textContent=errors[error.message]||error.message;toast(error.message);}});
+ }catch(error){let target=e.target.querySelector('[data-form-error]');if(!target){target=document.createElement('p');target.dataset.formError='true';target.className='error';target.setAttribute('role','alert');e.target.append(target);}target.textContent=errors[error.message]||error.message;toast(error.message);}});
 root.addEventListener('ci:state',()=>{if(currentDoc&&document.getElementById('lifecycle-dialog')?.open){const latest=docs().find(d=>d.id===currentDoc.document.id);if(latest&&latest.revision!==currentDoc.document.revision){const notice=document.getElementById('sd-remote-change');if(notice){notice.hidden=false;notice.textContent='协作者已提交新修订 r'+latest.revision+'。当前编辑保留，保存会校验修订，不会覆盖对方改动。';}}}});
 root.CILifecycle={admission,readyNodes,header,nodeDocuments,children,openDocument,inspectDocument,stepConfigButton,newFlow};
 })(globalThis);
