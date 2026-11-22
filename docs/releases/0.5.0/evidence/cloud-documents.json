@@ -1,0 +1,331 @@
+{
+  "at": "2026-11-22T10:26:45.830Z",
+  "origin": "https://cn.openmuseai.com",
+  "identity": "existing-account-explicit-delegation",
+  "receipts": [
+    {
+      "projectId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
+      "key": "version",
+      "documents": [
+        {
+          "id": "08b58057-117e-4dab-a9c9-903577da5462",
+          "viewId": "2037546b-c60a-4c56-a5b1-ae0e7936ebb3",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "23910c17-6788-4905-9594-b8c793102994",
+          "viewId": "11f38462-3ad9-4774-bbb3-dc448320f316",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "39af7b6d-c2f4-4a62-ae40-e32e1acf7530",
+          "viewId": "645d79d5-1a19-4ea5-91df-3ec621b6fbce",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
+          "viewId": "0f7124a3-6bf6-4c8e-b2c8-1378594ecf22",
+          "revision": 17,
+          "pending": false
+        },
+        {
+          "id": "570d3a10-6716-4939-9bf0-d348e7409fb0",
+          "viewId": "e9b3b881-99fe-40cb-a577-cf73eb444e97",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "5eb85997-2e5a-461e-9afa-91cb1433fe6b",
+          "viewId": "0515962b-099d-4b9b-a7a9-adbde3cbd05c",
+          "revision": 4,
+          "pending": false
+        },
+        {
+          "id": "b3724385-6a2f-4ee0-8554-6fb2a46931c9",
+          "viewId": "00142d02-9b2c-404d-9397-1f43c44cd0a5",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "cae1ee7a-9052-4bd6-a861-1cafacb04d3f",
+          "viewId": "7fa6b063-c4e2-43c0-89e8-f26f3776ffd5",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "db57a4c2-2d77-4227-a633-e3765675194a",
+          "viewId": "8ce7a872-76d0-4611-b5b1-8f89106a17f0",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "f12af160-0ccb-4113-ae76-935c21bc1c1b",
+          "viewId": "a8efb0a4-d907-4b6e-9989-8b1bfe6e07c3",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "f91922e1-a122-49a0-b104-6a2b151f7d13",
+          "viewId": "3e86c9f1-5fd3-4d48-b37b-ba94da0d2257",
+          "revision": 4,
+          "pending": false
+        }
+      ]
+    },
+    {
+      "projectId": "bca8e9f390aa6e76597e8658b7e6f239",
+      "key": "mobile-plugin",
+      "documents": [
+        {
+          "id": "18ab266d-b681-4303-8e76-b76ca76f6be2",
+          "viewId": "f960818f-f590-4a3c-9607-fc4ce3da8d84",
+          "revision": 4,
+          "pending": false
+        },
+        {
+          "id": "32ede601-caa5-4fd1-9f22-708655c4c03c",
+          "viewId": "42b87bea-1d68-4615-9d26-b332db6bd9e5",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "3b2bfb67-37e0-4643-ad99-5bce940569a5",
+          "viewId": "754b6fc1-b91f-45e4-8e3f-b2f740ab53b7",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "44787f7c-f8fd-4f84-9bb7-c6e1e878ebdc",
+          "viewId": "d13b6c70-a2cc-424c-af9e-9cda975a2d76",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "53123400-b95e-4519-b400-7fc0ba6b6a12",
+          "viewId": "af50efcf-633d-4113-9499-f01af093f6c6",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "54ed5bd0-150f-4ef9-9053-e33f0fbff64e",
+          "viewId": "0c45e16f-555e-4c32-a096-29116198080a",
+          "revision": 4,
+          "pending": false
+        },
+        {
+          "id": "5542e868-52ff-466c-85b0-f1fc9aeea07a",
+          "viewId": "0b7066e3-96f6-4aad-9633-584bd8a73138",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "68f582b1-280a-48fd-96d8-26e76a337fc8",
+          "viewId": "7af56974-c533-43f4-a216-45fec4021181",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "7eeedfcc-f234-4a1a-9e1e-b536e1263982",
+          "viewId": "fd6882c6-a14c-4dd0-8a13-f2c42cb9a92c",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "a68f0491-fc10-431d-adfc-75ef74ad3532",
+          "viewId": "3e2d28d6-657d-49b6-aefa-b7731300dc8e",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "d529998b-6515-4ee1-9fd4-4734088c586f",
+          "viewId": "960a68ad-11a3-4faf-b8a2-8d3b232db3bd",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "eefafd83-e268-49f2-9eb8-d7c80d238028",
+          "viewId": "24226c83-d0cc-4e16-a03d-6bf71e81aab4",
+          "revision": 15,
+          "pending": false
+        }
+      ]
+    },
+    {
+      "projectId": "ce679443dacb09731a392f0e58c48830",
+      "key": "mr-review",
+      "documents": [
+        {
+          "id": "29f20911-b995-45d9-a0e6-ef176effe226",
+          "viewId": "38643d70-b7ad-4eb4-a676-5ef433ff79d3",
+          "revision": 4,
+          "pending": false
+        },
+        {
+          "id": "353fd5f7-4a9a-4199-89f6-93b064c78cf7",
+          "viewId": "b205c0c7-2d6f-4b19-862c-1a24a2700f8e",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "38b7ea09-acc7-4ee8-abb0-fde1ccc78fb0",
+          "viewId": "066eae68-cfc6-4478-9a76-d346186ff054",
+          "revision": 4,
+          "pending": false
+        },
+        {
+          "id": "4d687e39-23e5-4f62-9ce4-fe5d2eff86be",
+          "viewId": "72d50a27-8668-4309-a428-698c885931a6",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "59990ea0-e517-45fe-a8de-e199cb9ef751",
+          "viewId": "fc46f1d1-862b-475b-a200-9394a503d6ad",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "7d1945c1-2feb-4347-89e1-9ec8a3269923",
+          "viewId": "25ed6035-82f2-4189-b51a-e6a32388592d",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "8272dcaa-4a11-4e42-9517-74c4214a0622",
+          "viewId": "baf45fe9-eb93-4bc6-a675-5083574e3b1f",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "928616dc-64ed-4947-b7d1-ebe693ee6c77",
+          "viewId": "1ba32c93-941f-4980-b97f-d48e299b8747",
+          "revision": 4,
+          "pending": false
+        },
+        {
+          "id": "b1e301f6-c526-435b-9abd-baa22c5b539e",
+          "viewId": "874d57b8-5a87-4366-950e-d3dda5a0b396",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "c5c47377-bd55-4179-af6d-e663cb9b7869",
+          "viewId": "de4949f3-6f63-41c0-8c4a-c28dd211cdae",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "d4326b34-dfc9-4d4d-9d2b-4c2f13a4b0f3",
+          "viewId": "6d514e57-a44b-436a-8763-fe4c7fa09087",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "e89542c9-034f-4ae5-826a-3b48091bd819",
+          "viewId": "ff4b8875-ba65-4faf-b8e9-41977d811d2a",
+          "revision": 17,
+          "pending": false
+        },
+        {
+          "id": "eaf6451d-f749-49d4-84a7-6385d1cd6556",
+          "viewId": "fad2b898-50e9-43eb-b4dc-61b3d3424a9a",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "f786fa99-a1d0-4021-8f30-5dbea52ce3d7",
+          "viewId": "8f449b7d-3fb7-43d4-b845-8de86ce89f91",
+          "revision": 5,
+          "pending": false
+        }
+      ]
+    },
+    {
+      "projectId": "47ddd3e327dcc6609ac8bbb235f05224",
+      "key": "cn-public-e2e",
+      "documents": [
+        {
+          "id": "0082705e-62cd-4acf-8c91-0b7cfc34a2fd",
+          "viewId": "da0938f3-de26-4ec5-9572-a1aedc75632a",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
+          "viewId": "74c2aa49-3c66-4aa7-bc92-f772202e3411",
+          "revision": 15,
+          "pending": false
+        },
+        {
+          "id": "1d01f5f5-af3c-47e1-ac44-6eaa06c97359",
+          "viewId": "f6d26e14-4cee-4150-bfa9-ce3beae8c884",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "1e34f62e-9c49-4b1e-b1c2-292c707c6c66",
+          "viewId": "f5e7f30a-4387-47b7-a527-f93f74d0998d",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "22cb0f45-87de-4b59-b994-0c38ee1e1967",
+          "viewId": "32b45922-5a72-4fe7-b9ca-ff5984904cd0",
+          "revision": 4,
+          "pending": false
+        },
+        {
+          "id": "38cd8e62-09e6-459e-abe0-0e3b0b0d2a29",
+          "viewId": "1a6b7d36-c05b-4c05-bc18-ce44800d4053",
+          "revision": 4,
+          "pending": false
+        },
+        {
+          "id": "3c440c46-208a-4dfa-a002-770ab8014061",
+          "viewId": "574b713a-c5ec-431a-9cb9-6d1adfff2d73",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "507015e9-026a-4e2d-bd17-8a41b5e35061",
+          "viewId": "28c93036-6bcd-4e3e-a015-57db57fd20ee",
+          "revision": 2,
+          "pending": false
+        },
+        {
+          "id": "525d712e-edd4-4735-83c8-671d381e3817",
+          "viewId": "3832f684-91d8-44d4-ac10-4080a8e71c6f",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "90a3c704-5ad9-45a6-8b94-1331254a9c03",
+          "viewId": "6ebc6b11-e463-4773-83ac-1b0b835e1ba8",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "b233772e-18a0-472b-9cf0-165ad8ffc020",
+          "viewId": "de47b025-373a-4b6a-8402-f72e14afaaca",
+          "revision": 3,
+          "pending": false
+        },
+        {
+          "id": "bc1da408-38ec-46eb-9db3-26afae6146c9",
+          "viewId": "270dc179-812b-4447-bb3d-ef108d430204",
+          "revision": 3,
+          "pending": false
+        }
+      ]
+    }
+  ],
+  "agentEdit": {
+    "documentId": "b233772e-18a0-472b-9cf0-165ad8ffc020",
+    "cloudSync": "accepted",
+    "connected": true
+  },
+  "publicAcceptancePassed": false
+}

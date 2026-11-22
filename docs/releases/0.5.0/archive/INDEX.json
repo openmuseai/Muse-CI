@@ -1,116 +1,116 @@
 {
-  "at": "2026-11-22T09:44:36.342Z",
+  "at": "2026-11-22T10:31:20.388Z",
   "authority": "Retained native SmartDoc revisions; immutable file exports, online IDs remain authoritative",
   "projects": [
     {
       "id": "7a35a6ccfcd907d092e3d2dd5cb068c5",
       "title": "Muse-CI 0.5.0 · Mobile 公网接管与 MR 审查",
       "kind": "version",
-      "version": 42,
+      "version": 56,
       "documents": [
         {
           "id": "08b58057-117e-4dab-a9c9-903577da5462",
           "parentId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "渠道上架与真实回执",
           "kind": "release-receipt",
-          "revision": 1,
+          "revision": 2,
           "path": "version/05-release/release-result.sydoc",
-          "sha256": "7dde4c52addf8530ae851b45ee10846f64bbc812e66040ac350fde64eb5d4ef9"
+          "sha256": "9645f041f2085e438ce036edf4f83fcf0e44018d7a5ede224b53ed1b93dee446"
         },
         {
           "id": "23910c17-6788-4905-9594-b8c793102994",
           "parentId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "版本视觉方向与 UI 设计",
           "kind": "ui-design",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "version/02-visual/version-ui.sydoc",
-          "sha256": "437e0f2ae87d26eb27cfea8566d1354ad660e4908321c9d1ab48222fbc8388f6"
+          "sha256": "df107de2bb0d3fe8dd1fa1fe8f739b401b4767eab0c73f5e4f7f52744c037433"
         },
         {
           "id": "39af7b6d-c2f4-4a62-ae40-e32e1acf7530",
           "parentId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "需求拆分与交付 · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "version/03-requirements/stage-configuration.sydoc",
-          "sha256": "37fd9de5553b868ab333e15db97be450859b61fbd66a72e2545ba05ed997f6dc"
+          "sha256": "92ea3d4281e3d1763f1e0a5f210f08aa40eeedbdebf9478ef552a25ad0631844"
         },
         {
           "id": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "00 · Muse-CI 0.5.0 · Mobile 公网接管与 MR 审查 · 流程总文档",
           "kind": "handbook",
-          "revision": 14,
+          "revision": 17,
           "path": "version/00-index/43615fc6-91c3-4088-9d20-28b24a3eb21b.sydoc",
-          "sha256": "8dfcef559b01ff96dd6105cd4fa1a7c8dad9106a552f505130077c09e5a73aa8"
+          "sha256": "6fc2e781a486f117d27177ccfab72071a99be1adbbe8dd95d81423f8dba542b4"
         },
         {
           "id": "570d3a10-6716-4939-9bf0-d348e7409fb0",
           "parentId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "版本视觉与 UI · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "version/02-visual/stage-configuration.sydoc",
-          "sha256": "d90008a577550274f8f54101ac4cbdac57bd9409132ecc18da28ddfdab324f95"
+          "sha256": "8f877a6aeb39b325a921fc1aff6218fe3a2e4217e592896beb5cb13814ee07a6"
         },
         {
           "id": "5eb85997-2e5a-461e-9afa-91cb1433fe6b",
           "parentId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "版本定义 · 阶段配置",
           "kind": "step-config",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 6,
+          "publishedRevision": 6,
           "path": "version/01-definition/stage-configuration.sydoc",
-          "sha256": "a0bea9c26d03ef4e757d861557675896a848d8d65a754d7bfa14b3f588ebd316"
+          "sha256": "a35cbf0c38254c8b98bf536972028f76e6ffcec071f09c0fbafdcafdce1b308d"
         },
         {
           "id": "b3724385-6a2f-4ee0-8554-6fb2a46931c9",
           "parentId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "候选包、上架材料与渠道计划",
           "kind": "release-plan",
-          "revision": 1,
+          "revision": 2,
           "path": "version/05-release/release-materials.sydoc",
-          "sha256": "e81e7aa2d05401db86517223cc7e8a4f4aa199df5a0c30eb5d2f10bec077728a"
+          "sha256": "75442b0165bc2b84e99b40c598e1276708f0dc6dea526e084c0c68167f90ddbf"
         },
         {
           "id": "cae1ee7a-9052-4bd6-a861-1cafacb04d3f",
           "parentId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "拆分子需求与验收边界",
           "kind": "requirement-plan",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "version/03-requirements/requirement-plan.sydoc",
-          "sha256": "c8288118d72247273d7eafe5b6154134dd6a39928c70a096140e8f31e84099a6"
+          "sha256": "671ce1fc1ed0b2a6c3d189fda6986efb93bb85ad26e87e91627d0797bdafad32"
         },
         {
           "id": "db57a4c2-2d77-4227-a633-e3765675194a",
           "parentId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "版本回归测试用例",
           "kind": "test-cases",
-          "revision": 1,
+          "revision": 2,
           "path": "version/04-regression/regression-cases.sydoc",
-          "sha256": "50a91a0d9d770809fef8391025f0ecdf4cda2887a0352fbb387e02a9e6f37ef4"
+          "sha256": "3aa9f2521455975aafaea82f8b97f74f3ed8ab2d848ea7f8e496d07dfcab1a19"
         },
         {
           "id": "f12af160-0ccb-4113-ae76-935c21bc1c1b",
           "parentId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "执行版本回归与测试报告",
           "kind": "test-report",
-          "revision": 1,
+          "revision": 2,
           "path": "version/04-regression/regression-report.sydoc",
-          "sha256": "635a72ad6678e56ec0a79d804df62111372dc089f314280d4e131e70c68f2e5a"
+          "sha256": "f1d32dd8cc740fba7cf3be5f42520f67387ebbc6f6dbba2aa2b5c987c8fe3156"
         },
         {
           "id": "f91922e1-a122-49a0-b104-6a2b151f7d13",
           "parentId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "圈定版本范围与粗粒度 PRD",
           "kind": "version-prd",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 4,
+          "publishedRevision": 4,
           "path": "version/01-definition/version-scope.sydoc",
-          "sha256": "8025f8de17009ece99e63a7b7adeffc9f4aae0583c9bc7e2f76202886430d43b"
+          "sha256": "6582b15c575c88bb7f7647567aded74aae69cf072206fe8ab54bae4da5d4595f"
         }
       ]
     },
@@ -119,121 +119,121 @@
       "title": "Mobile 应用 Tab 安装与 CI 接管",
       "kind": "requirement",
       "parentId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
-      "version": 46,
+      "version": 61,
       "documents": [
         {
           "id": "18ab266d-b681-4303-8e76-b76ca76f6be2",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "方案设计与研发 · 阶段配置",
           "kind": "step-config",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 6,
+          "publishedRevision": 6,
           "path": "mobile-plugin/03-solution/stage-configuration.sydoc",
-          "sha256": "0ab063c180099c4c484a14583dce49946748a876e83409b21cfa155237e81ec6"
+          "sha256": "da105b8afa1be7ac89edd957325ebe2dec476e0fd496957c491d1292a1fe3281"
         },
         {
           "id": "32ede601-caa5-4fd1-9f22-708655c4c03c",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "功能需求 PRD · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "mobile-plugin/01-prd/stage-configuration.sydoc",
-          "sha256": "33b77405af1f4eedc4eb26bf3196326a001c5ebff3aed4c4df7e5ca6907cfba2"
+          "sha256": "a45a51cd04758faa897ebd11b891406f8fd90d67c1b760d5e7235b6a230c94e7"
         },
         {
           "id": "3b2bfb67-37e0-4643-ad99-5bce940569a5",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 1,
+          "revision": 2,
           "path": "mobile-plugin/04-testing/feature-report.sydoc",
-          "sha256": "7bd38bbe46473d3467213c6b9b70f7572b0be6a64f1e439c374bfd6355fcec85"
+          "sha256": "d808aa3c6279a27011fc7982503f3f1454e68abe279c0ebd3c966c7e97f687a9"
         },
         {
           "id": "44787f7c-f8fd-4f84-9bb7-c6e1e878ebdc",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "实现功能与研发验证",
           "kind": "implementation",
-          "revision": 1,
+          "revision": 2,
           "path": "mobile-plugin/03-solution/implementation.sydoc",
-          "sha256": "bbd44cfa1c6bbfb6aee7125d1bf8327f2a8de8437023ac4753c323ce9e9c8f34"
+          "sha256": "7f0828a59cb6fb989b0b14bf48c9c25c75b07e81d848050dfb4382f42249bd47"
         },
         {
           "id": "53123400-b95e-4519-b400-7fc0ba6b6a12",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "MR 提审、评审与修订",
           "kind": "mr-review",
-          "revision": 1,
+          "revision": 2,
           "path": "mobile-plugin/05-merge/mr-review.sydoc",
-          "sha256": "623194a9dbaa822f68f118b39080272002daaf2130e7e1557e56a1830dc3bf91"
+          "sha256": "b19b35843e7521f4dd35ef255db969d38c8a633c80462032fef06204d242c0c0"
         },
         {
           "id": "54ed5bd0-150f-4ef9-9053-e33f0fbff64e",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "架构、协议、数据与实施方案",
           "kind": "solution",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 4,
+          "publishedRevision": 4,
           "path": "mobile-plugin/03-solution/feature-solution.sydoc",
-          "sha256": "5aaf724476c47cec9a703b23a7e95a4c121563ba3e98d2312157aed5761463fc"
+          "sha256": "21952eda490b7ff6aa3993af521ac5865db28c18a8037e75d0197cf30c3d5cdc"
         },
         {
           "id": "5542e868-52ff-466c-85b0-f1fc9aeea07a",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "功能测试用例与覆盖矩阵",
           "kind": "test-cases",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "mobile-plugin/04-testing/feature-cases.sydoc",
-          "sha256": "472bdb1a128aa1388957db31be7e00bbf0a81a6f269167803dbd567427d85ffc"
+          "sha256": "84ff800a7ef77cddc0d7f74b2e2f8a647a243d74521803d1c5acf971eb93cb8b"
         },
         {
           "id": "68f582b1-280a-48fd-96d8-26e76a337fc8",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "视觉与 UI 设计 · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "mobile-plugin/02-design/stage-configuration.sydoc",
-          "sha256": "a7aba97c92fd982eb2af08e3f4002a9021f9da1459a854df6a1f488488e36318"
+          "sha256": "49f65e3f9681b9537e7ad253ba0eb0ddbf7c939c15dc46d6221f46cca7486b3b"
         },
         {
           "id": "7eeedfcc-f234-4a1a-9e1e-b536e1263982",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "界面、交互状态与多端设计",
           "kind": "ui-design",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "mobile-plugin/02-design/feature-ui.sydoc",
-          "sha256": "e4a9e91f2172affbd85c055673cb6e7527f071fed56ce3108a3374bd6adc278a"
+          "sha256": "131de0eb2bb6eeae69125be34ea1e066cd97b6c66c82d84047bfc9888e504952"
         },
         {
           "id": "a68f0491-fc10-431d-adfc-75ef74ad3532",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "细化范围、规则与每一项验收条件",
           "kind": "feature-prd",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "mobile-plugin/01-prd/feature-prd.sydoc",
-          "sha256": "486e6df6445775876eb4fc4c25d1119c36e804a00ebec62f64d18c7ccca07c6e"
+          "sha256": "f5eebaf8af49e3890435aa1c7cd82d98f2bb58e7cae9851342a5553779ddc456"
         },
         {
           "id": "d529998b-6515-4ee1-9fd4-4734088c586f",
           "parentId": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "合并与来源提交核验",
           "kind": "merge-receipt",
-          "revision": 1,
+          "revision": 2,
           "path": "mobile-plugin/05-merge/mr-merge.sydoc",
-          "sha256": "e4dfae491c8503e198773e1bdbfa5881ee3fbe2d77ff5b5dff1c4857f3e50565"
+          "sha256": "4dd5e9b688c122dc939640c42dda8aa00ba2f2ee36c4299470b70d8bc19b4568"
         },
         {
           "id": "eefafd83-e268-49f2-9eb8-d7c80d238028",
           "title": "00 · Mobile 应用 Tab 安装与 CI 接管 · 流程总文档",
           "kind": "handbook",
-          "revision": 12,
+          "revision": 15,
           "path": "mobile-plugin/00-index/eefafd83-e268-49f2-9eb8-d7c80d238028.sydoc",
-          "sha256": "497dfe9367cf2ba9e0ad448e96a129cbfdf0b7a5ab6f89a054d6fdc03f405bfa"
+          "sha256": "b2a4fd20b7c92c88c8e4ef76040695abd965c83255af8493930dfc9152088e45"
         }
       ]
     },
@@ -242,143 +242,143 @@
       "title": "手机代码 Diff 与 MR 验收",
       "kind": "requirement",
       "parentId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
-      "version": 75,
+      "version": 124,
       "documents": [
         {
           "id": "29f20911-b995-45d9-a0e6-ef176effe226",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "实现功能与研发验证",
           "kind": "implementation",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "mr-review/03-solution/implementation.sydoc",
-          "sha256": "188f4cbd07a68470ae7e59d5715d53ec0cce781b50a4baebcaaaa1ec3cdceb51"
+          "sha256": "ba895605b9d96757a052e261004d6713e419567c8a41aa7abdd3309df2d6305e"
         },
         {
           "id": "353fd5f7-4a9a-4199-89f6-93b064c78cf7",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "合并与来源提交核验",
           "kind": "merge-receipt",
-          "revision": 1,
+          "revision": 2,
           "path": "mr-review/05-merge/mr-merge.sydoc",
-          "sha256": "e03f986deca9123af5e7c4b11ed77e17af00d8f02a82d1f099707df63a4454f8"
+          "sha256": "cf633ee8bfbabc201a340db32906c09761dcb0c0e12215f699530ff036cbf85f"
         },
         {
           "id": "38b7ea09-acc7-4ee8-abb0-fde1ccc78fb0",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "需求测试 · 阶段配置",
           "kind": "step-config",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 8,
+          "publishedRevision": 8,
           "path": "mr-review/04-testing/stage-configuration.sydoc",
-          "sha256": "6fa51664a592ca34a71173c3478ba8a0e14f972035d76c928df16ca0d1a9874e"
+          "sha256": "40051ec59874e42364a4e1b5c040464c98d88fbe9dff59231b93cdddfc63df10"
         },
         {
           "id": "4d687e39-23e5-4f62-9ce4-fe5d2eff86be",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "MR 提审、评审与修订",
           "kind": "mr-review",
-          "revision": 1,
+          "revision": 2,
           "path": "mr-review/05-merge/mr-review.sydoc",
-          "sha256": "4649419aaa28c4861adce177ae13e319db133d6b1d4dfd2e760820f899454d7a"
+          "sha256": "669dd8fc613d6562a934370c9348d382e864df8dce9eb61fc41911444e44e47d"
         },
         {
           "id": "59990ea0-e517-45fe-a8de-e199cb9ef751",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "功能需求 PRD · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "mr-review/01-prd/stage-configuration.sydoc",
-          "sha256": "0d4dbb42b3b8672122979a2d9eb872b94dbcdb9bf11e4f1a925799bcd1f909b6"
+          "sha256": "c6c0700eddf549805f33999d49d269592b1928efee2e2272232278aa43c158a9"
         },
         {
           "id": "7d1945c1-2feb-4347-89e1-9ec8a3269923",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "功能测试用例与覆盖矩阵",
           "kind": "test-cases",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "mr-review/04-testing/feature-cases.sydoc",
-          "sha256": "4d9e9ebdb26d3e1eb468273614ac4cf2980ec664e9211945b10f964dfe724e0c"
+          "sha256": "a27a3c3612f60a55527dd593526ea54cf5756aa7c351d61f9cd6c2d1e8f211e6"
         },
         {
           "id": "8272dcaa-4a11-4e42-9517-74c4214a0622",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "界面、交互状态与多端设计",
           "kind": "ui-design",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "mr-review/02-design/feature-ui.sydoc",
-          "sha256": "a3cf372f7d1c2e7c277b21431d66f7e5509171dbce972b9ea951b6a7026a83a0"
+          "sha256": "a4e56d552d9e6c7cdc4d0578997f8580e096e32ded960245f6c45cf89a5e8774"
         },
         {
           "id": "928616dc-64ed-4947-b7d1-ebe693ee6c77",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "架构、协议、数据与实施方案",
           "kind": "solution",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 4,
+          "publishedRevision": 4,
           "path": "mr-review/03-solution/feature-solution.sydoc",
-          "sha256": "ca2a962bf4ffa2ad3f67467383e8515710621c23d04e1e86f3ad9ffe698d4ce8"
+          "sha256": "a37dc6eed0bb17338489f23a34edf5c8a4a3b751a1a26337a457a3cd2bf82834"
         },
         {
           "id": "b1e301f6-c526-435b-9abd-baa22c5b539e",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "MR 提审与合并 · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "mr-review/05-merge/stage-configuration.sydoc",
-          "sha256": "229d551cc2fda4dc4382491ab578356523add9cfb5d030ab08a0f89e73e5795f"
+          "sha256": "eef68014cde3e36101743b7b9bcfe5fb41ad2c03a1181abb3e6ed426e91da4e3"
         },
         {
           "id": "c5c47377-bd55-4179-af6d-e663cb9b7869",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 4,
+          "publishedRevision": 4,
           "path": "mr-review/04-testing/feature-report.sydoc",
-          "sha256": "797f0a25dfe6a689de9951a3508e1ac2937c6e1d0f934467b33879a4833316c3"
+          "sha256": "cebfcc626df08a9dc293c939937783315ae8774d3ae2a7eaad016eb2023ea8b1"
         },
         {
           "id": "d4326b34-dfc9-4d4d-9d2b-4c2f13a4b0f3",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "细化范围、规则与每一项验收条件",
           "kind": "feature-prd",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "mr-review/01-prd/feature-prd.sydoc",
-          "sha256": "b132d847f36153efb29c75fe8883430dc62c33703a5ac9fc1d8970a112cba1ad"
+          "sha256": "43d8e1f8c64b77f006536885eaa2e63f67b65fa60cb4dd2ef79010cc6dbece3f"
         },
         {
           "id": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "00 · 手机代码 Diff 与 MR 验收 · 流程总文档",
           "kind": "handbook",
-          "revision": 14,
+          "revision": 17,
           "path": "mr-review/00-index/e89542c9-034f-4ae5-826a-3b48091bd819.sydoc",
-          "sha256": "3dd0dea2fee46bb9cbd8a5e02352421437eca44a177621e9de39a576454ccf23"
+          "sha256": "94736270bebdd5d9b4ec80da18530aec193fc99de7324057113e11e49ee1d25e"
         },
         {
           "id": "eaf6451d-f749-49d4-84a7-6385d1cd6556",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "视觉与 UI 设计 · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "mr-review/02-design/stage-configuration.sydoc",
-          "sha256": "651dcb812eae6011dae91c5dfd192d50fd798f10a72599ca60b9490c57729aea"
+          "sha256": "f0df71ad5fc825cc37bf8a6f29cbffb281b719928e154e44752858616948390c"
         },
         {
           "id": "f786fa99-a1d0-4021-8f30-5dbea52ce3d7",
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "方案设计与研发 · 阶段配置",
           "kind": "step-config",
-          "revision": 4,
-          "publishedRevision": 4,
+          "revision": 9,
+          "publishedRevision": 9,
           "path": "mr-review/03-solution/stage-configuration.sydoc",
-          "sha256": "56a9b1cb414ebb1bfe4456f36a8f413265e6e4432698c1074f54094e772cf944"
+          "sha256": "00defead409bf450bd51c50ab3a79e67b1c82a1420bdda626443be241ff0274c"
         }
       ]
     },
@@ -387,122 +387,122 @@
       "title": "国内生产服务公网端到端验收",
       "kind": "requirement",
       "parentId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
-      "version": 43,
+      "version": 61,
       "documents": [
         {
           "id": "0082705e-62cd-4acf-8c91-0b7cfc34a2fd",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "界面、交互状态与多端设计",
           "kind": "ui-design",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "cn-public-e2e/02-design/feature-ui.sydoc",
-          "sha256": "6cc3884c4a19cb472d63c0cd46e3540f5fa7e4b5a06be1947d1902f9c375e044"
+          "sha256": "6f47987f656532ddb74708801aebd778a3476d0b9ab294699d3c05cdf6aa2a93"
         },
         {
           "id": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "00 · 国内生产服务公网端到端验收 · 流程总文档",
           "kind": "handbook",
-          "revision": 12,
+          "revision": 15,
           "path": "cn-public-e2e/00-index/1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb.sydoc",
-          "sha256": "fe206ee212f12742beae058e9aa676e6f8ac4d0c4a29a535e38adbc54d651720"
+          "sha256": "e7c7bb6fc273c26780857afdbb1f65ead158e20d5877205584dc6e358b685660"
         },
         {
           "id": "1d01f5f5-af3c-47e1-ac44-6eaa06c97359",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "MR 提审、评审与修订",
           "kind": "mr-review",
-          "revision": 1,
+          "revision": 2,
           "path": "cn-public-e2e/05-merge/mr-review.sydoc",
-          "sha256": "cc1910f5640d3c3cc009ebecd1aa31d121cea9cab048882b5bf2bf5b32db1225"
+          "sha256": "ed7fcee094afcc2ca8545d5340270c089163c6dcd2509f10c2aa962854899c55"
         },
         {
           "id": "1e34f62e-9c49-4b1e-b1c2-292c707c6c66",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "合并与来源提交核验",
           "kind": "merge-receipt",
-          "revision": 1,
+          "revision": 2,
           "path": "cn-public-e2e/05-merge/mr-merge.sydoc",
-          "sha256": "bdff8be3905bb95f67c5ccb437df20d597f6ffcca60df2e9b4b3822c681cf63f"
+          "sha256": "d3fc0d2c30d624e35c1e95efe4fad4fb4b9d198228d8751f22dd39c31400bc4f"
         },
         {
           "id": "22cb0f45-87de-4b59-b994-0c38ee1e1967",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "架构、协议、数据与实施方案",
           "kind": "solution",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 4,
+          "publishedRevision": 4,
           "path": "cn-public-e2e/03-solution/feature-solution.sydoc",
-          "sha256": "5539c9d94a9b29dff97c1b9de809603510b426c716008ed28f9f73b803853d66"
+          "sha256": "be3ed4a801d0ecc152d07c639482ec32d06074a08f1709059c915131c707c2cf"
         },
         {
           "id": "38cd8e62-09e6-459e-abe0-0e3b0b0d2a29",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "方案设计与研发 · 阶段配置",
           "kind": "step-config",
-          "revision": 3,
-          "publishedRevision": 3,
+          "revision": 6,
+          "publishedRevision": 6,
           "path": "cn-public-e2e/03-solution/stage-configuration.sydoc",
-          "sha256": "da63720b3c4e49f80a6131f81bbaa9643ea3c88d9aeff801ef18524f23eb8c65"
+          "sha256": "73efdd59f639e6c41cf20a90ca8362fe5000833767d7605b98f4858153e968ba"
         },
         {
           "id": "3c440c46-208a-4dfa-a002-770ab8014061",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "功能需求 PRD · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "cn-public-e2e/01-prd/stage-configuration.sydoc",
-          "sha256": "dad27ea8653c0c595ddac4bd1fd41be13d4bf36814414c01e59cac759182ddb2"
+          "sha256": "2572298b953bbfb89df791192b28b95c2dfef4fb5bac064c4f24fd02110fbd5d"
         },
         {
           "id": "507015e9-026a-4e2d-bd17-8a41b5e35061",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "实现功能与研发验证",
           "kind": "implementation",
-          "revision": 1,
+          "revision": 2,
           "path": "cn-public-e2e/03-solution/implementation.sydoc",
-          "sha256": "0928f59f9cde607dab22cbde13cf4f96b61cfea0d98e81d21e60a54630167c54"
+          "sha256": "9a763cc96ead9489b5ab179a5ed55d71e23bd3a2f41abe0f259a4ce59e9514c5"
         },
         {
           "id": "525d712e-edd4-4735-83c8-671d381e3817",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "视觉与 UI 设计 · 阶段配置",
           "kind": "step-config",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 5,
+          "publishedRevision": 5,
           "path": "cn-public-e2e/02-design/stage-configuration.sydoc",
-          "sha256": "ec26d567a12402495e808c760ac95d6f692cf678093d5bc06cb24ad1359c61b6"
+          "sha256": "26dffa130ef7c0230449c86931ff3f74e664c181b8f441ee29282f3f2fe889bb"
         },
         {
           "id": "90a3c704-5ad9-45a6-8b94-1331254a9c03",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "功能测试用例与覆盖矩阵",
           "kind": "test-cases",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "cn-public-e2e/04-testing/feature-cases.sydoc",
-          "sha256": "0343dbf5adc621107803b4fc5692a5e6ba7d722c109b25137961e83a6826a275"
+          "sha256": "59215b649d6c182ad56d3d334bee0141b861c8b568fbaa3421b553e3eab56442"
         },
         {
           "id": "b233772e-18a0-472b-9cf0-165ad8ffc020",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 4,
+          "publishedRevision": 4,
           "path": "cn-public-e2e/04-testing/feature-report.sydoc",
-          "sha256": "d990126f6d865867d16e7f7ca607f2c496e7d4f86ecbe109ac36351a62dc63d5"
+          "sha256": "0b0274f2ac1384441e18e125945189a0c82f54f69abb6fe0db2178ba28dbec56"
         },
         {
           "id": "bc1da408-38ec-46eb-9db3-26afae6146c9",
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "细化范围、规则与每一项验收条件",
           "kind": "feature-prd",
-          "revision": 2,
-          "publishedRevision": 2,
+          "revision": 3,
+          "publishedRevision": 3,
           "path": "cn-public-e2e/01-prd/feature-prd.sydoc",
-          "sha256": "28a2e74093a482e852b7717dcdc28277223dbb8bb2ff0dff221368da3b2f0bea"
+          "sha256": "d70527eb185efd48d473e055ce59064550703f024755c080f5138508ce3bbec4"
         }
       ]
     }
