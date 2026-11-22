@@ -40,8 +40,10 @@ Host 通用配对 App 转发已提交 `b42f2066`；Mobile 侧通过现有插件�
 
 国内生产登录超时已于 2026-11-22 恢复：已定位现有北京实例，VNC 确认严重内存回收阻塞。正常重启恢复入口后，使用 `.account` 的原始完整密码（包括末尾 `!`）两次真实登录成功。新增 2 GiB swap 与持久配置，修复故障时会丢失数据的内存采样，服务器提交 `302c840`。GoTrue、数据库、Cloud、DSH 健康，数据库查询正常；尚未认定某个进程存在泄漏。见 [认证恢复回执](evidence/production-auth-recovery.json)。继续复用国内既有中转，无需另部署公网 CI。
 
-验收设备为 OPPO Find N6（PLP110，展开屏 2248×2480），原有 `com.openmuseai.mobile` 保留。用户已完成安装保护确认，并当次授权代理点击首次协议；真实界面处理完成，未注入同意状态。隔离 QA 已更新至 `1.0.2+112204`。测试拒绝 Mobile 本机直连开发 App，强制验证国内 HTTPS 配对会话，并检查没有 adb reverse 业务转发。目前 Mac 自动锁屏，手机也已休眠，QA Activity 暂停，真实界面与设备绘制测试等待解锁后续跑。
+验收设备为 OPPO Find N6（PLP110，展开屏 2248×2480），原有 `com.openmuseai.mobile` 保留。用户已完成安装保护确认，并当次授权代理点击首次协议；真实界面处理完成，未注入同意状态。入口验收包 `1.0.2+112205` 已全部通过真实测试：国内账号登录、发现同账号 Desktop、取得 HTTPS 配对授权、插件注册到应用 Tab、卡片打开和实际 CI 项目查询。确认无 adb reverse 业务转发。随后安装普通启动 QA `1.0.2+112206`，检查 APK 不含 integration_test 入口，保留账号和插件配对。见 [折叠屏入口回执](evidence/foldable-public-entry.json)。普通 QA 的后续操作尚未通过：镜像日志发现点击按下与松开坐标不一致，已编译本机隔离镜像修正，仍待 Mac 解锁验证。Wi-Fi 尚未关闭。
 
 已由 `ci_mr_create` 创建真实草稿 [MR #2](https://github.com/openmuseai/Muse-CI/pull/2)，绑定手机 Diff 子需求，以 `feat/0.4-smartdoc-steps` 为基线。保留草稿状态，未提审或合并；手机尚未完成对该 MR 的验收。
 
 公网验收保持未通过。完整真机节点/产物/Diff 操作与折叠/展开布局仍需执行；不将上一版 QA/USB 转发证据复用为此版本的公网证明。
+
+本轮 49 份 SmartDoc 已接入国内云端；CI Agent 通过现有账号明确委托完成编辑、云端同步和实时协作连接。迁移后将已发布材料重新固定到阶段配置修订。见 [云端协作回执](evidence/cloud-documents.json)。迁移后由 Muse-CI 再次执行 Diff 子需求，Run `aad849bd-6643-44c8-a08d-9240039ddf53` 成功；仍不代表手机完整验收。

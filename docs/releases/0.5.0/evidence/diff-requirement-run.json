@@ -1,41 +1,41 @@
 {
-  "at": "2026-11-22T08:41:14.634Z",
+  "at": "2026-11-22T10:30:41.618Z",
   "receipt": {
     "projectId": "ce679443dacb09731a392f0e58c48830",
     "title": "手机代码 Diff 与 MR 验收",
     "sourceDigest": "46db24c69774e8c4d9122638207a5944a5b4eff20805bb528369dc723a71974e",
     "run": {
-      "id": "0db1c755-eab3-4bb7-8c1e-09558bb66c92",
+      "id": "aad849bd-6643-44c8-a08d-9240039ddf53",
       "auto": true,
       "jobs": [
         {
           "nodeId": "feature-prd",
-          "attempt": 3,
+          "attempt": 4,
           "completed": true
         },
         {
           "nodeId": "feature-ui",
-          "attempt": 3,
+          "attempt": 4,
           "completed": true
         },
         {
           "nodeId": "feature-solution",
-          "attempt": 3,
+          "attempt": 4,
           "completed": true
         },
         {
           "nodeId": "implementation",
-          "attempt": 1,
+          "attempt": 2,
           "completed": true
         },
         {
           "nodeId": "feature-cases",
-          "attempt": 1,
+          "attempt": 2,
           "completed": true
         },
         {
           "nodeId": "feature-report",
-          "attempt": 1,
+          "attempt": 2,
           "completed": true
         }
       ],
@@ -44,12 +44,12 @@
       "status": "succeeded",
       "commands": [
         {
-          "id": "2eee581d-7e38-4527-b221-da6a22301c26",
+          "id": "c44b64ec-8180-43a1-9e18-2708a320bdb2",
           "action": "start",
           "applied": true
         }
       ],
-      "revision": 9,
+      "revision": 16,
       "selected": [
         "feature-prd",
         "feature-ui",
@@ -59,9 +59,9 @@
         "feature-report"
       ],
       "projectId": "ce679443dacb09731a392f0e58c48830",
-      "startedAt": "2026-11-22T08:41:12.908Z",
-      "finishedAt": "2026-11-22T08:41:14.546Z",
-      "graphDigest": "2848955e5b0e0a62e10f7ffdd442e3232cf4cc2c3dd0f33d00e42fc017d68b71",
+      "startedAt": "2026-11-22T10:30:33.548Z",
+      "finishedAt": "2026-11-22T10:30:41.183Z",
+      "graphDigest": "3cd3ab751f63de844a21b468dfb3212a451dd262735a9e87b157a56dab6b334f",
       "sourceDigest": "46db24c69774e8c4d9122638207a5944a5b4eff20805bb528369dc723a71974e",
       "decisionScope": "development"
     },
@@ -69,58 +69,58 @@
       {
         "id": "feature-prd",
         "status": "succeeded",
-        "attempt": 3,
+        "attempt": 4,
         "artifacts": [
           {
             "name": "细化范围、规则与每一项验收条件.sydoc",
-            "sha256": "b132d847f36153efb29c75fe8883430dc62c33703a5ac9fc1d8970a112cba1ad",
+            "sha256": "43d8e1f8c64b77f006536885eaa2e63f67b65fa60cb4dd2ef79010cc6dbece3f",
             "producer": "smartdoc.snapshot"
           }
         ],
         "stepConfiguration": {
           "documentId": "59990ea0-e517-45fe-a8de-e199cb9ef751",
-          "revision": 2,
-          "sha256": "0d4dbb42b3b8672122979a2d9eb872b94dbcdb9bf11e4f1a925799bcd1f909b6"
+          "revision": 5,
+          "sha256": "c6c0700eddf549805f33999d49d269592b1928efee2e2272232278aa43c158a9"
         }
       },
       {
         "id": "feature-ui",
         "status": "succeeded",
-        "attempt": 3,
+        "attempt": 4,
         "artifacts": [
           {
             "name": "界面、交互状态与多端设计.sydoc",
-            "sha256": "a3cf372f7d1c2e7c277b21431d66f7e5509171dbce972b9ea951b6a7026a83a0",
+            "sha256": "a4e56d552d9e6c7cdc4d0578997f8580e096e32ded960245f6c45cf89a5e8774",
             "producer": "smartdoc.snapshot"
           }
         ],
         "stepConfiguration": {
           "documentId": "eaf6451d-f749-49d4-84a7-6385d1cd6556",
-          "revision": 2,
-          "sha256": "651dcb812eae6011dae91c5dfd192d50fd798f10a72599ca60b9490c57729aea"
+          "revision": 5,
+          "sha256": "f0df71ad5fc825cc37bf8a6f29cbffb281b719928e154e44752858616948390c"
         }
       },
       {
         "id": "feature-solution",
         "status": "succeeded",
-        "attempt": 3,
+        "attempt": 4,
         "artifacts": [
           {
             "name": "架构、协议、数据与实施方案.sydoc",
-            "sha256": "ca2a962bf4ffa2ad3f67467383e8515710621c23d04e1e86f3ad9ffe698d4ce8",
+            "sha256": "a37dc6eed0bb17338489f23a34edf5c8a4a3b751a1a26337a457a3cd2bf82834",
             "producer": "smartdoc.snapshot"
           }
         ],
         "stepConfiguration": {
           "documentId": "f786fa99-a1d0-4021-8f30-5dbea52ce3d7",
-          "revision": 4,
-          "sha256": "56a9b1cb414ebb1bfe4456f36a8f413265e6e4432698c1074f54094e772cf944"
+          "revision": 9,
+          "sha256": "00defead409bf450bd51c50ab3a79e67b1c82a1420bdda626443be241ff0274c"
         }
       },
       {
         "id": "implementation",
         "status": "succeeded",
-        "attempt": 1,
+        "attempt": 2,
         "artifacts": [
           {
             "name": "source-manifest.json",
@@ -130,40 +130,40 @@
         ],
         "stepConfiguration": {
           "documentId": "f786fa99-a1d0-4021-8f30-5dbea52ce3d7",
-          "revision": 4,
-          "sha256": "56a9b1cb414ebb1bfe4456f36a8f413265e6e4432698c1074f54094e772cf944"
+          "revision": 9,
+          "sha256": "00defead409bf450bd51c50ab3a79e67b1c82a1420bdda626443be241ff0274c"
         }
       },
       {
         "id": "feature-cases",
         "status": "succeeded",
-        "attempt": 1,
+        "attempt": 2,
         "artifacts": [
           {
             "name": "功能测试用例与覆盖矩阵.sydoc",
-            "sha256": "4d9e9ebdb26d3e1eb468273614ac4cf2980ec664e9211945b10f964dfe724e0c",
+            "sha256": "a27a3c3612f60a55527dd593526ea54cf5756aa7c351d61f9cd6c2d1e8f211e6",
             "producer": "smartdoc.snapshot"
           }
         ],
         "stepConfiguration": {
           "documentId": "38b7ea09-acc7-4ee8-abb0-fde1ccc78fb0",
-          "revision": 3,
-          "sha256": "6fa51664a592ca34a71173c3478ba8a0e14f972035d76c928df16ca0d1a9874e"
+          "revision": 8,
+          "sha256": "40051ec59874e42364a4e1b5c040464c98d88fbe9dff59231b93cdddfc63df10"
         }
       },
       {
         "id": "feature-report",
         "status": "succeeded",
-        "attempt": 1,
+        "attempt": 2,
         "artifacts": [
           {
             "name": "process-report.json",
-            "sha256": "c21566938b547cad461d17ca9fad11b927c54491315320e178a7e96ebdf87c31",
+            "sha256": "d66c41fa2e54634493a03f5a55b0992d8153ae2ddfa0ec7a19483803629facb8",
             "producer": "ci-test"
           },
           {
             "name": "process-report.json",
-            "sha256": "f5dd72eba3f9a293ab2bb5a548a0762190995a46789ea50f58de8f038cbe8a80",
+            "sha256": "00cc94c29fa82fdc46b2ffaebdb410552ac7df8d1e22b558feb259940d5e7d52",
             "producer": "ci-plugin-test"
           },
           {
@@ -184,8 +184,8 @@
         ],
         "stepConfiguration": {
           "documentId": "38b7ea09-acc7-4ee8-abb0-fde1ccc78fb0",
-          "revision": 3,
-          "sha256": "6fa51664a592ca34a71173c3478ba8a0e14f972035d76c928df16ca0d1a9874e"
+          "revision": 8,
+          "sha256": "40051ec59874e42364a4e1b5c040464c98d88fbe9dff59231b93cdddfc63df10"
         }
       }
     ]
