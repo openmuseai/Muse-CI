@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-22T07:38:41.177Z",
+  "scope": "Actual local MCP to GitHub MR #1; not Mobile or domestic public CI acceptance",
+  "passed": true,
+  "headSha": "41fee5b4266f8f7840e654af5fdf612751f805e7",
+  "fileCount": 30,
+  "nextPage": 2,
+  "publicAcceptancePassed": false
+}
