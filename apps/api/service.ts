@@ -7,7 +7,7 @@ import { G } from '../../packages/contracts/graph.ts';
 import { CONTRACT, definitionSchema, releaseStages, toolsSchemas, type Project, type Principal, type Definition, type Run, type Graph } from '../../packages/contracts/index.ts';
 import { Store, uid, digest, event, fail } from './store.ts';
 import { initializeLifecycle, lifecycleSummary, markNode, stepAdmission, invalidateDocumentConsumers, bindPublishedDocument, requirementsDelivered, requiredNodeIds } from '../../packages/lifecycle/model.ts';
-import {readMergeRequest,writeMergeRequest,validateRepository,trustedRepositories} from '../../packages/providers/repository.ts';
+import {readMergeRequest,readMergeRequestDiff,writeMergeRequest,validateRepository,trustedRepositories} from '../../packages/providers/repository.ts';
 import { documentView, createDocument, getDocument, editDocument, publishDocument, archiveExecutionDocument } from '../../packages/documents/smartdoc.ts';
 import {cloudConfigured,cloudResourceUri} from '../../packages/cloud/workspace.ts';
 import {connectCloudDocumentTree} from '../../packages/cloud/document-tree.ts';
@@ -239,6 +239,7 @@ export class CIService {
             return { events: p.events.filter(e => e.seq > a.after).slice(0, 200), cursor: p.events.at(-1)?.seq || 0, version: p.version };
         if (name === 'ci_release_check')
             return p.graph.nodes.some(n=>n.config.tools.some(isMobileTool))?await mobileReleaseStatus():releaseCheck(p);
+        if(name==='ci_mr_diff'){if(!p.repository)fail('REPOSITORY_BINDING_REQUIRED');return readMergeRequestDiff(p.repository,a);}
         if (name === 'ci_artifact_get') {
             return artifactView(p,a.nodeId,a.attempt,a.index);
         }

@@ -158,6 +158,7 @@ export const toolsSchemas = {
     ci_git_profile_verify:z.object({profileId:id,repository:z.string().max(160).optional()}).strict(),
     ci_mr_reconcile:z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),operationId:id}).strict(),
     ci_mr_cancel:z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),operationId:id}).strict(),
+    ci_mr_diff:z.object({projectId:id,number:z.number().int().positive(),expectedHeadSha:z.string().regex(/^[a-f0-9]{40}(?:[a-f0-9]{24})?$/),page:z.number().int().min(1).max(100).default(1)}).strict(),
     ci_mr_create:z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),expectedHeadSha:z.string().regex(/^[a-f0-9]{40}(?:[a-f0-9]{24})?$/),title:z.string().min(1).max(200),body:z.string().max(12000)}).strict(),
     ci_mr_submit:z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),expectedHeadSha:z.string().regex(/^[a-f0-9]{40}(?:[a-f0-9]{24})?$/),number:z.number().int().positive()}).strict(),
     ci_mr_merge:z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),expectedHeadSha:z.string().regex(/^[a-f0-9]{40}(?:[a-f0-9]{24})?$/),number:z.number().int().positive(),method:z.enum(['merge','squash','rebase']).default('squash')}).strict(),
