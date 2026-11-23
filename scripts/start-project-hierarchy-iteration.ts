@@ -38,7 +38,7 @@ try{
  const listed=(await call('ci_projects_list')).projects;
  const launch=JSON.parse(await readFile(path.resolve(root,'../Muse-Client/docs/release/runs/2026-11-mobile-isolation/muse-ci/launch.json'),'utf8'));
  const mobile=listed.filter((p:any)=>p.kind==='version'&&p.legacyProjectId===launch.projectId);
- if(mobile.length===1){if(!(await get(mobile[0].id)).hierarchy)await mutate(mobile[0].id,'ci_version_attach',{managedProjectId:'openmuse-mobile'});migrations.push({workflowId:mobile[0].id,source:'Muse-Client mobile isolation launch legacy identity'});}
+ if(mobile.length===1){if(!(await get(mobile[0].id)).hierarchy)await mutate(mobile[0].id,'ci_version_attach',{managedProjectId:'openmuse-mobile'});for(const child of (await get(mobile[0].id)).lifecycle.children)if(!(await get(child.projectId)).hierarchy)await mutate(child.projectId,'ci_requirement_repository_bind',{repositoryId:'main'});migrations.push({workflowId:mobile[0].id,source:'Muse-Client mobile isolation launch legacy identity'});}
  const created=await call('ci_version_create',{managedProjectId:'muse-ci',versionName:'0.6.0',title:'Muse-CI 0.6.0 · 项目、版本、需求与根节点归档',goal:'采用约定优先、配置可覆盖的长期项目结构；明确版本交付与需求研发，归档精确输入输出，并在实际折叠屏验收。',commandId:'muse-ci-version-06-project-hierarchy'});let version=created.project;
  const children=[];
  for(const requirement of requirements){let existing=version.lifecycle.children.find((c:any)=>c.title===requirement.title);if(!existing){const result=await mutate(version.id,'ci_requirement_create',{title:requirement.title,goal:requirement.scope,repositoryId:'main'});version=result.project;existing={projectId:result.childProjectId};}children.push({...requirement,id:existing.projectId});}
