@@ -1,0 +1,74 @@
+[
+  {
+    "id": "definition",
+    "name": "版本范围与产品定义",
+    "nodes": [
+      [
+        "version-scope",
+        "圈定版本范围与粗粒度 PRD",
+        "product",
+        "version-prd"
+      ]
+    ]
+  },
+  {
+    "id": "visual",
+    "name": "版本视觉与 UI",
+    "nodes": [
+      [
+        "version-ui",
+        "版本视觉方向与 UI 设计",
+        "ui",
+        "ui-design"
+      ]
+    ]
+  },
+  {
+    "id": "requirements",
+    "name": "需求拆分与交付",
+    "nodes": [
+      [
+        "requirement-plan",
+        "拆分子需求与验收边界",
+        "product",
+        "requirement-plan"
+      ]
+    ]
+  },
+  {
+    "id": "regression",
+    "name": "版本回归测试",
+    "nodes": [
+      [
+        "regression-cases",
+        "版本回归测试用例",
+        "test",
+        "test-cases"
+      ],
+      [
+        "regression-report",
+        "执行版本回归与测试报告",
+        "test",
+        "test-report"
+      ]
+    ]
+  },
+  {
+    "id": "release",
+    "name": "版本上架",
+    "nodes": [
+      [
+        "release-materials",
+        "候选包、上架材料与渠道计划",
+        "artifact",
+        "release-plan"
+      ],
+      [
+        "release-result",
+        "渠道上架与真实回执",
+        "approval",
+        "release-receipt"
+      ]
+    ]
+  }
+]
