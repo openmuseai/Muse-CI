@@ -66,6 +66,7 @@ export interface Graph {
     nodes: GraphNode[];
 }
 export interface Run {
+    projectContext?: import('../projects/conventions.ts').ProjectExecutionContext;
     id: string;
     projectId: string;
     revision: number;
@@ -95,6 +96,9 @@ export interface Run {
     }[];
 }
 export interface Project {
+    // Legacy Project is a workflow record. A managed project is the durable
+    // configuration boundary; its versions/requirements retain these IDs.
+    hierarchy?: import('../projects/conventions.ts').HierarchyBinding;
     stepConfigurations?: Record<string,{documentId:string;publishedRevision?:number;configDigest?:string}>;
     id: string;
     title: string;
@@ -153,6 +157,12 @@ export interface Principal {
 }
 export const commandSchema = z.object({ projectId: id, commandId: id, expectedVersion: z.number().int().positive(), action: z.enum(['start', 'pause', 'resume', 'cancel', 'approve', 'reject', 'stop-node']), nodeIds: z.array(id).max(60).optional(), auto: z.boolean().optional(), nodeId: id.optional(), inputDigest: z.string().length(64).optional() }).strict();
 export const toolsSchemas = {
+    ci_catalog_get:z.object({managedProjectId:id.optional(),versionId:id.optional()}).strict(),
+    ci_managed_project_register:z.object({id:z.string().regex(/^[a-z0-9][a-z0-9._-]{0,79}$/),home:z.string().min(1).max(300),title:z.string().min(1).max(100),commandId:id}).strict(),
+    ci_version_create:z.object({managedProjectId:id,versionName:z.string().regex(/^[a-z0-9][a-z0-9._-]{0,79}$/),title:z.string().min(1).max(100),goal:z.string().min(1).max(2000),commandId:id}).strict(),
+    ci_version_attach:z.object({managedProjectId:id,projectId:id,expectedVersion:z.number().int().positive(),commandId:id}).strict(),
+    ci_requirement_repository_bind:z.object({projectId:id,repositoryId:id,expectedVersion:z.number().int().positive(),commandId:id}).strict(),
+    ci_archive_sync:z.object({projectId:id}).strict(),
     ci_step_config_create:z.object({projectId:id,stepId:id,commandId:id,expectedVersion:z.number().int().positive()}).strict(),
     ci_git_profiles_list:z.object({}).strict(),
     ci_git_profile_verify:z.object({profileId:id,repository:z.string().max(160).optional()}).strict(),
@@ -167,7 +177,7 @@ export const toolsSchemas = {
     ci_repository_bind:z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),provider:z.enum(['github','gitlab']),repository:z.string().min(3).max(160),baseBranch:z.string().min(1).max(120),sourceBranch:z.string().min(1).max(120),gitProfileId:id.optional()}).strict(),
     ci_mr_verify:z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),number:z.number().int().min(1).max(100000000)}).strict(),
     ci_lifecycle_create: z.object({ kind: z.enum(['version','requirement']), title: z.string().min(1).max(100), goal: z.string().min(1).max(2000), versionName: z.string().max(40).optional(), commandId: id, legacyProjectId: id.optional() }).strict(),
-    ci_requirement_create: z.object({ projectId:id, commandId:id, expectedVersion:z.number().int().positive(), title:z.string().min(1).max(100), goal:z.string().min(1).max(2000) }).strict(),
+    ci_requirement_create: z.object({ projectId:id, commandId:id, expectedVersion:z.number().int().positive(), title:z.string().min(1).max(100), goal:z.string().min(1).max(2000),repositoryId:id.optional() }).strict(),
     ci_node_mark: z.object({ projectId:id, commandId:id, expectedVersion:z.number().int().positive(), nodeId:id, marked:z.boolean(), reason:z.string().min(3).max(1000) }).strict(),
     ci_document_get: z.object({projectId:id,documentId:id,revision:z.number().int().positive().optional()}).strict(),
     ci_document_create: z.object({projectId:id,commandId:id,expectedVersion:z.number().int().positive(),title:z.string().min(1).max(120),parentId:id,stepId:id.optional()}).strict(),

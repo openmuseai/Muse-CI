@@ -16,6 +16,8 @@ export class Store {
         await c.query('BEGIN');
         await c.query('SELECT pg_advisory_xact_lock(622019831)');
         await c.query(`CREATE TABLE IF NOT EXISTS ci_projects(id text PRIMARY KEY, document jsonb NOT NULL); CREATE TABLE IF NOT EXISTS ci_commands(project_id text NOT NULL,id text NOT NULL,fingerprint text NOT NULL,result jsonb NOT NULL,PRIMARY KEY(project_id,id)); CREATE TABLE IF NOT EXISTS ci_outbox(id text PRIMARY KEY,run_id text NOT NULL,project_id text NOT NULL,delivered boolean NOT NULL DEFAULT false,created_at timestamptz DEFAULT now());`);
+        await c.query(`CREATE TABLE IF NOT EXISTS ci_managed_projects(id text PRIMARY KEY,document jsonb NOT NULL); CREATE TABLE IF NOT EXISTS ci_version_bindings(project_id text NOT NULL,name text NOT NULL,flow_id text NOT NULL UNIQUE,PRIMARY KEY(project_id,name)); CREATE TABLE IF NOT EXISTS ci_archive_outbox(project_id text PRIMARY KEY,version integer NOT NULL);`);
+        await c.query(`CREATE OR REPLACE FUNCTION ci_enqueue_archive() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN IF NEW.document ? 'hierarchy' THEN INSERT INTO ci_archive_outbox VALUES(NEW.id,(NEW.document->>'version')::integer) ON CONFLICT(project_id) DO UPDATE SET version=EXCLUDED.version; END IF; RETURN NEW; END $$; DROP TRIGGER IF EXISTS ci_archive_changed ON ci_projects; CREATE TRIGGER ci_archive_changed AFTER INSERT OR UPDATE ON ci_projects FOR EACH ROW EXECUTE FUNCTION ci_enqueue_archive();`);
         await c.query('COMMIT');
     }
     catch (e) {
@@ -25,7 +27,7 @@ export class Store {
     finally {
         c.release();
     } }
-    async list(actor: Principal) { const r = await this.pool.query('SELECT document FROM ci_projects ORDER BY id'); return r.rows.map(x => x.document as Project).filter(p => p.members[actor.id]).map(p => ({ id: p.id, title: p.title, version: p.version, kind: p.lifecycle?.kind, parentId: p.lifecycle?.parentId, legacyProjectId: p.lifecycle?.legacySource?.projectId, status: p.runs.at(-1)?.status || 'draft' })); }
+    async list(actor: Principal) { const r = await this.pool.query('SELECT document FROM ci_projects ORDER BY id'); return r.rows.map(x => x.document as Project).filter(p => p.members[actor.id]).map(p => ({ id: p.id, title: p.title, version: p.version, kind: p.lifecycle?.kind, parentId: p.lifecycle?.parentId,hierarchy:p.hierarchy, legacyProjectId: p.lifecycle?.legacySource?.projectId, status: p.runs.at(-1)?.status || 'draft' })); }
     async get(id: string, actor?: Principal) { const r = await this.pool.query('SELECT document FROM ci_projects WHERE id=$1', [id]); const p = r.rows[0]?.document as Project; if (!p)
         fail('PROJECT_NOT_FOUND'); if (actor)
         authorize(p, actor); return p; }
@@ -42,6 +44,9 @@ export class Store {
             return existing.rows[0].document as Project;
         }
         await c.query('INSERT INTO ci_projects VALUES($1,$2)', [p.id, p]);
+        await queueArchive(c,p);
+        await queueArchive(c,p);
+        await queueArchive(c,p);
         await c.query('INSERT INTO ci_commands VALUES($1,$2,$3,$4)', [p.id, commandId, fingerprint, { project: p }]);
         await c.query('COMMIT');
         return p;
@@ -64,6 +69,9 @@ export class Store {
             return existing.rows[0].document as Project;
         }
         await c.query('INSERT INTO ci_projects VALUES($1,$2)',[p.id,p]);
+        await queueArchive(c,p);
+        await queueArchive(c,p);
+        await queueArchive(c,p);
         await c.query('INSERT INTO ci_commands VALUES($1,$2,$3,$4)',[p.id,commandId,fingerprint,{project:p}]);
         return p;
     }
@@ -94,6 +102,7 @@ export class Store {
             if (JSON.stringify(p) !== before) {
                 p.version++;
                 await c.query('UPDATE ci_projects SET document=$2 WHERE id=$1', [id, p]);
+                await queueArchive(c,p);
             }
             const result = { ...value, project: p };
             if (commandId)
@@ -110,4 +119,13 @@ export class Store {
         }
     }
     async close() { await this.pool.end(); }
+}
+async function queueArchive(c:pg.PoolClient,p:Project){
+ if(!p.hierarchy)return;
+ if(p.lifecycle?.kind==='version'){
+  await c.query('INSERT INTO ci_version_bindings VALUES($1,$2,$3) ON CONFLICT DO NOTHING',[p.hierarchy.projectId,p.hierarchy.versionName,p.id]);
+  const r=await c.query('SELECT flow_id FROM ci_version_bindings WHERE project_id=$1 AND name=$2',[p.hierarchy.projectId,p.hierarchy.versionName]);
+  if(r.rows[0]?.flow_id!==p.id)fail('VERSION_NAME_ALREADY_ASSIGNED');
+ }
+ await c.query('INSERT INTO ci_archive_outbox VALUES($1,$2) ON CONFLICT(project_id) DO UPDATE SET version=EXCLUDED.version',[p.id,p.version]);
 }

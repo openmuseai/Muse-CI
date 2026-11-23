@@ -8,8 +8,17 @@ import { Client, StreamableHTTPClientTransport } from '@modelcontextprotocol/cli
 import type { GraphNode, Attempt, Artifact, Project } from '../contracts/index.ts';
 import { skillRegistry } from './registry.ts';
 import { digest, fail } from '../../apps/api/store.ts';
+import path from 'node:path';
+import {mobileRoot} from './mobile-inputs.ts';
 const backend = fileURLToPath(new URL('../../', import.meta.url)), plugin = fileURLToPath(new URL('../../plugin/', import.meta.url));
 export const knownTools = new Set([...mobileTools,'smartdoc-publish','doc-compile', 'ci-inspect', 'ci-plugin-test', 'ci-build', 'ci-test', 'ci-policy', 'ci-artifact-verify', 'ci-release-check', 'artifact-read']);
+export function assertRepositoryTools(tools:string[],repositoryRoot?:string){
+ if(!repositoryRoot)return;
+ for(const tool of tools){
+  if(tool.startsWith('ci-')&&path.resolve(repositoryRoot)!==path.resolve(backend))fail('EXECUTOR_REPOSITORY_MISMATCH');
+  if((isMobileTool(tool)||isCodingTool(tool))&&path.resolve(repositoryRoot)!==path.resolve(mobileRoot))fail('EXECUTOR_REPOSITORY_MISMATCH');
+ }
+}
 export async function command(command: string, args: string[], cwd: string, signal: AbortSignal, maxOutput = 128000) { return new Promise<{
     stdout: string;
     exitCode: number;
@@ -26,8 +35,10 @@ export async function execute(node: GraphNode, attempt: Attempt, consent: Projec
     }[] = [], artifacts: Artifact[] = [];
     let status = 'succeeded', retryable = false;
     try {
+        assertRepositoryTools(node.config.tools,attempt.inputSnapshot.projectContext?.hierarchy?.repositoryRoot);
         if((attempt.inputSnapshot.lifecycle||node.config.outputName.endsWith('.sydoc'))&&!node.config.tools.length)fail('TASK_EXECUTOR_NOT_CONFIGURED');
-        if (node.config.skills.some(s => !skillRegistry.some(bound => bound.id === s)))
+        const boundSkills=[...(attempt.inputSnapshot.projectContext?.skills||[]),...skillRegistry];
+        if (node.config.skills.some(s => !boundSkills.some((bound:any) => bound.id === s)))
             fail('SKILL_PROVIDER_NOT_BOUND');
         if (node.config.materials.some(m => m.kind === 'file'))
             fail('MATERIAL_CONTENT_REQUIRED');
@@ -41,7 +52,7 @@ export async function execute(node: GraphNode, attempt: Attempt, consent: Projec
             const client = new Client({ name: 'muse-ci-worker', version: '0.1.0' });
             try {
                 await client.connect(new StreamableHTTPClientTransport(new URL(url), { requestInit: { headers: process.env.CI_AI_MCP_TOKEN ? { authorization: 'Bearer ' + process.env.CI_AI_MCP_TOKEN } : {} } }));
-                const result = await client.callTool({ name: process.env.CI_AI_MCP_TOOL || 'plan_propose', arguments: { goal: [attempt.inputSnapshot.stepConfiguration?.goal,attempt.inputSnapshot.stepConfiguration?.instructions,node.config.goal].filter(Boolean).join('\n\n'), materials: [...node.config.materials.filter(m => m.kind === 'note'), ...(attempt.inputSnapshot.boundMaterials || [])], skills: node.config.skills, allowedTools: node.config.tools, inputDigest: attempt.inputDigest } }, { signal } as any);
+                const result = await client.callTool({ name: process.env.CI_AI_MCP_TOOL || 'plan_propose', arguments: { goal: [attempt.inputSnapshot.stepConfiguration?.goal,attempt.inputSnapshot.stepConfiguration?.instructions,node.config.goal].filter(Boolean).join('\n\n'), materials: [...node.config.materials.filter(m => m.kind === 'note'), ...(attempt.inputSnapshot.boundMaterials || []),...(attempt.inputSnapshot.projectContext?.standards||[]),...boundSkills.filter((s:any)=>node.config.skills.includes(s.id)).map((s:any)=>({name:s.id,content:s.instructions}))], skills: node.config.skills, allowedTools: node.config.tools, inputDigest: attempt.inputDigest } }, { signal } as any);
                 if (result.isError)
                     fail('AI_PROVIDER_FAILED');
                 artifacts.push(artifact('ai-proposal.json', JSON.stringify({ proposal: result, applied: false, recipient: url }, null, 2), 'ai.mcp', attempt.inputDigest!));
@@ -64,12 +75,12 @@ export async function execute(node: GraphNode, attempt: Attempt, consent: Projec
                     logs.push({level:'info',text:'归档已发布 SmartDoc 原生协作快照，保留文档修订与来源。'});continue;
                 }
                 if(isMobileTool(tool)){const spec=mobileCommand(tool);if(spec){const result=await command(spec.executable,spec.args,spec.cwd,signal,tool==='mobile-build-inputs-inventory'?1024*1024:128000);status=result.exitCode===0?'succeeded':'failed';logs.push({level:status==='succeeded'?'info':'error',text:result.stdout.slice(-12000)||'进程无输出'});artifacts.push(artifact(tool+'-report.json',JSON.stringify({...result,cwd:spec.cwd,realExecution:true,scope:'mobile-release-pilot',finalSignedPackageVerified:false,copyrightClearance:false},null,2),tool,attempt.inputDigest!));}else{const result=await mobileInventory();artifacts.push(artifact('mobile-source-inventory.json',JSON.stringify(result,null,2),tool,attempt.inputDigest!));logs.push({level:'info',text:'源码与解析依赖盘点已完成；发现项仍需审查，未批准版权、迁移或最终包。'});}}else if (tool === 'doc-compile') {
-                    const text = '# ' + node.title + '\n\n' + node.config.goal + '\n\n' + node.config.skills.map(id => skillRegistry.find(s => s.id === id)!.instructions).join('\n') + '\n\n' + node.config.materials.filter(m => m.kind === 'note').map(m => '## ' + m.name + '\n\n' + m.text).join('\n\n') + '\n\n' + (attempt.inputSnapshot.boundMaterials || []).map((m: any) => '## ' + m.name + '\n\n' + m.content).join('\n\n');
+                    const text = '# ' + node.title + '\n\n' + node.config.goal + '\n\n' + node.config.skills.map(id => boundSkills.find((s:any) => s.id === id)!.instructions).join('\n') + '\n\n' + node.config.materials.filter(m => m.kind === 'note').map(m => '## ' + m.name + '\n\n' + m.text).join('\n\n') + '\n\n' + (attempt.inputSnapshot.boundMaterials || []).map((m: any) => '## ' + m.name + '\n\n' + m.content).join('\n\n');
                     const name = node.config.outputName || node.id + '.md';
                     const content = name.endsWith('.json') ? JSON.stringify({ document: text, format: 'markdown', source: 'versioned-materials' }, null, 2) : text;
                     artifacts.push({ ...artifact(name, content, 'document.compile', attempt.inputDigest!), kind: name.endsWith('.json') ? 'application/json' : 'text/markdown' });
                     logs.push({ level: 'info', text: '已编译版本化设计材料；来源为用户/工程材料，不冒充 AI 生成或人员批准。' });
-                    if (node.kind === 'ui') {
+                    if (node.kind === 'ui'&&(!attempt.inputSnapshot.projectContext?.hierarchy?.repositoryRoot||path.resolve(attempt.inputSnapshot.projectContext.hierarchy.repositoryRoot)===path.resolve(backend))) {
                         const html = await readFile(plugin + 'web/index.html', 'utf8');
                         artifacts.push(artifact('ui-source.html', html, 'ui.source', attempt.inputDigest!));
                     }
