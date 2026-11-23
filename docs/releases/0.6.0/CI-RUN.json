@@ -1,0 +1,51 @@
+{
+  "version": "0.6.0",
+  "managedProjectId": "muse-ci",
+  "versionProjectId": "a5cabca2b6353b45f3743ddd7857880b",
+  "children": [
+    {
+      "key": "conventions",
+      "title": "HIER-01 · 项目约定、版本与需求根",
+      "scope": "项目静态配置、受信目录、子项目隔离、显式版本与仓库绑定。默认约定可覆盖，配置无效不静默回退；迁移保留 ID 与历史。",
+      "cases": "ROOT-01 项目注册幂等；ROOT-02 嵌套项目独立配置；ROOT-03 路径/符号链接拒绝；ROOT-04 重复版本冲突回滚；ROOT-05 无权访问拒绝；ROOT-06 仓库根不静默切换。",
+      "id": "22b8f0f2cd61cf680e26973c219585c6"
+    },
+    {
+      "key": "navigation",
+      "title": "HIER-02 · 项目版本切换与交付物导航",
+      "scope": "Desktop 左侧核心交付物，Mobile 项目/版本与交付物抽屉。切换清空旧上下文，需求拥有独立画布；SmartDoc 直接原生打开，MR 定位当前需求审查。",
+      "cases": "NAV-01 两个项目切换；NAV-02 同项目版本选择；NAV-03 空版本状态；NAV-04 子需求进入/返回；NAV-05 原生产品/设计/架构文档；NAV-06 MR 审查入口；NAV-07 并发旧响应不覆盖新上下文。",
+      "id": "d1b3cd934f69c7d50ce6bcace5f3fed4"
+    },
+    {
+      "key": "archive",
+      "title": "HIER-03 · 输入输出归档与真机验收",
+      "scope": "原生 SmartDoc 修订、节点 INPUT/RESULT、产物摘要与 MR 回执按根节点归档。重跑追加，历史不可变；持久 outbox 重试，执行配置/技能/规范固定输入。",
+      "cases": "IO-01 原生修订保留；IO-02 同需求多次尝试；IO-03 输入覆盖拒绝；IO-04 产物完整性拒绝；IO-05 配置变化不复用旧批准；IO-06 数据库/文件系统实际验证；IO-07 Find N6 国内公网真机链路。",
+      "id": "a6d4ca9f00f2889152d9c82770856b9e"
+    }
+  ],
+  "migrations": [
+    {
+      "workflowId": "28f3b64ebea1be399461053ce13b32a8",
+      "source": "docs/releases/0.4.0/CI-RUN.json"
+    },
+    {
+      "workflowId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
+      "source": "docs/releases/0.5.0/CI-RUN.json"
+    },
+    {
+      "workflowId": "1068714fc62cac7d440972070efe42c8",
+      "source": "Muse-Client mobile isolation launch legacy identity"
+    }
+  ],
+  "releaseReady": false,
+  "branch": "feat/0.6-project-hierarchy",
+  "baseCommit": "bc36ac3",
+  "implementationCommits": [
+    "948c419",
+    "f73bf55",
+    "cb6ec1d",
+    "8ead761"
+  ]
+}

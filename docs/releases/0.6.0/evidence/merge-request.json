@@ -1,0 +1,13 @@
+{
+  "workflowId": "d1b3cd934f69c7d50ce6bcace5f3fed4",
+  "provider": "github",
+  "repository": "openmuseai/Muse-CI",
+  "number": 3,
+  "url": "https://github.com/openmuseai/Muse-CI/pull/3",
+  "state": "open",
+  "headSha": "3146742de094577f1a344cf2f12eadc86513b04a",
+  "baseBranch": "feat/0.5-mobile-ci-review",
+  "draft": true,
+  "verifiedAt": "2026-11-23T09:49:47.777Z",
+  "merged": false
+}

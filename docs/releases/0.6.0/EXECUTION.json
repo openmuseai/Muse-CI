@@ -1,0 +1,259 @@
+{
+  "at": "2026-11-23T10:07:17.730Z",
+  "results": [
+    {
+      "id": "a5cabca2b6353b45f3743ddd7857880b",
+      "nodes": [
+        {
+          "id": "version-scope",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "version-ui",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "requirement-plan",
+          "status": "succeeded",
+          "attempts": 2
+        },
+        {
+          "id": "regression-cases",
+          "status": "pending",
+          "attempts": 0
+        },
+        {
+          "id": "regression-report",
+          "status": "pending",
+          "attempts": 0
+        },
+        {
+          "id": "release-materials",
+          "status": "pending",
+          "attempts": 0
+        },
+        {
+          "id": "release-result",
+          "status": "pending",
+          "attempts": 0
+        }
+      ],
+      "runs": [
+        {
+          "id": "22887d88-9fba-415b-8d05-b581df203841",
+          "status": "succeeded",
+          "projectInputDigest": "7dc552c3e6979234f9ee0d35dd22a293e41222ce6d94c35a9f02013c1b91d261"
+        },
+        {
+          "id": "94bc5507-cf30-42fe-a8f7-2fd85e79ea93",
+          "status": "succeeded",
+          "projectInputDigest": "7dc552c3e6979234f9ee0d35dd22a293e41222ce6d94c35a9f02013c1b91d261"
+        }
+      ]
+    },
+    {
+      "id": "22b8f0f2cd61cf680e26973c219585c6",
+      "nodes": [
+        {
+          "id": "feature-prd",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "feature-ui",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "feature-solution",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "implementation",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "feature-cases",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "feature-report",
+          "status": "succeeded",
+          "attempts": 3
+        },
+        {
+          "id": "mr-review",
+          "status": "pending",
+          "attempts": 0
+        },
+        {
+          "id": "mr-merge",
+          "status": "pending",
+          "attempts": 0
+        }
+      ],
+      "runs": [
+        {
+          "id": "853f106b-3a8c-4c0c-892d-a99644d609f2",
+          "status": "succeeded",
+          "projectInputDigest": "be293f71f1ddb56bf48a59f986e7045b475c42d92e8c519a6f29b5e6b0462a7c"
+        },
+        {
+          "id": "08015b51-f9be-48ba-b6e6-681672954b31",
+          "status": "succeeded",
+          "projectInputDigest": "be293f71f1ddb56bf48a59f986e7045b475c42d92e8c519a6f29b5e6b0462a7c"
+        },
+        {
+          "id": "5d2ef42d-698b-4a7c-ab20-493bae08179d",
+          "status": "succeeded",
+          "projectInputDigest": "be293f71f1ddb56bf48a59f986e7045b475c42d92e8c519a6f29b5e6b0462a7c"
+        }
+      ]
+    },
+    {
+      "id": "d1b3cd934f69c7d50ce6bcace5f3fed4",
+      "nodes": [
+        {
+          "id": "feature-prd",
+          "status": "succeeded",
+          "attempts": 2
+        },
+        {
+          "id": "feature-ui",
+          "status": "succeeded",
+          "attempts": 2
+        },
+        {
+          "id": "feature-solution",
+          "status": "succeeded",
+          "attempts": 2
+        },
+        {
+          "id": "implementation",
+          "status": "succeeded",
+          "attempts": 2
+        },
+        {
+          "id": "feature-cases",
+          "status": "succeeded",
+          "attempts": 2
+        },
+        {
+          "id": "feature-report",
+          "status": "succeeded",
+          "attempts": 4
+        },
+        {
+          "id": "mr-review",
+          "status": "pending",
+          "attempts": 0
+        },
+        {
+          "id": "mr-merge",
+          "status": "pending",
+          "attempts": 0
+        }
+      ],
+      "runs": [
+        {
+          "id": "4cc65179-a718-4346-bf58-1cacf2b06106",
+          "status": "succeeded",
+          "projectInputDigest": "e20e5dbd05924f4330721e60fac85e78b60f4842703e66db8b8ab7ec63d840ef"
+        },
+        {
+          "id": "955bd719-aef7-4070-88cc-db551061bf29",
+          "status": "succeeded",
+          "projectInputDigest": "e20e5dbd05924f4330721e60fac85e78b60f4842703e66db8b8ab7ec63d840ef"
+        },
+        {
+          "id": "dcd048da-afb3-41e8-9c13-e419047a527e",
+          "status": "succeeded",
+          "projectInputDigest": "e20e5dbd05924f4330721e60fac85e78b60f4842703e66db8b8ab7ec63d840ef"
+        },
+        {
+          "id": "7398e6e8-031d-469e-8303-9051d4df13dc",
+          "status": "succeeded",
+          "projectInputDigest": "e20e5dbd05924f4330721e60fac85e78b60f4842703e66db8b8ab7ec63d840ef"
+        },
+        {
+          "id": "cf5b4a6b-2167-4b0e-a54d-c451bea289a8",
+          "status": "succeeded",
+          "projectInputDigest": "e20e5dbd05924f4330721e60fac85e78b60f4842703e66db8b8ab7ec63d840ef"
+        }
+      ]
+    },
+    {
+      "id": "a6d4ca9f00f2889152d9c82770856b9e",
+      "nodes": [
+        {
+          "id": "feature-prd",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "feature-ui",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "feature-solution",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "implementation",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "feature-cases",
+          "status": "succeeded",
+          "attempts": 1
+        },
+        {
+          "id": "feature-report",
+          "status": "succeeded",
+          "attempts": 4
+        },
+        {
+          "id": "mr-review",
+          "status": "pending",
+          "attempts": 0
+        },
+        {
+          "id": "mr-merge",
+          "status": "pending",
+          "attempts": 0
+        }
+      ],
+      "runs": [
+        {
+          "id": "fc5f86af-8246-40a1-a3ea-863ada047a15",
+          "status": "succeeded",
+          "projectInputDigest": "d2d9210bee64ee3b06fb60bc833913ba79c1111bf1fc6c92100a1c81ae2a0d9a"
+        },
+        {
+          "id": "8bbfaac6-b208-460e-93fe-de7b75773179",
+          "status": "succeeded",
+          "projectInputDigest": "d2d9210bee64ee3b06fb60bc833913ba79c1111bf1fc6c92100a1c81ae2a0d9a"
+        },
+        {
+          "id": "bebcba92-4024-41ed-8b44-affbc62c40da",
+          "status": "succeeded",
+          "projectInputDigest": "d2d9210bee64ee3b06fb60bc833913ba79c1111bf1fc6c92100a1c81ae2a0d9a"
+        },
+        {
+          "id": "ee943dc9-7fbe-4502-a657-4cbacb9b18a8",
+          "status": "succeeded",
+          "projectInputDigest": "d2d9210bee64ee3b06fb60bc833913ba79c1111bf1fc6c92100a1c81ae2a0d9a"
+        }
+      ]
+    }
+  ],
+  "releaseReady": false
+}

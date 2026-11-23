@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "cases": [
+    "long-lived project roots, independent nested project, catalog authorization",
+    "version idempotence and same version names isolated across projects",
+    "declared repository roots and explicit config overrides for new development units",
+    "cross-project context and unauthorized repository binding rejected",
+    "duplicate version claims roll back without reparenting history",
+    "real node execution pins project inputs and durable outbox archives native SmartDoc plus input/output provenance",
+    "changed project configuration cannot reuse old execution approval"
+  ],
+  "isolatedSchema": true,
+  "temporaryFixture": true
+}
