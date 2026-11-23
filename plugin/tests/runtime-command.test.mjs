@@ -23,3 +23,11 @@ test('missing secure randomness prevents mutation before any write request',asyn
 test('secure-context native UUID remains supported',async()=>{
  const id='c119c9e7-9075-4705-b760-e336b2f0848c';const {runtime,calls}=await embedded({randomUUID:()=>id});await runtime.mutate('ci_node_mark',{nodeId:'node',marked:true});assert.equal(calls.find(x=>x.name==='ci_node_mark').args.commandId,id);
 });
+test('late workflow reads cannot overwrite a newer project selection',async()=>{
+ const {runtime}=await embedded(webcrypto);let finish;
+ runtime.call=async(name,args)=>args.projectId==='old'?new Promise(resolve=>{finish=resolve;}):{project:{id:'new',version:1,events:[],graph:{nodes:[]}}};
+ const old=runtime.select('old');await runtime.select('new');finish({project:{id:'old',version:1,events:[],graph:{nodes:[]}}});await old;assert.equal(runtime.project.id,'new');
+});
+test('context switching blocks writes before dispatching an old workflow command',async()=>{
+ const {runtime,calls}=await embedded(webcrypto);runtime.switching=true;await assert.rejects(runtime.mutate('ci_node_mark',{nodeId:'old',marked:true}),/CONTEXT_SWITCHING/);assert.equal(calls.filter(c=>c.name==='ci_node_mark').length,0);
+});
