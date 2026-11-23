@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-23T09:47:02.917Z",
+  "backendTests": 71,
+  "pluginTests": 34,
+  "typecheck": "passed",
+  "build": "passed",
+  "package": {
+    "name": "muse-ci-0.6.0.mcpb",
+    "sha256": "6e7bbe7b6c9d73cb4c259d63e72cc018111c2f2df1b1bbfe0607ef6cecc52501",
+    "bytes": 580182
+  },
+  "uiSha256": "4f9182d69e71c4d3eaf23dbd85cb0779e35d9a65ca98c57a3ddd121edfb5bd8d",
+  "formalRelease": false
+}

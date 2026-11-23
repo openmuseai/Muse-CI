@@ -3,7 +3,7 @@ import { digest, event, fail } from '../../apps/api/store.ts';
 import { createDocument, documentIndex, documentPin, editDocument, getDocument } from '../documents/smartdoc.ts';
 import {assertStepConfiguration} from './step-config.ts';
 
-type NodeSpec = [string, string, string, string];
+type NodeSpec = [string, string, 'product'|'ui'|'architecture'|'agent'|'test'|'build'|'approval'|'artifact', string];
 const templates: Record<'version' | 'requirement', { id: string; name: string; nodes: NodeSpec[] }[]> = {
   version: [
     { id: 'definition', name: '版本定义', nodes: [['version-scope', '圈定版本范围与粗粒度 PRD', 'product', 'version-prd']] },
@@ -36,14 +36,14 @@ const documentPrompts: Record<string, string[]> = {
   'mr-review': ['代码仓库、源/目标分支、MR URL 和源提交：', '评审意见、修订、检查与验收记录：'],
   'merge-receipt': ['MR URL、合并状态、目标分支与实际合并提交：', '来源核验及合并后检查：', '文档或人工标过不构成真实合并证明。'],
 };
-export function initializeLifecycle(p: Project, kind: 'version' | 'requirement', versionName?: string) {
+export function initializeLifecycle(p: Project, kind: 'version' | 'requirement', versionName?: string,configured=templates[kind]) {
   p.type = kind === 'version' ? '版本生命周期' : '需求生命周期';
   p.documents = {};
   p.lifecycle = { kind, children: [], handbookId: '', agentEnabled: true, ...(versionName ? { versionName } : {}) };
-  p.graph = { schema: 1, designVersion: 2, stepPolicy: 'ordered', revision: 1, sequence: 0, stages: templates[kind].map(s => ({ id: s.id, name: s.name })), nodes: [] };
+  p.graph = { schema: 1, designVersion: 2, stepPolicy: 'ordered', revision: 1, sequence: 0, stages: configured.map(s => ({ id: s.id, name: s.name })), nodes: [] };
   const handbook = createDocument(p, '00 · ' + p.title + ' · 流程总文档', 'handbook', [p.goal, '本总文档是流程唯一材料入口。按 Step 归档 PRD、UI、方案、用例、报告和回执；需求子流程在需求拆分 Step 进入。', '文档使用 SmartDoc 原生协作状态；历史尝试与产物不可覆盖。']);
   p.lifecycle.handbookId = handbook.id;
-  for (const step of templates[kind]) for (const [id, title, nodeKind, docKind] of step.nodes) {
+  for (const step of configured) for (const [id, title, nodeKind, docKind] of step.nodes) {
     const prior = p.graph.nodes.filter(n => n.stage === step.id).at(-1);
     const n: GraphNode = { id, title, stage: step.id, kind: nodeKind, status: 'pending', revision: 1, attempts: [], staleReason: '', depends: prior ? [prior.id] : [], config: { description: '交付归档于本 Step 的 SmartDoc 文档', goal: title, skills: [], tools: [], materials: [], outputName: id + '.sydoc', timeout: 20, retries: 0 } };
     const doc = createDocument(p, title, docKind, documentPrompts[docKind] || ['交付内容与证据：'], { stepId: step.id, nodeId: id, parentId: handbook.id });

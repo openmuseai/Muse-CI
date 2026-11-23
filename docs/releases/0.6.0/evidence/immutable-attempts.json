@@ -1,0 +1,24 @@
+{
+  "workflowId": "a5cabca2b6353b45f3743ddd7857880b",
+  "nodeId": "requirement-plan",
+  "firstAndSecondRetained": true,
+  "secondStatus": "succeeded",
+  "files": [
+    {
+      "path": ".muse-project-muse-ci/versions/0.6.0/nodes/requirement-plan/attempts/1/INPUT.json",
+      "sha256": "910c3c6eb8dde34a2d3ab1ab7f6a32e6aa30a7414f810d8d3f03ee86a214fb05"
+    },
+    {
+      "path": ".muse-project-muse-ci/versions/0.6.0/nodes/requirement-plan/attempts/1/RESULT.json",
+      "sha256": "459406845917ce8be91d88ceeaaf74052fe21d70d234278a45b4b0da62fa678b"
+    },
+    {
+      "path": ".muse-project-muse-ci/versions/0.6.0/nodes/requirement-plan/attempts/2/INPUT.json",
+      "sha256": "d83bc1b6a78bffce7036eb6496fc3b95d9cb7a034befd4f2da81f77b53e1cafe"
+    },
+    {
+      "path": ".muse-project-muse-ci/versions/0.6.0/nodes/requirement-plan/attempts/2/RESULT.json",
+      "sha256": "f2532eed71086aeca7488c0ca4bc86b6fd479f24385ad22681301a6e6e419e04"
+    }
+  ]
+}

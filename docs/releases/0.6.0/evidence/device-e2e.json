@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-23T10:10:41.531Z",
+  "app": {
+    "package": "com.openmuseai.mobile.acceptance",
+    "version": "1.0.2+112360",
+    "entry": "lib/main.dart",
+    "productionOrigin": "https://cn.openmuseai.com"
+  },
+  "device": {
+    "model": "PLP110",
+    "requestedDevice": "Find N6",
+    "unfolded": "2248x2480",
+    "outer": "1140x2616"
+  },
+  "transport": {
+    "business": "domestic public paired HTTPS relay to Desktop",
+    "backend": "Desktop-private CI 4186",
+    "adbReverse": []
+  },
+  "passed": [
+    "Apps tab opens Muse-CI",
+    "project switch OpenMuse Mobile to Muse-CI",
+    "version switch 0.6.0 to 0.5.0 and back",
+    "version scoped real MR #2 Diff after receipt refresh",
+    "native SmartDoc version PRD",
+    "version node requirement-plan rerun attempt 2",
+    "native attempt artifact",
+    "version child requirement entry",
+    "outer project/version controls",
+    "outer HIER-02 archive sync and three root paths",
+    "outer feature-prd rerun attempt 2",
+    "outer native SmartDoc artifact"
+  ],
+  "limitations": [
+    "QA distribution; no marketplace approval claimed",
+    "MRs remain draft/unmerged; release gates preserved",
+    "Desktop restart requires paired session refresh"
+  ],
+  "evidenceDirectory": "docs/releases/0.6.0/evidence"
+}

@@ -17,9 +17,15 @@ import {projectWithArtifactMetadata} from '../../packages/documents/project-view
 import {publicGitProfiles,gitProfiles,verifyGitProfile}from'../../packages/providers/git-profiles.ts';
 import {synchronizeCloud} from '../../packages/cloud/reconcile.ts';
 import {announceAgent,closeProjectAgentPresence} from '../../packages/cloud/realtime.ts';
+import {ProjectCatalog} from '../../packages/projects/catalog.ts';
+import {archiveWorkflow} from '../../packages/projects/archive.ts';
+import {Conventions} from '../../packages/projects/conventions.ts';
 const expose = (p:Project) => {const view=projectWithArtifactMetadata(p);return p.lifecycle ? {...view,documents:undefined,lifecycle:lifecycleSummary(p)} : view;};
 const active = (p: Project) => p.runs.find(r => !['succeeded', 'failed', 'canceled'].includes(r.status));
 const definition = (g: Graph) => structuredClone({ stages: g.stages, nodes: g.nodes.map(({ id, title, stage, kind, depends, config }) => ({ id, title, stage, kind, depends, config })) });
+function applyProjectDefaults(p:Project,defaults:{budget:number;timeout:number;retries:number;skills:string[]}){
+ p.budget=defaults.budget;for(const n of p.graph.nodes){n.config.timeout=defaults.timeout;n.config.retries=defaults.retries;n.config.skills=[...defaults.skills];}
+}
 function recordMRReceipt(p:Project,receipt:NonNullable<Project['mergeRequest']>){
  p.mergeRequest=receipt;
                 const nodes=p.graph.nodes.filter(n=>n.id==='mr-review'&&!receipt.draft&&['open','merged'].includes(receipt.state)||n.id==='mr-merge'&&receipt.state==='merged');
@@ -114,7 +120,14 @@ export async function newProject(actor: Principal, title: string, goal: string, 
 }
 export function releaseCheck(p: Project) { const n = p.graph.nodes; return { ready: false, scope: 'development', stages: releaseStages.map((name, i) => ({ name, status: i === 0 && ['product-spec', 'ui-spec', 'architecture'].every(id => n.find(x => x.id === id)?.status === 'succeeded') ? 'evidence_available' : 'blocked' })), missing: ['正式发布身份与限定操作授权', '隔离签名与正式候选包', '实际设备验收', '渠道上传/提审/发布回执'], message: '开发检查完成不构成正式发布批准。' }; }
 export class CIService {
-    constructor(readonly store: Store) { }
+    constructor(readonly store: Store,readonly projectFiles=new Conventions()) { }
+    get catalog(){return new ProjectCatalog(this.store,this.projectFiles);}
+    async assertProjectInputs(p:Project,run:Run|undefined,actor:Principal){
+        if(!p.hierarchy)return;
+        if(!run?.projectContext)fail('PROJECT_INPUT_NOT_PINNED');
+        const managed=await this.catalog.get(p.hierarchy.projectId,actor,true);
+        if((await this.catalog.fs.executionContext(managed,actor.id,p.hierarchy)).digest!==run.projectContext.digest)fail('PROJECT_INPUT_CHANGED');
+    }
     async present(p:Project,actor:Principal){
         const result:any=expose(p);
         if(p.lifecycle?.kind==='version')result.lifecycle.children=await Promise.all(p.lifecycle.children.map(async c=>{
@@ -146,9 +159,10 @@ export class CIService {
                 stepAdmission(changed.project,G.get(changed.project.graph,'mr-review'),true);
                 if(changed.project.lifecycle?.kind==='requirement'){
                     const report=G.get(changed.project.graph,'feature-report').attempts.at(-1);
-                    const tested=changed.project.runs.find(r=>r.id===report?.runId)?.sourceDigest;
+                    const testedRun=changed.project.runs.find(r=>r.id===report?.runId),tested=testedRun?.sourceDigest;
+                    await this.assertProjectInputs(changed.project,testedRun,actor);
                     if(!tested)fail('MR_TEST_SOURCE_NOT_PINNED');
-                    if((await sourceManifest(changed.project.graph)).digest!==tested)fail('MR_TEST_SOURCE_CHANGED');
+                    if((await sourceManifest(changed.project.graph,changed.project.hierarchy?.repositoryRoot)).digest!==tested)fail('MR_TEST_SOURCE_CHANGED');
                 }
                 const receipt=await writeMergeRequest(operation.repository,operation.action);
                 const completed=await this.store.mutate(projectId,actor,undefined,undefined,{},p=>{
@@ -192,12 +206,24 @@ export class CIService {
         if (!schema)
             fail('TOOL_NOT_ALLOWED');
         const a: any = schema.parse(raw);
+        if(name==='ci_catalog_get')return this.catalog.catalog(actor,a.managedProjectId,a.versionId);
+        if(name==='ci_managed_project_register'){
+            const project=await this.catalog.register(actor,a);await this.catalog.writeProjectIndex(project,actor);return {projectId:project.id,catalog:await this.catalog.catalog(actor,project.id)};
+        }
+        if(name==='ci_version_create'){
+            const managed=await this.catalog.get(a.managedProjectId,actor,true),effective=await this.catalog.fs.config(managed);
+            const id=digest(managed.id+':version:'+a.versionName).slice(0,32);
+            const candidate=initializeLifecycle(await newProject(actor,a.title,a.goal,id),'version',a.versionName,effective.templates.version);
+            candidate.hierarchy=await this.catalog.binding(managed,candidate,candidate);applyProjectDefaults(candidate,effective.config.defaults);
+            const project=await this.store.create(candidate,a.commandId);await this.catalog.writeProjectIndex(managed,actor);
+            return {project:await this.present(project,actor)};
+        }
         if(name==='ci_git_profiles_list')return {profiles:await publicGitProfiles()};
         if(name==='ci_git_profile_verify')return verifyGitProfile(a.profileId,a.repository);
         if (name === 'ci_open')
             return { contract: CONTRACT, uiResourceUri: 'ui://muse-ci/main' };
         if (name === 'ci_capabilities')
-            return { contract: CONTRACT, lifecycle:3,gitProfiles:await publicGitProfiles(),smartDoc:{native:true,profile:'muse.smart-document/phase1',collaboration:cloudConfigured()?'native-cloud-full-sync':'versioned-block-operations',cloudRealtime:cloudConfigured(),fullEditor:'installed-native-smart-document'}, execution: 'temporal-development', identity: 'local-development', tools: [...codingTools,...mobileTools,'smartdoc-publish','doc-compile', 'ci-inspect', 'ci-plugin-test', 'ci-build', 'ci-test', 'ci-policy', 'ci-artifact-verify', 'ci-release-check', 'artifact-read'], skills: skillRegistry, ai: codingCapability().available?codingCapability():{ available: !!process.env.CI_AI_MCP_URL, recipient: process.env.CI_AI_MCP_URL || null, dataCategories: ['目标', '节点材料'] }, formalRelease: false };
+            return { contract: CONTRACT, lifecycle:3,hierarchy:1,gitProfiles:await publicGitProfiles(),smartDoc:{native:true,profile:'muse.smart-document/phase1',collaboration:cloudConfigured()?'native-cloud-full-sync':'versioned-block-operations',cloudRealtime:cloudConfigured(),fullEditor:'installed-native-smart-document'}, execution: 'temporal-development', identity: 'local-development', tools: [...codingTools,...mobileTools,'smartdoc-publish','doc-compile', 'ci-inspect', 'ci-plugin-test', 'ci-build', 'ci-test', 'ci-policy', 'ci-artifact-verify', 'ci-release-check', 'artifact-read'], skills: skillRegistry, ai: codingCapability().available?codingCapability():{ available: !!process.env.CI_AI_MCP_URL, recipient: process.env.CI_AI_MCP_URL || null, dataCategories: ['目标', '节点材料'] }, formalRelease: false };
         if (name === 'ci_projects_list')
             return { projects: await this.store.list(actor) };
         if (name === 'ci_projects_create') {
@@ -211,6 +237,29 @@ export class CIService {
             return {project:await this.present(await this.store.create(candidate,a.commandId),actor)};
         }
         let p = await this.store.get(a.projectId, actor);
+        if(name==='ci_archive_sync'){
+            const archive=await archiveWorkflow(p,this.catalog.fs);
+            await this.store.pool.query('DELETE FROM ci_archive_outbox WHERE project_id=$1 AND version<=$2',[p.id,p.version]);return {archive};
+        }
+        if(name==='ci_version_attach'){
+            if(p.members[actor.id]!=='owner'||p.lifecycle?.kind!=='version')fail('VERSION_OWNER_REQUIRED');
+            const managed=await this.catalog.get(a.managedProjectId,actor,true);
+            const hierarchy=await this.catalog.binding(managed,p,p);
+            const changed=await this.store.mutate(p.id,actor,a.expectedVersion,a.commandId,{name,...a},current=>{
+                if(active(current))fail('RUN_ACTIVE_PLAN_LOCKED');
+                if(current.hierarchy&&current.hierarchy.projectId!==managed.id)fail('WORKFLOW_PROJECT_ALREADY_BOUND');
+                current.hierarchy=hierarchy;event(current,'hierarchy.version_attached',{managedProjectId:managed.id});return {};
+            });await this.catalog.writeProjectIndex(managed,actor);return {...changed,project:await this.present(changed.project,actor)};
+        }
+        if(name==='ci_requirement_repository_bind'){
+            if(p.members[actor.id]!=='owner'||p.lifecycle?.kind!=='requirement'||!p.lifecycle.parentId)fail('REQUIREMENT_OWNER_REQUIRED');
+            const version=await this.store.get(p.lifecycle.parentId,actor);if(!version.hierarchy)fail('VERSION_PROJECT_NOT_ASSIGNED');
+            const managed=await this.catalog.get(version.hierarchy.projectId,actor,true),hierarchy=await this.catalog.binding(managed,p,version,a.repositoryId);
+            const changed=await this.store.mutate(p.id,actor,a.expectedVersion,a.commandId,{name,...a},current=>{
+                if(active(current))fail('RUN_ACTIVE_PLAN_LOCKED');if(current.hierarchy&&JSON.stringify(current.hierarchy)!==JSON.stringify(hierarchy))fail('REQUIREMENT_ROOT_ALREADY_BOUND');
+                current.hierarchy=hierarchy;event(current,'hierarchy.requirement_bound',{managedProjectId:managed.id,repositoryId:a.repositoryId});return {};
+            });return {...changed,project:await this.present(changed.project,actor)};
+        }
         if((name==='ci_document_get'&&!a.revision||name==='ci_document_sync'||['ci_document_edit','ci_agent_document_edit','ci_document_publish'].includes(name))&&p.documents?.[a.documentId]?.cloud){
             p=(await synchronizeCloud(this.store,p.id,actor,a.documentId)).project;
         }
@@ -291,8 +340,11 @@ export class CIService {
                 if(active(p))fail('RUN_ACTIVE_PLAN_LOCKED');
                 if(p.lifecycle.children.length>=40)fail('REQUIREMENT_LIMIT');
                 const id=digest(p.id+':requirement:'+a.commandId).slice(0,32);
-                const child=initializeLifecycle(await newProject(actor,a.title,a.goal,id),'requirement');
+                const managed=p.hierarchy?await this.catalog.get(p.hierarchy.projectId,actor,true):undefined;
+                const effective=managed?await this.catalog.fs.config(managed):undefined;
+                const child=initializeLifecycle(await newProject(actor,a.title,a.goal,id),'requirement',undefined,effective?.templates.requirement);
                 child.members=structuredClone(p.members);child.lifecycle!.parentId=p.id;child.lifecycle!.parentStep='requirements';
+                if(managed&&effective){child.hierarchy=await this.catalog.binding(managed,child,p,a.repositoryId||effective.config.repositories[0].id);applyProjectDefaults(child,effective.config.defaults);}
                 const created=await this.store.createChild(child,a.commandId,c);
                 p.lifecycle.children.push({projectId:created.id,title:created.title});
                 const handbook=getDocument(p,p.lifecycle.handbookId);
@@ -340,7 +392,8 @@ export class CIService {
                 if(active(p))fail('RUN_ACTIVE_PLAN_LOCKED');
                 const n=G.get(p.graph,a.nodeId),attempt=n.attempts.find(x=>x.id===a.attempt);
                 if(n.kind!=='agent'||n.config.tools.length!==1||!isCodingTool(n.config.tools[0])||attempt?.status!=='succeeded'||attempt!==n.attempts.at(-1)||n.status!=='succeeded'||attempt.revision!==n.revision||attempt.inputDigest!==a.inputDigest)fail('CODING_CANDIDATE_NOT_VERIFIED');
-                const run=p.runs.find(r=>r.id===attempt.runId);if(run?.sourceDigest!==(await sourceManifest(p.graph)).digest)fail('SOURCE_INPUT_CHANGED');
+                const run=p.runs.find(r=>r.id===attempt.runId);if(run?.sourceDigest!==(await sourceManifest(p.graph,p.hierarchy?.repositoryRoot)).digest)fail('SOURCE_INPUT_CHANGED');
+                await this.assertProjectInputs(p,run,actor);
                 const candidate=attempt.artifacts.find(x=>x.name==='candidate-patch.json');if(!candidate||digest(candidate.content)!==candidate.sha256)fail('ARTIFACT_INTEGRITY_FAILED');
                 const result=await applyCodingCandidate(JSON.parse(candidate.content),n.config.tools[0]);
                 event(p,'coding.patch_applied',{runId:run.id,nodeId:n.id,attempt:attempt.id,candidateSha256:candidate.sha256,...result});
@@ -428,7 +481,8 @@ export class CIService {
                     for(const id of ids)for(const dep of G.get(p.graph,id).depends){const upstream=G.get(p.graph,dep);if(upstream.config.tools.some(isCodingTool)&&upstream.status==='succeeded'&&!p.events.some(e=>e.type==='coding.patch_applied'&&e.detail.nodeId===upstream.id&&e.detail.attempt===upstream.attempts.at(-1)?.id))fail('CODING_PATCH_NOT_APPLIED');}
                     if (!a.auto && ids.some((id: string) => !G.ready(p.graph, G.get(p.graph, id))))
                         fail('UPSTREAM_NOT_READY');
-                    r = { id: uid(), projectId: p.id, revision: p.graph.revision, graphDigest: digest(definition(p.graph)), sourceDigest: (await sourceManifest(p.graph)).digest,...(Object.keys(childRevisions).length?{childRevisions}:{}), status: 'queued', auto: a.auto ?? true, selected: ids, budget: p.budget, spent: 0, startedAt: new Date().toISOString(), decisionScope: 'development', jobs: [], commands: [] };
+                    const projectContext=p.hierarchy?await this.catalog.fs.executionContext(await this.catalog.get(p.hierarchy.projectId,actor,true),actor.id,p.hierarchy):undefined;
+                    r = { ...(projectContext?{projectContext}:{}),id: uid(), projectId: p.id, revision: p.graph.revision, graphDigest: digest(definition(p.graph)), sourceDigest: (await sourceManifest(p.graph,p.hierarchy?.repositoryRoot)).digest,...(Object.keys(childRevisions).length?{childRevisions}:{}), status: 'queued', auto: a.auto ?? true, selected: ids, budget: p.budget, spent: 0, startedAt: new Date().toISOString(), decisionScope: 'development', jobs: [], commands: [] };
                     p.runs.push(r);
                 }
                 else if (!r)

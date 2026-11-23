@@ -1,0 +1,24 @@
+{
+  "schema": "openmuse.project/1",
+  "id": "muse-ci",
+  "title": "Muse-CI",
+  "goal": "",
+  "repositories": [
+    {
+      "id": "main",
+      "title": "Muse-CI",
+      "path": ".",
+      "baseBranch": "master"
+    }
+  ],
+  "defaults": {
+    "budget": 50,
+    "timeout": 20,
+    "retries": 0,
+    "skills": [
+      "ci-project-conventions"
+    ]
+  },
+  "skillsDirectory": "skills",
+  "standardsDirectory": "standards"
+}

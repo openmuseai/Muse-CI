@@ -105,6 +105,7 @@ export function tick(p: Project, runId: string) {
             continue;
         }
         a.inputSnapshot.lifecycle=p.lifecycle?.kind;
+        if(r.projectContext)a.inputSnapshot.projectContext=structuredClone(r.projectContext);
         a.inputSnapshot.stepConfiguration=stepConfigurationSnapshot(p,n.stage);
         a.runId = r.id;
         a.startedAt = new Date().toISOString();

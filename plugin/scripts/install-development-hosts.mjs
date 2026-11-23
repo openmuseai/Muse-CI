@@ -12,7 +12,8 @@ if(!['desktop','android'].includes(target))throw Error('--target desktop|android
 const env=Object.fromEntries((await readFile(path.join(root,'.data/development.env'),'utf8')).trim().split('\n').map(l=>{const n=l.indexOf('=');return[l.slice(0,n),l.slice(n+1)];}));
 if(!env.CI_MCP_TOKEN)throw Error('CI_MCP_TOKEN required');
 const ui=await readFile(path.join(plugin,'dist/index.html'));
-const definition={id:'io.openmuse.muse-ci',title:'Muse-CI',version:JSON.parse(await readFile(path.join(plugin,'package.json'),'utf8')).version,endpoint:'http://127.0.0.1:4180/mcp',uiResourceUri:'ui://muse-ci/main',uiFile:'muse-ci.html',uiSha256:createHash('sha256').update(ui).digest('hex')};
+const endpoint=new URL(option('--endpoint')||'http://127.0.0.1:4180/mcp');if(endpoint.username||endpoint.password||endpoint.search||endpoint.hash||endpoint.protocol!=='https:'&&!(endpoint.protocol==='http:'&&['127.0.0.1','localhost'].includes(endpoint.hostname)))throw Error('Trusted endpoint required');
+const definition={id:'io.openmuse.muse-ci',title:'Muse-CI',version:JSON.parse(await readFile(path.join(plugin,'package.json'),'utf8')).version,endpoint:endpoint.href,uiResourceUri:'ui://muse-ci/main',uiFile:'muse-ci.html',uiSha256:createHash('sha256').update(ui).digest('hex')};
 if(target==='desktop'){
  const dir=option('--directory');if(!path.isAbsolute(dir))throw Error('Explicit absolute --directory required');
  await mkdir(dir,{recursive:true,mode:0o700});await chmod(dir,0o700);

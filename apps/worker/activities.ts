@@ -2,6 +2,7 @@ import { Context, heartbeat } from '@temporalio/activity';
 import { Store, event } from '../api/store.ts';
 import { tick, claim, acceptResult } from '../../packages/policy/engine.ts';
 import { sourceManifest } from '../../packages/providers/source.ts';
+import {ProjectCatalog} from '../../packages/projects/catalog.ts';
 import { execute } from '../../packages/providers/index.ts';
 import{synchronizeCloud,cloudActorFor}from'../../packages/cloud/reconcile.ts';
 export function activities(store: Store) {
@@ -57,9 +58,10 @@ export function activities(store: Store) {
                 checking = false;
             } }, 2000);
             try {
-                const before = await sourceManifest(current.graph);
+                const before = await sourceManifest(current.graph,current.hierarchy?.repositoryRoot);
                 const run = current.runs.find(r => r.id === job.runId);
                 const childInputsCurrent=async()=>{
+                    if(run?.projectContext){try{const catalog=new ProjectCatalog(store),managed=await catalog.get(run.projectContext.hierarchy.projectId,{id:run.projectContext.actor},true);if((await catalog.fs.executionContext(managed,run.projectContext.actor,run.projectContext.hierarchy)).digest!==run.projectContext.digest)return false;}catch{return false;}}
                     for(const [id,revision] of Object.entries(run?.childRevisions||{}))if((await store.get(id)).version!==revision)return false;
                     return true;
                 };
@@ -70,7 +72,7 @@ export function activities(store: Store) {
                     result = { status: 'failed', logs: [{ level: 'error', text: 'SOURCE_INPUT_CHANGED' }], artifacts: [] };
                 else {
                     result = await execute(claimed.node, claimed.attempt, claimed.consent, ac.signal);
-                    const after = await sourceManifest(current.graph);
+                    const after = await sourceManifest(current.graph,current.hierarchy?.repositoryRoot);
                     if (after.digest !== before.digest)
                         result = { status: 'failed', logs: [{ level: 'error', text: 'SOURCE_INPUT_CHANGED' }], artifacts: [] };
                     else if(!await childInputsCurrent())result={status:'failed',logs:[{level:'error',text:'REQUIREMENT_INPUT_CHANGED'}],artifacts:[]};

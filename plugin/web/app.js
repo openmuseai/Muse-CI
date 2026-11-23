@@ -1,5 +1,6 @@
 /* Interactive product prototype; all mutations are local and explicitly marked. */
-globalThis.CIRuntime.ready.then(function () {
+globalThis.CIRuntime.ready.then(async function () {
+  await globalThis.CIProjectNav?.ready;
   if(globalThis.CIRuntime.remote){globalThis.CILiveApp.start();return;}
   'use strict';
   const M = globalThis.CIModel;
