@@ -130,5 +130,6 @@
     "build": "1.0.2+112309",
     "integrationBindingInDartPayload": false,
     "businessUsbReverse": false
-  }
+  },
+  "laterPhysicalFoldedAcceptance": "foldable-outer-display.json"
 }

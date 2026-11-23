@@ -34,7 +34,7 @@
 
 ## 本轮进展与门禁
 
-2026-11-23，OPPO Find N6 展开屏已完成普通 QA 的国内公网操作验收。链路是既有国内生产 HTTPS 配对中转，手机使用蜂窝网络，无 `adb reverse` 业务转发。USB 仅安装、镜像和诊断。保留原有日常 App 与资料，验收包使用独立 `com.openmuseai.mobile.acceptance`，并以普通 `main.dart` 启动。
+2026-11-23，OPPO Find N6 展开屏与物理折叠外屏均已完成普通 QA 的国内公网核心操作验收。链路是既有国内生产 HTTPS 配对中转，展开屏验收使用蜂窝网络；物理外屏本轮核验默认网络为 Wi-Fi，两轮均无 `adb reverse` 业务转发。USB 仅安装、镜像和诊断。保留原有日常 App 与资料，验收包使用独立 `com.openmuseai.mobile.acceptance`，并以普通 `main.dart` 启动。
 
 | 验收项 | 当前证据与结论 |
 | --- | --- |
@@ -47,6 +47,7 @@
 | Desktop 回读与审查 | DSH 右侧实际读回手机 Run 的第 7 次报告，并打开相同源提交的真实 Diff。[报告](evidence/desktop-phone-run-readback.png)、[Diff](evidence/desktop-mr-diff.png) |
 | 手机云端原生文档 | 从流程总文档直接进入国内云端 SmartDoc，显示协作服务已接收；点击文档内链接打开版本 PRD 子文档。本项证明打开与导航，不声称新增编辑。[总文档](evidence/find-n6-cloud-handbook.png)、[子文档](evidence/find-n6-cloud-subdocument.png) |
 | 已连接设备刷新 | 普通 QA `1.0.2+112309` 实际点击同账号 Desktop 刷新按钮，再从应用 Tab 打开 Muse-CI，加载后端流程。[截图](evidence/find-n6-reconnected-app.png) |
+| 物理折叠外屏 | `1140×2616`，普通 QA `1.0.2+112309`。应用卡片、主/子流程、真实重跑第 8 次、运行产物、MR 同步及 Diff 第 1/2 页、云端原生 SmartDoc 子文档跳转通过。[外屏完整回执](evidence/foldable-outer-display.json) |
 | 云端 SmartDoc 与 Agent | 初始 49 份流程材料接入国内云端。Agent 以现有账号明确委托身份写入本轮测试报告，云端接受且实时协作连接成功；不是独立云端 Agent 账号。[云端回执](evidence/cloud-documents.json)、[本轮操作回执](evidence/foldable-ordinary-operations.json) |
 
 本轮 CI 修复已提交并推送：安全随机命令 ID（`db78e4e`）、沙箱本地表单提交（`9c491b0`）、表单内持久错误提示（`cb27b30`）、画布产物元数据与按需读取（`388ea1d`）。历史产物内容仍保留在持久存储，不扩大 Host 沙箱或响应大小边界。相关检查为 64 项后端测试、29 项插件测试、类型检查与构建通过；Muse-CI 自身六节点 Run `e49d2cbb-4c5f-46aa-9d1b-79098ec5dda7` 成功，随后由手机独立触发上述重跑。
@@ -57,6 +58,18 @@ Host 通用能力修复在 Muse-Client 的当前发布恢复分支中细粒度�
 
 国内生产认证服务曾因严重内存回收阻塞而超时，已正常重启恢复，配置持久 2 GiB swap 和有时限的诊断采样；服务器修复提交 `302c840`。已真实登录核验；未认定某个进程存在泄漏。[恢复回执](evidence/production-auth-recovery.json)。
 
-**完整发布门禁仍未通过**：实际折叠外屏、当前版本卸载重装/离线/撤回回归、正式市场与签名候选包尚需验收。普通 QA 与国内生产网络的结果分别记录，不据此宣称正式渠道发行完成。本轮实际业务默认网络核验为蜂窝网络；结束检查 Wi-Fi 开关已开启，未改动热点配置。最新普通 QA 已安装为 `1.0.2+112309`。
+**完整发布门禁仍未通过**：当前版本卸载重装/离线/撤回回归、正式市场与签名候选包尚需验收。物理折叠外屏的核心操作已通过；它不代替完整生命周期回归。普通 QA 与国内生产网络的结果分别记录，不据此宣称正式渠道发行完成。本轮实际业务默认网络核验为蜂窝网络；结束检查 Wi-Fi 开关已开启，未改动热点配置。最新普通 QA 已安装为 `1.0.2+112309`。
 
 在线 SmartDoc 是协作权威来源，仓库 [archive/INDEX.json](archive/INDEX.json) 按版本/需求、Step、文档 ID 和修订归档原生快照；执行事实、测试产物和截图保存在 evidence，不用人工标过覆盖真实测试或平台结果。
+
+## 物理外屏补充验收
+
+2026-11-23，用户实际折叠 Find N6 后，Android 报告物理尺寸 `1140×2616`，没有使用屏幕尺寸覆盖模拟折叠。外屏从应用 Tab 再次打开 Muse-CI，进入版本主流程与 MR 子需求，实际触发 Run `33e313ff-f1bd-4eb9-ad10-591660ab6d86`，01:55:27.985Z 至 01:55:35.048Z 成功（北京时间 09:55）。该 Run 为 `feature-report` 第 8 次尝试，手机实际打开其 JSON 产物，含真实命令、退出码 0 和 `realExecution: true`。[节点截图](evidence/find-n6-folded-node-rerun.png)、[产物截图](evidence/find-n6-folded-run-artifact.png)。
+
+外屏同步 MR #2 后，实际查看固定提交 `c514eeceef4ae909ee0e194351ea0027fadecba3` 的真实 GitHub Diff 第 1、2 页，文件折叠、长路径和二进制缺失补丁提示均已观察。[第一页](evidence/find-n6-folded-mr-diff.png)、[第二页](evidence/find-n6-folded-diff-page-2.png)。后续证据归档提交不改变这些截图所验证的固定提交。
+
+CI Agent 通过既有账号委托身份将本轮事实写入云端测试报告第 7 修订，云端接受、实时协作连接成功。外屏原生总文档与 PRD 子文档已打开，不声称本次手机新增编辑。隔离镜像工具仍观察到键盘后需刷新输入，部分请求反馈存在等待；这不构成产品网络稳定性全面通过。未执行 MR 批准或合并。
+
+外屏原生总文档、同流程 PRD 子文档及跨子需求总文档跳转均已核验。[原生总文档](evidence/find-n6-folded-smartdoc-handbook.png)、[PRD](evidence/find-n6-folded-smartdoc-child.png)、[跨子需求跳转](evidence/find-n6-folded-child-workflow.png)。跨子需求最后一步由用户在本机辅助点击，Agent 截图确认，并非全自动镜像输入通过。
+
+本轮发现并修复跨子需求链接仍保留 CI 内部地址的问题（`65a8ad9`）：父流程重连云端时，只将有权访问、父子关系匹配且云服务、账号、工作区一致的目标转换为原生引用，保留块 ID、格式、原文与历史；无权访问或绑定不一致不转换。65 项后端测试及类型检查通过。Muse-CI 通过 MCP 工具执行新源码的独立 Run `4f33d2a9-4523-4a61-a66a-4728b7226572`（尝试 9）成功；它不是手机触发的尝试 8。云端测试报告已追加至第 9 修订，保留此前“待核验”的历史记录，并追加补验结果。外屏完整回执见 [foldable-outer-display.json](evidence/foldable-outer-display.json)。

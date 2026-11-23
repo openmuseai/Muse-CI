@@ -1,12 +1,12 @@
 {
-  "at": "2026-11-22T18:55:57.677Z",
+  "at": "2026-11-23T02:39:33.582Z",
   "authority": "Retained native SmartDoc revisions; immutable file exports, online IDs remain authoritative",
   "projects": [
     {
       "id": "7a35a6ccfcd907d092e3d2dd5cb068c5",
       "title": "Muse-CI 0.5.0 · Mobile 公网接管与 MR 审查",
       "kind": "version",
-      "version": 60,
+      "version": 62,
       "documents": [
         {
           "id": "08b58057-117e-4dab-a9c9-903577da5462",
@@ -41,9 +41,9 @@
           "id": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
           "title": "00 · Muse-CI 0.5.0 · Mobile 公网接管与 MR 审查 · 流程总文档",
           "kind": "handbook",
-          "revision": 17,
+          "revision": 19,
           "path": "version/00-index/43615fc6-91c3-4088-9d20-28b24a3eb21b.sydoc",
-          "sha256": "6fc2e781a486f117d27177ccfab72071a99be1adbbe8dd95d81423f8dba542b4"
+          "sha256": "20b0510c2477b7d21bbacd63f6d4a51553f766c903b04310f016ce738d1bc201"
         },
         {
           "id": "570d3a10-6716-4939-9bf0-d348e7409fb0",
@@ -242,7 +242,7 @@
       "title": "手机代码 Diff 与 MR 验收",
       "kind": "requirement",
       "parentId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
-      "version": 227,
+      "version": 241,
       "documents": [
         {
           "id": "29f20911-b995-45d9-a0e6-ef176effe226",
@@ -337,10 +337,10 @@
           "parentId": "e89542c9-034f-4ae5-826a-3b48091bd819",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 9,
-          "publishedRevision": 9,
+          "revision": 11,
+          "publishedRevision": 11,
           "path": "mr-review/04-testing/feature-report.sydoc",
-          "sha256": "cd608cd7ce438bba6106a09caca277efe58565b049217c72748ec67579492f85"
+          "sha256": "d5f635d825cfa40d5580b75603cac6b2d6d742f064e9ab649875f51c75f96888"
         },
         {
           "id": "d4326b34-dfc9-4d4d-9d2b-4c2f13a4b0f3",
@@ -387,7 +387,7 @@
       "title": "国内生产服务公网端到端验收",
       "kind": "requirement",
       "parentId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
-      "version": 67,
+      "version": 76,
       "documents": [
         {
           "id": "0082705e-62cd-4acf-8c91-0b7cfc34a2fd",
@@ -489,10 +489,10 @@
           "parentId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb",
           "title": "执行测试并交付测试报告",
           "kind": "test-report",
-          "revision": 6,
-          "publishedRevision": 6,
+          "revision": 9,
+          "publishedRevision": 9,
           "path": "cn-public-e2e/04-testing/feature-report.sydoc",
-          "sha256": "5fee6ad29d76f37cda64fa9eb42cd64fcb48f7d81563f585781bfd818d23fac5"
+          "sha256": "c66fbc631b07455936e6437e9348e52c4d2391dfcf15891014fd300e0647fc41"
         },
         {
           "id": "bc1da408-38ec-46eb-9db3-26afae6146c9",
