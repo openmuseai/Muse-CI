@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {readMergeRequest,writeMergeRequest,validateRepository}from'../packages/providers/repository.ts';
+import {readMergeRequestDiff,readMergeRequest,writeMergeRequest,validateRepository}from'../packages/providers/repository.ts';
 const repo={provider:'github' as const,path:'example/project',baseBranch:'main',sourceBranch:'feature/lifecycle'};
 const payload={merged:true,state:'closed',html_url:'https://github.com/example/project/pull/7',head:{sha:'a'.repeat(40),ref:'feature/lifecycle',repo:{full_name:'example/project'}},base:{ref:'main',repo:{full_name:'example/project'}},merge_commit_sha:'b'.repeat(40),draft:false};
 async function environment(fn:()=>Promise<void>){const keys=['CI_MR_REPOSITORIES','CI_MR_WRITE_REPOSITORIES','CI_GITHUB_TOKEN','CI_GITLAB_TOKEN','CI_GITLAB_ORIGIN'];const old=Object.fromEntries(keys.map(k=>[k,process.env[k]]));process.env.CI_MR_REPOSITORIES='github:example/project,gitlab:example/project';process.env.CI_MR_WRITE_REPOSITORIES='github:example/project,gitlab:example/project';process.env.CI_GITHUB_TOKEN='test-only';try{await fn();}finally{for(const k of keys)if(old[k]===undefined)delete process.env[k];else process.env[k]=old[k];}}
@@ -41,4 +41,13 @@ test('same branch names in a fork do not satisfy the bound repository',()=>envir
 test('merge receipt reconciliation survives automatic source branch removal',()=>environment(async()=>{
  let writes=0;const request:typeof fetch=async(url,init)=>{if(init?.method)writes++;const path=new URL(String(url)).pathname;if(path.includes('/branches/'))return new Response('{}',{status:404});return new Response(JSON.stringify(path.endsWith('/pulls/7')?payload:{permissions:{push:true}}));};
  const r=await writeMergeRequest(repo,{kind:'merge',number:7,expectedHeadSha:'a'.repeat(40),marker:'ci'},request);assert.equal(r.state,'merged');assert.equal(writes,0);
+}));
+
+test('diff pages pin the real SHA, remain read-only and report unavailable patches',()=>environment(async()=>{
+ let reads=0;const request:typeof fetch=async(url,init)=>{assert.equal(init?.method,undefined);if(String(url).includes('/files?')){assert.match(String(url),/per_page=30&page=1/);return new Response(JSON.stringify([{filename:'README.md',status:'modified',patch:'@@ -1 +1 @@\n-old\n+new'},{filename:'image.png',status:'added'}]),{headers:{link:'<next>; rel="next"'}});}reads++;return new Response(JSON.stringify(payload));};
+ const r=await readMergeRequestDiff(repo,{number:7,expectedHeadSha:'a'.repeat(40),page:1},request);assert.equal(reads,2);assert.equal(r.nextPage,2);assert.equal(r.files[1].patchUnavailable,true);assert.match(r.files[0].patch!,/new/);
+}));
+test('diff rejects a changed head before or during retrieval',()=>environment(async()=>{
+ let calls=0;const request:typeof fetch=async(url)=>{if(String(url).includes('/files?'))return new Response('[]');calls++;return new Response(JSON.stringify({...payload,head:{...payload.head,sha:calls>1?'c'.repeat(40):'a'.repeat(40)}}));};
+ await assert.rejects(readMergeRequestDiff(repo,{number:7,expectedHeadSha:'b'.repeat(40),page:1},request),/MR_HEAD_CHANGED/);calls=0;await assert.rejects(readMergeRequestDiff(repo,{number:7,expectedHeadSha:'a'.repeat(40),page:1},request),/MR_HEAD_CHANGED/);
 }));

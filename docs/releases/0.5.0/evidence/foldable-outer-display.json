@@ -1,0 +1,219 @@
+{
+  "at": "2026-11-23T02:10:35.250418+00:00",
+  "device": "OPPO Find N6 / PLP110",
+  "posture": "physically folded outer display, confirmed by user",
+  "physicalSize": "1140x2616",
+  "ordinaryQaBuild": "1.0.2+112309",
+  "productionOrigin": "https://cn.openmuseai.com",
+  "transport": "Mobile → domestic HTTPS paired relay → Desktop MCP Apps → private CI",
+  "network": {
+    "device": "OPPO Find N6 / PLP110",
+    "physicalSize": "Physical size: 1140x2616",
+    "businessUsbReverse": false,
+    "defaultTransports": [
+      "WIFI"
+    ],
+    "wifiEnabled": true,
+    "networkSettingsChanged": false
+  },
+  "testedActions": {
+    "appsTabEntry": {
+      "passed": true,
+      "screenshot": "find-n6-folded-apps-tab.png"
+    },
+    "versionAndChildWorkflow": {
+      "passed": true,
+      "screenshot": "find-n6-folded-workflow.png"
+    },
+    "phoneStartedRun": {
+      "id": "33e313ff-f1bd-4eb9-ad10-591660ab6d86",
+      "auto": false,
+      "jobs": [
+        {
+          "nodeId": "feature-report",
+          "attempt": 8,
+          "completed": true
+        }
+      ],
+      "spent": 1,
+      "budget": 50,
+      "status": "succeeded",
+      "commands": [
+        {
+          "id": "f2063686-dded-478f-939e-7b4315769087",
+          "action": "start",
+          "applied": true
+        }
+      ],
+      "revision": 22,
+      "selected": [
+        "feature-report"
+      ],
+      "projectId": "ce679443dacb09731a392f0e58c48830",
+      "startedAt": "2026-11-23T01:55:27.985Z",
+      "finishedAt": "2026-11-23T01:55:35.048Z",
+      "graphDigest": "3cd3ab751f63de844a21b468dfb3212a451dd262735a9e87b157a56dab6b334f",
+      "sourceDigest": "c0933b296e134dc2d1eb9e7d81925a6fbc16d6b0cf1b1737695bada4944acef4",
+      "decisionScope": "development"
+    },
+    "latestRunArtifact": {
+      "passed": true,
+      "attempt": 8,
+      "metadata": [
+        {
+          "kind": "application/json",
+          "name": "process-report.json",
+          "sha256": "f8e38c304a8ce898cdfeb716792b90b2bc06d59c9ea1708bd87e29265a574b0e",
+          "producer": "ci-test",
+          "createdAt": "2026-11-23T01:55:33.079Z",
+          "inputDigest": "88d859583d1ad3f6a15602418ec49bf6e13914aac02fae622bcba7e88bdb4405",
+          "byteLength": 7096,
+          "contentAvailable": true
+        },
+        {
+          "kind": "application/json",
+          "name": "process-report.json",
+          "sha256": "9be1d356a90f81cee8c0adea9775d0081abecbfc22a5c3048c3f0455a6f2bb73",
+          "producer": "ci-plugin-test",
+          "createdAt": "2026-11-23T01:55:33.154Z",
+          "inputDigest": "88d859583d1ad3f6a15602418ec49bf6e13914aac02fae622bcba7e88bdb4405",
+          "byteLength": 2990,
+          "contentAvailable": true
+        },
+        {
+          "kind": "application/json",
+          "name": "process-report.json",
+          "sha256": "3d296392f0da1617dc5e668ade67042e612cd214417db00d8d51c2bdd3c8ebc8",
+          "producer": "ci-build",
+          "createdAt": "2026-11-23T01:55:33.262Z",
+          "inputDigest": "88d859583d1ad3f6a15602418ec49bf6e13914aac02fae622bcba7e88bdb4405",
+          "byteLength": 293,
+          "contentAvailable": true
+        },
+        {
+          "kind": "text/html",
+          "name": "muse-ci-ui.html",
+          "sha256": "3b599719f1c5a26e4cb1ef348b6172d24a64e11de16c2cd8d1aca90d82083215",
+          "producer": "ci-build",
+          "createdAt": "2026-11-23T01:55:33.263Z",
+          "inputDigest": "88d859583d1ad3f6a15602418ec49bf6e13914aac02fae622bcba7e88bdb4405",
+          "byteLength": 803750,
+          "contentAvailable": true
+        },
+        {
+          "kind": "application/json",
+          "name": "ui-integrity.json",
+          "sha256": "db4831148c5c6b049b5345b0baddb1c54f48f21a2c737554333bc8b272f68254",
+          "producer": "ci-artifact-verify",
+          "createdAt": "2026-11-23T01:55:33.266Z",
+          "inputDigest": "88d859583d1ad3f6a15602418ec49bf6e13914aac02fae622bcba7e88bdb4405",
+          "byteLength": 119,
+          "contentAvailable": true
+        }
+      ],
+      "screenshot": "find-n6-folded-artifacts.png"
+    },
+    "phoneSyncedMR": {
+      "url": "https://github.com/openmuseai/Muse-CI/pull/2",
+      "draft": true,
+      "state": "open",
+      "number": 2,
+      "headSha": "c514eeceef4ae909ee0e194351ea0027fadecba3",
+      "provider": "github",
+      "baseBranch": "feat/0.4-smartdoc-steps",
+      "repository": "openmuseai/Muse-CI",
+      "verifiedAt": "2026-11-23T02:03:59.447Z"
+    },
+    "actualDiff": {
+      "passed": true,
+      "pages": [
+        1,
+        2
+      ],
+      "fixedHeadSha": "c514eeceef4ae909ee0e194351ea0027fadecba3",
+      "screenshots": [
+        "find-n6-folded-mr-diff.png",
+        "find-n6-folded-diff-page-2.png"
+      ],
+      "binaryPatchUnavailableNoticeObserved": true
+    },
+    "nativeSmartDoc": {
+      "passed": true,
+      "sameWorkflowPRDLink": true,
+      "childWorkflowLink": true,
+      "childWorkflowClick": "user assisted on physical phone; Agent screenshot verified",
+      "cloudAcceptedVisible": true,
+      "newPhoneEditClaimed": false,
+      "screenshots": [
+        "find-n6-folded-smartdoc-handbook.png",
+        "find-n6-folded-smartdoc-child.png",
+        "find-n6-folded-child-workflow.png"
+      ]
+    }
+  },
+  "fullPublicAcceptancePassed": false,
+  "pending": [
+    "Current release lifecycle and transport recovery regression",
+    "Production marketplace / signed release candidate"
+  ],
+  "notes": [
+    "No MR approval or merge performed.",
+    "Physical folding and native activity restore do not prove offline, revocation or reinstall recovery.",
+    "Isolated mirror input mapping was corrected; no OpenMuse application signature changed."
+  ],
+  "cloudReport": {
+    "projectId": "47ddd3e327dcc6609ac8bbb235f05224",
+    "documentId": "b233772e-18a0-472b-9cf0-165ad8ffc020",
+    "revision": 9,
+    "cloudSync": "accepted",
+    "agentRealtimeConnected": true,
+    "identity": "delegated existing domestic account"
+  },
+  "childLinkFix": {
+    "commit": "65a8ad9",
+    "backendTestsPassed": 65,
+    "typecheckPassed": true,
+    "parentReconnectCloudSync": "accepted",
+    "historyAndBlockIdsPreservedTested": true,
+    "accessAndCloudBindingBoundariesTested": true
+  },
+  "separateCiFixValidation": {
+    "trigger": "CI MCP tool; not the phone action",
+    "run": {
+      "id": "4f33d2a9-4523-4a61-a66a-4728b7226572",
+      "auto": false,
+      "jobs": [
+        {
+          "nodeId": "feature-report",
+          "attempt": 9,
+          "completed": true
+        }
+      ],
+      "spent": 1,
+      "budget": 50,
+      "status": "succeeded",
+      "commands": [
+        {
+          "id": "b8537e56-b977-4753-830f-ac43113f0fdf",
+          "action": "start",
+          "applied": true
+        }
+      ],
+      "revision": 22,
+      "selected": [
+        "feature-report"
+      ],
+      "projectId": "ce679443dacb09731a392f0e58c48830",
+      "startedAt": "2026-11-23T02:28:55.481Z",
+      "finishedAt": "2026-11-23T02:29:00.365Z",
+      "graphDigest": "3cd3ab751f63de844a21b468dfb3212a451dd262735a9e87b157a56dab6b334f",
+      "sourceDigest": "72fe61ead09181cbd08eed6f9a333416bb4207787b6b54e6cba206c1e40a651a",
+      "decisionScope": "development"
+    }
+  },
+  "updatedAt": "2026-11-23T02:42:13.373479+00:00",
+  "knownLimitations": [
+    "Isolated mirror input still required refresh after keyboard interactions; long native document navigation used a user-assisted tap.",
+    "Some UI request feedback was delayed; comprehensive transport recovery stability is not claimed."
+  ]
+}

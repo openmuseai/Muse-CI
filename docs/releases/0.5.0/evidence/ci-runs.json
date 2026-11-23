@@ -1,0 +1,411 @@
+{
+  "at": "2026-11-22T08:04:16.464Z",
+  "receipts": [
+    {
+      "projectId": "bca8e9f390aa6e76597e8658b7e6f239",
+      "title": "Mobile 应用 Tab 安装与 CI 接管",
+      "sourceDigest": "c804e8764f498cb8ef871a2df88fba8bda6ae855d8e3c4adff3085153b41e6f7",
+      "run": {
+        "id": "e4dd91a8-2f50-4b41-b79d-809e7ea57aff",
+        "auto": true,
+        "jobs": [
+          {
+            "nodeId": "feature-prd",
+            "attempt": 3,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-ui",
+            "attempt": 2,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-solution",
+            "attempt": 2,
+            "completed": true
+          }
+        ],
+        "spent": 3,
+        "budget": 50,
+        "status": "succeeded",
+        "commands": [
+          {
+            "id": "9df8cabb-04c0-404a-8bbb-a020dd3959df",
+            "action": "start",
+            "applied": true
+          }
+        ],
+        "revision": 5,
+        "selected": [
+          "feature-prd",
+          "feature-ui",
+          "feature-solution"
+        ],
+        "projectId": "bca8e9f390aa6e76597e8658b7e6f239",
+        "startedAt": "2026-11-22T08:04:12.157Z",
+        "finishedAt": "2026-11-22T08:04:12.607Z",
+        "graphDigest": "d5140adf50fa5ad4833971a6d096bc79d45fc981ca243b497351f988a274adb1",
+        "sourceDigest": "c804e8764f498cb8ef871a2df88fba8bda6ae855d8e3c4adff3085153b41e6f7",
+        "decisionScope": "development"
+      },
+      "nodes": [
+        {
+          "id": "feature-prd",
+          "status": "succeeded",
+          "attempt": 3,
+          "artifacts": [
+            {
+              "name": "细化范围、规则与每一项验收条件.sydoc",
+              "sha256": "486e6df6445775876eb4fc4c25d1119c36e804a00ebec62f64d18c7ccca07c6e",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "32ede601-caa5-4fd1-9f22-708655c4c03c",
+            "revision": 2,
+            "sha256": "33b77405af1f4eedc4eb26bf3196326a001c5ebff3aed4c4df7e5ca6907cfba2"
+          }
+        },
+        {
+          "id": "feature-ui",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "界面、交互状态与多端设计.sydoc",
+              "sha256": "e4a9e91f2172affbd85c055673cb6e7527f071fed56ce3108a3374bd6adc278a",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "68f582b1-280a-48fd-96d8-26e76a337fc8",
+            "revision": 2,
+            "sha256": "a7aba97c92fd982eb2af08e3f4002a9021f9da1459a854df6a1f488488e36318"
+          }
+        },
+        {
+          "id": "feature-solution",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "架构、协议、数据与实施方案.sydoc",
+              "sha256": "5aaf724476c47cec9a703b23a7e95a4c121563ba3e98d2312157aed5761463fc",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "18ab266d-b681-4303-8e76-b76ca76f6be2",
+            "revision": 3,
+            "sha256": "0ab063c180099c4c484a14583dce49946748a876e83409b21cfa155237e81ec6"
+          }
+        }
+      ]
+    },
+    {
+      "projectId": "ce679443dacb09731a392f0e58c48830",
+      "title": "手机代码 Diff 与 MR 验收",
+      "sourceDigest": "c804e8764f498cb8ef871a2df88fba8bda6ae855d8e3c4adff3085153b41e6f7",
+      "run": {
+        "id": "56282ad3-39eb-4be5-b23e-762cb406df38",
+        "auto": true,
+        "jobs": [
+          {
+            "nodeId": "feature-prd",
+            "attempt": 2,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-ui",
+            "attempt": 2,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-solution",
+            "attempt": 2,
+            "completed": true
+          }
+        ],
+        "spent": 3,
+        "budget": 50,
+        "status": "succeeded",
+        "commands": [
+          {
+            "id": "56e4801d-3f86-4cdd-ac52-952d484a7d6f",
+            "action": "start",
+            "applied": true
+          }
+        ],
+        "revision": 5,
+        "selected": [
+          "feature-prd",
+          "feature-ui",
+          "feature-solution"
+        ],
+        "projectId": "ce679443dacb09731a392f0e58c48830",
+        "startedAt": "2026-11-22T08:04:13.269Z",
+        "finishedAt": "2026-11-22T08:04:13.815Z",
+        "graphDigest": "a06551b67c144cd1e8013aa162a12b6cfc1d936653e2b2551995ef273105bc63",
+        "sourceDigest": "c804e8764f498cb8ef871a2df88fba8bda6ae855d8e3c4adff3085153b41e6f7",
+        "decisionScope": "development"
+      },
+      "nodes": [
+        {
+          "id": "feature-prd",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "细化范围、规则与每一项验收条件.sydoc",
+              "sha256": "b132d847f36153efb29c75fe8883430dc62c33703a5ac9fc1d8970a112cba1ad",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "59990ea0-e517-45fe-a8de-e199cb9ef751",
+            "revision": 2,
+            "sha256": "0d4dbb42b3b8672122979a2d9eb872b94dbcdb9bf11e4f1a925799bcd1f909b6"
+          }
+        },
+        {
+          "id": "feature-ui",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "界面、交互状态与多端设计.sydoc",
+              "sha256": "a3cf372f7d1c2e7c277b21431d66f7e5509171dbce972b9ea951b6a7026a83a0",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "eaf6451d-f749-49d4-84a7-6385d1cd6556",
+            "revision": 2,
+            "sha256": "651dcb812eae6011dae91c5dfd192d50fd798f10a72599ca60b9490c57729aea"
+          }
+        },
+        {
+          "id": "feature-solution",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "架构、协议、数据与实施方案.sydoc",
+              "sha256": "ca2a962bf4ffa2ad3f67467383e8515710621c23d04e1e86f3ad9ffe698d4ce8",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "f786fa99-a1d0-4021-8f30-5dbea52ce3d7",
+            "revision": 3,
+            "sha256": "d057ecd3186b807c626372192a0a1050b95736386ea915bba22c684a65822e93"
+          }
+        }
+      ]
+    },
+    {
+      "projectId": "47ddd3e327dcc6609ac8bbb235f05224",
+      "title": "国内生产服务公网端到端验收",
+      "sourceDigest": "c804e8764f498cb8ef871a2df88fba8bda6ae855d8e3c4adff3085153b41e6f7",
+      "run": {
+        "id": "b0c1a88a-376a-4c36-b489-26a7edf9e91a",
+        "auto": true,
+        "jobs": [
+          {
+            "nodeId": "feature-prd",
+            "attempt": 2,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-ui",
+            "attempt": 2,
+            "completed": true
+          },
+          {
+            "nodeId": "feature-solution",
+            "attempt": 2,
+            "completed": true
+          }
+        ],
+        "spent": 3,
+        "budget": 50,
+        "status": "succeeded",
+        "commands": [
+          {
+            "id": "72c23397-5ac9-42a1-8167-a593b5ad259f",
+            "action": "start",
+            "applied": true
+          }
+        ],
+        "revision": 5,
+        "selected": [
+          "feature-prd",
+          "feature-ui",
+          "feature-solution"
+        ],
+        "projectId": "47ddd3e327dcc6609ac8bbb235f05224",
+        "startedAt": "2026-11-22T08:04:14.358Z",
+        "finishedAt": "2026-11-22T08:04:15.022Z",
+        "graphDigest": "1157f42965e7519c26b79ac6d53502b69259b1d1448e1ff1cbcec32487e2bbe2",
+        "sourceDigest": "c804e8764f498cb8ef871a2df88fba8bda6ae855d8e3c4adff3085153b41e6f7",
+        "decisionScope": "development"
+      },
+      "nodes": [
+        {
+          "id": "feature-prd",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "细化范围、规则与每一项验收条件.sydoc",
+              "sha256": "28a2e74093a482e852b7717dcdc28277223dbb8bb2ff0dff221368da3b2f0bea",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "3c440c46-208a-4dfa-a002-770ab8014061",
+            "revision": 2,
+            "sha256": "dad27ea8653c0c595ddac4bd1fd41be13d4bf36814414c01e59cac759182ddb2"
+          }
+        },
+        {
+          "id": "feature-ui",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "界面、交互状态与多端设计.sydoc",
+              "sha256": "6cc3884c4a19cb472d63c0cd46e3540f5fa7e4b5a06be1947d1902f9c375e044",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "525d712e-edd4-4735-83c8-671d381e3817",
+            "revision": 2,
+            "sha256": "ec26d567a12402495e808c760ac95d6f692cf678093d5bc06cb24ad1359c61b6"
+          }
+        },
+        {
+          "id": "feature-solution",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "架构、协议、数据与实施方案.sydoc",
+              "sha256": "5539c9d94a9b29dff97c1b9de809603510b426c716008ed28f9f73b803853d66",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "38cd8e62-09e6-459e-abe0-0e3b0b0d2a29",
+            "revision": 3,
+            "sha256": "da63720b3c4e49f80a6131f81bbaa9643ea3c88d9aeff801ef18524f23eb8c65"
+          }
+        }
+      ]
+    },
+    {
+      "projectId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
+      "title": "Muse-CI 0.5.0 · Mobile 公网接管与 MR 审查",
+      "sourceDigest": "c804e8764f498cb8ef871a2df88fba8bda6ae855d8e3c4adff3085153b41e6f7",
+      "run": {
+        "id": "50d9a980-5fbe-4731-8b0d-0ff713262c53",
+        "auto": true,
+        "jobs": [
+          {
+            "nodeId": "version-scope",
+            "attempt": 2,
+            "completed": true
+          },
+          {
+            "nodeId": "version-ui",
+            "attempt": 2,
+            "completed": true
+          },
+          {
+            "nodeId": "requirement-plan",
+            "attempt": 2,
+            "completed": true
+          }
+        ],
+        "spent": 3,
+        "budget": 50,
+        "status": "succeeded",
+        "commands": [
+          {
+            "id": "20bd101a-3d19-4077-be9d-46a7b9682681",
+            "action": "start",
+            "applied": true
+          }
+        ],
+        "revision": 5,
+        "selected": [
+          "version-scope",
+          "version-ui",
+          "requirement-plan"
+        ],
+        "projectId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
+        "startedAt": "2026-11-22T08:04:15.571Z",
+        "finishedAt": "2026-11-22T08:04:16.233Z",
+        "graphDigest": "7cbe6ed421bf4d88380431b991ce1c881fa2275a80a151c54f703bf782d8281c",
+        "sourceDigest": "c804e8764f498cb8ef871a2df88fba8bda6ae855d8e3c4adff3085153b41e6f7",
+        "decisionScope": "development"
+      },
+      "nodes": [
+        {
+          "id": "version-scope",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "圈定版本范围与粗粒度 PRD.sydoc",
+              "sha256": "8025f8de17009ece99e63a7b7adeffc9f4aae0583c9bc7e2f76202886430d43b",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "5eb85997-2e5a-461e-9afa-91cb1433fe6b",
+            "revision": 3,
+            "sha256": "a0bea9c26d03ef4e757d861557675896a848d8d65a754d7bfa14b3f588ebd316"
+          }
+        },
+        {
+          "id": "version-ui",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "版本视觉方向与 UI 设计.sydoc",
+              "sha256": "437e0f2ae87d26eb27cfea8566d1354ad660e4908321c9d1ab48222fbc8388f6",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "570d3a10-6716-4939-9bf0-d348e7409fb0",
+            "revision": 2,
+            "sha256": "d90008a577550274f8f54101ac4cbdac57bd9409132ecc18da28ddfdab324f95"
+          }
+        },
+        {
+          "id": "requirement-plan",
+          "status": "succeeded",
+          "attempt": 2,
+          "artifacts": [
+            {
+              "name": "拆分子需求与验收边界.sydoc",
+              "sha256": "c8288118d72247273d7eafe5b6154134dd6a39928c70a096140e8f31e84099a6",
+              "producer": "smartdoc.snapshot"
+            }
+          ],
+          "stepConfiguration": {
+            "documentId": "39af7b6d-c2f4-4a62-ae40-e32e1acf7530",
+            "revision": 2,
+            "sha256": "37fd9de5553b868ab333e15db97be450859b61fbd66a72e2545ba05ed997f6dc"
+          }
+        }
+      ]
+    }
+  ],
+  "releaseReady": false,
+  "pending": "Implementation, Mobile release installation, public authentication/deployment, physical device acceptance, MR and release remain incomplete"
+}

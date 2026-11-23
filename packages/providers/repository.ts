@@ -110,3 +110,23 @@ export async function writeMergeRequest(repo:Repository,a:MRAction,request:typeo
  if(receipt.headSha!==a.expectedHeadSha||a.kind==='submit'&&receipt.draft||a.kind==='merge'&&receipt.state!=='merged')fail('MR_DELIVERY_UNCONFIRMED');
  return receipt;
 }
+
+/** Read-only, SHA-pinned review page. Credentials and arbitrary URLs stay server-side. */
+export async function readMergeRequestDiff(repo:Repository,a:{number:number;expectedHeadSha:string;page:number},request:typeof fetch=fetch){
+ const before=await readMergeRequest(repo,a.number,request);
+ if(before.headSha!==a.expectedHeadSha)fail('MR_HEAD_CHANGED');
+ const {token}=await repositoryCredential(repo),github=repo.provider==='github';
+ const origin=github?'https://api.github.com':new URL(process.env.CI_GITLAB_ORIGIN!).origin;
+ const prefix=github?`/repos/${repo.path}/pulls/${a.number}/files`:`/api/v4/projects/${encodeURIComponent(repo.path)}/merge_requests/${a.number}/diffs`;
+ const r=await request(`${origin}${prefix}?per_page=30&page=${a.page}`,{headers:github?{authorization:'Bearer '+token,accept:'application/vnd.github+json'}:{'private-token':token},redirect:'error',signal:AbortSignal.timeout(15000)});
+ if(!r.ok)fail([401,403].includes(r.status)?'MR_AUTH_REQUIRED':'MR_DIFF_UNAVAILABLE');
+ // Bound actual stream bytes; Content-Length may be absent or untrusted.
+ const reader=r.body?.getReader();if(!reader)fail('MR_DIFF_INVALID');let size=0;const chunks:Uint8Array[]=[];
+ while(true){const {done,value}=await reader!.read();if(done)break;size+=value.length;if(size>4*1024*1024){await reader!.cancel();fail('MR_DIFF_TOO_LARGE');}chunks.push(value);}
+ let raw:any;try{raw=JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{fail('MR_DIFF_INVALID');}
+ if(!Array.isArray(raw)||raw.length>30)fail('MR_DIFF_INVALID');
+ const files=raw.map((f:any)=>{const patch=github?f.patch:f.diff;return {path:github?f.filename:f.new_path,previousPath:github?f.previous_filename:f.old_path,status:github?f.status:f.new_file?'added':f.deleted_file?'removed':f.renamed_file?'renamed':'modified',additions:github?f.additions:undefined,deletions:github?f.deletions:undefined,patch:typeof patch==='string'?patch.slice(0,200000):null,patchUnavailable:typeof patch!=='string',truncated:typeof patch==='string'&&patch.length>200000||!!f.too_large||!!f.collapsed};});
+ if(files.some(f=>typeof f.path!=='string'))fail('MR_DIFF_INVALID');
+ const after=await readMergeRequest(repo,a.number,request);if(after.headSha!==before.headSha)fail('MR_HEAD_CHANGED');
+ return {receipt:after,page:a.page,files,nextPage:r.headers.get('link')?.includes('rel="next"')||r.headers.get('x-next-page')?a.page+1:null,notice:'Patch may omit binary or platform-truncated content. Review is pinned to this head SHA; it is not approval.'};
+}

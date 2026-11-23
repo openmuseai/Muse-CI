@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-22T10:31:19.370683+00:00",
+  "device": {
+    "model": "OPPO Find N6",
+    "product": "PLP110",
+    "unfoldedPhysicalSize": [
+      2248,
+      2480
+    ]
+  },
+  "productionOrigin": "https://cn.openmuseai.com",
+  "transport": "Mobile → domestic HTTPS paired relay → Desktop MCP Apps gateway → private CI",
+  "businessUsbReverse": false,
+  "entryAcceptancePassed": true,
+  "fullPublicAcceptancePassed": false,
+  "milestones": [
+    "first-run screen visible",
+    "ordinary Mobile application started",
+    "China production account authenticated with exact password",
+    "same-account Desktop discovered through production directory",
+    "paired grant uses domestic HTTPS production relay",
+    "Desktop-delegated CI installed into ordinary Mobile plugin registry",
+    "Apps tab card opened full CI plugin",
+    "paired MCP UI connected without Mobile backend credential",
+    "actual CI MCP canvas connected over public relay"
+  ],
+  "entryTestBuild": "1.0.2+112205",
+  "ordinaryQaBuild": "1.0.2+112206",
+  "ordinaryApkHasIntegrationTestEntrypoint": false,
+  "hostTestCommit": "07adbf2c",
+  "cloudSmartDocCount": 49,
+  "mobileDataComparison": {
+    "performed": false,
+    "wifiWasChanged": false
+  },
+  "pending": [
+    "Verify corrected native mirror input after Mac unlock",
+    "Ordinary QA node action and server receipt",
+    "Native SmartDoc artifact open and edit",
+    "MR #2 SHA-pinned Diff on phone",
+    "Folded layout and network comparison"
+  ]
+}

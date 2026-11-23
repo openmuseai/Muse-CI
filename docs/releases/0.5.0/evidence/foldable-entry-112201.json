@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-22T08:42:28.414Z",
+  "device": "OPPO Find N6 / PLP110",
+  "build": 112201,
+  "passed": false,
+  "publicAcceptancePassed": false,
+  "phase": "First-run legal consent prevents application boot; user confirmation requested",
+  "milestones": [],
+  "businessUsbReverse": false
+}

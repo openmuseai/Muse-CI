@@ -1,0 +1,33 @@
+{
+  "version": "0.5.0",
+  "versionProjectId": "7a35a6ccfcd907d092e3d2dd5cb068c5",
+  "title": "Muse-CI 0.5.0 · Mobile 公网接管与 MR 审查",
+  "handbookId": "43615fc6-91c3-4088-9d20-28b24a3eb21b",
+  "children": [
+    {
+      "id": "bca8e9f390aa6e76597e8658b7e6f239",
+      "key": "mobile-plugin",
+      "title": "Mobile 应用 Tab 安装与 CI 接管",
+      "goal": "正式的通用插件安装/可信实例绑定，应用 Tab 显示 Muse-CI；国内生产账号、公网 CI 会话，禁止 localhost、USB 转发或调试注入充当公网验收。支持项目/需求/节点管理、日志与原生文档产物。",
+      "handbookId": "eefafd83-e268-49f2-9eb8-d7c80d238028"
+    },
+    {
+      "id": "ce679443dacb09731a392f0e58c48830",
+      "key": "mr-review",
+      "title": "手机代码 Diff 与 MR 验收",
+      "goal": "读取受信仓库真实 MR 文件列表和逐文件 patch，固定 head SHA；分页、二进制、重命名、截断与过期错误可见。提供有归属的 CI 验收记录；平台正式评审/合并必须保留账号权限与真实回执，不伪造自审批。",
+      "handbookId": "e89542c9-034f-4ae5-826a-3b48091bd819"
+    },
+    {
+      "id": "47ddd3e327dcc6609ac8bbb235f05224",
+      "key": "cn-public-e2e",
+      "title": "国内生产服务公网端到端验收",
+      "goal": "使用本地 .account 精确密码登录国内生产服务，手机不依赖 USB 网络转发。验证应用 Tab → 插件 → 版本/需求 → 节点 → SmartDoc 产物 → diff/MR，交付原生 PRD、UI、方案、用例和实际报告。",
+      "handbookId": "1948db65-3ad2-4ecd-9129-a2e0ddf2fdbb"
+    }
+  ],
+  "baseline": "41fee5b",
+  "repository": "openmuseai/Muse-CI",
+  "branch": "feat/0.5-mobile-ci-review",
+  "startedAt": "2026-11-22T07:31:22.634Z"
+}

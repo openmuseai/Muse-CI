@@ -7,16 +7,17 @@ import { G } from '../../packages/contracts/graph.ts';
 import { CONTRACT, definitionSchema, releaseStages, toolsSchemas, type Project, type Principal, type Definition, type Run, type Graph } from '../../packages/contracts/index.ts';
 import { Store, uid, digest, event, fail } from './store.ts';
 import { initializeLifecycle, lifecycleSummary, markNode, stepAdmission, invalidateDocumentConsumers, bindPublishedDocument, requirementsDelivered, requiredNodeIds } from '../../packages/lifecycle/model.ts';
-import {readMergeRequest,writeMergeRequest,validateRepository,trustedRepositories} from '../../packages/providers/repository.ts';
+import {readMergeRequest,readMergeRequestDiff,writeMergeRequest,validateRepository,trustedRepositories} from '../../packages/providers/repository.ts';
 import { documentView, createDocument, getDocument, editDocument, publishDocument, archiveExecutionDocument } from '../../packages/documents/smartdoc.ts';
 import {cloudConfigured,cloudResourceUri} from '../../packages/cloud/workspace.ts';
 import {connectCloudDocumentTree} from '../../packages/cloud/document-tree.ts';
 import {createStepConfiguration,compileStepConfiguration,stepConfigDigest} from '../../packages/lifecycle/step-config.ts';
 import {artifactView} from '../../packages/documents/artifacts.ts';
+import {projectWithArtifactMetadata} from '../../packages/documents/project-view.ts';
 import {publicGitProfiles,gitProfiles,verifyGitProfile}from'../../packages/providers/git-profiles.ts';
 import {synchronizeCloud} from '../../packages/cloud/reconcile.ts';
 import {announceAgent,closeProjectAgentPresence} from '../../packages/cloud/realtime.ts';
-const expose = (p:Project) => p.lifecycle ? {...p,documents:undefined,lifecycle:lifecycleSummary(p)} : p;
+const expose = (p:Project) => {const view=projectWithArtifactMetadata(p);return p.lifecycle ? {...view,documents:undefined,lifecycle:lifecycleSummary(p)} : view;};
 const active = (p: Project) => p.runs.find(r => !['succeeded', 'failed', 'canceled'].includes(r.status));
 const definition = (g: Graph) => structuredClone({ stages: g.stages, nodes: g.nodes.map(({ id, title, stage, kind, depends, config }) => ({ id, title, stage, kind, depends, config })) });
 function recordMRReceipt(p:Project,receipt:NonNullable<Project['mergeRequest']>){
@@ -239,6 +240,7 @@ export class CIService {
             return { events: p.events.filter(e => e.seq > a.after).slice(0, 200), cursor: p.events.at(-1)?.seq || 0, version: p.version };
         if (name === 'ci_release_check')
             return p.graph.nodes.some(n=>n.config.tools.some(isMobileTool))?await mobileReleaseStatus():releaseCheck(p);
+        if(name==='ci_mr_diff'){if(!p.repository)fail('REPOSITORY_BINDING_REQUIRED');return readMergeRequestDiff(p.repository,a);}
         if (name === 'ci_artifact_get') {
             return artifactView(p,a.nodeId,a.attempt,a.index);
         }
@@ -261,7 +263,12 @@ export class CIService {
             if(['ci_repository_bind','ci_graph_save','ci_document_edit','ci_agent_document_edit','ci_document_publish','ci_document_cloud_connect','ci_run_command'].includes(name)&&Object.values(p.mrOperations||{}).some(op=>op.status==='prepared'))fail('MR_OPERATION_RECONCILIATION_REQUIRED');
             if(name==='ci_document_cloud_connect'){
                 if(p.members[actor.id]!=='owner')fail('PROJECT_OWNER_REQUIRED');if(active(p))fail('RUN_ACTIVE_PLAN_LOCKED');
-                const result=await connectCloudDocumentTree(p,a.documentId,actor);
+                const linkedProjects:Project[]=[];
+                for(const child of p.lifecycle?.children||[]){
+                    try{linkedProjects.push(await this.store.get(child.projectId,actor));}
+                    catch(error){if(!['PROJECT_ACCESS_DENIED','PROJECT_NOT_FOUND'].includes((error as Error).message))throw error;}
+                }
+                const result=await connectCloudDocumentTree(p,a.documentId,actor,undefined,linkedProjects);
                 for(const id of result.changedDocumentIds)invalidateDocumentConsumers(p,id);
                 event(p,'document.cloud_connected',{documentId:a.documentId,...result,actor:actor.id});return result;
             }

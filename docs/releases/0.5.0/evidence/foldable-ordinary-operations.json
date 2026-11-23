@@ -1,0 +1,135 @@
+{
+  "at": "2026-11-22T18:39:49.084Z",
+  "device": "OPPO Find N6 / PLP110",
+  "posture": "unfolded",
+  "productionOrigin": "https://cn.openmuseai.com",
+  "transport": "Mobile → domestic HTTPS paired relay → Desktop MCP Apps → private CI",
+  "businessUsbReverse": false,
+  "network": "cellular; confirmed active default transport",
+  "ordinaryQaBuild": "1.0.2+112308",
+  "testedActions": {
+    "readWorkflow": true,
+    "temporaryMarkAndRevoke": true,
+    "phoneStartedRun": {
+      "id": "39651c42-2175-435c-a144-396159288445",
+      "auto": false,
+      "jobs": [
+        {
+          "nodeId": "feature-report",
+          "attempt": 7,
+          "completed": true
+        }
+      ],
+      "spent": 1,
+      "budget": 50,
+      "status": "succeeded",
+      "commands": [
+        {
+          "id": "808f47e3-d51c-477c-a0fc-af7310eb407a",
+          "action": "start",
+          "applied": true
+        }
+      ],
+      "revision": 22,
+      "selected": [
+        "feature-report"
+      ],
+      "projectId": "ce679443dacb09731a392f0e58c48830",
+      "startedAt": "2026-11-22T18:01:59.080Z",
+      "finishedAt": "2026-11-22T18:02:29.385Z",
+      "graphDigest": "3cd3ab751f63de844a21b468dfb3212a451dd262735a9e87b157a56dab6b334f",
+      "sourceDigest": "c0933b296e134dc2d1eb9e7d81925a6fbc16d6b0cf1b1737695bada4944acef4",
+      "decisionScope": "development"
+    },
+    "phoneSyncedMR": {
+      "url": "https://github.com/openmuseai/Muse-CI/pull/2",
+      "draft": true,
+      "state": "open",
+      "number": 2,
+      "headSha": "388ea1d77da69756f8d318b46032fc5db15c627b",
+      "provider": "github",
+      "baseBranch": "feat/0.4-smartdoc-steps",
+      "repository": "openmuseai/Muse-CI",
+      "verifiedAt": "2026-11-22T18:09:43.085Z"
+    },
+    "phoneDisplayedActualDiff": {
+      "passed": true,
+      "page": 1,
+      "headSha": "388ea1d77da69756f8d318b46032fc5db15c627b",
+      "screenshot": "find-n6-mr-diff.png"
+    },
+    "nativeSmartDocHistoricalArtifact": {
+      "passed": true,
+      "readOnly": true,
+      "screenshot": "find-n6-artifact.png"
+    },
+    "latestRunArtifact": {
+      "passed": true,
+      "attempt": 7,
+      "file": "process-report.json",
+      "sha256": "0491f92abb6710ed9f5b3bb20ff4a0f450cdadf1f0f7394744451a689de1cf34",
+      "screenshot": "find-n6-run-artifact.png"
+    },
+    "desktopReadbackOfPhoneRun": {
+      "passed": true,
+      "runId": "39651c42-2175-435c-a144-396159288445",
+      "attempt": 7,
+      "screenshot": "desktop-phone-run-readback.png"
+    },
+    "desktopDisplayedActualDiff": {
+      "passed": true,
+      "page": 1,
+      "headSha": "388ea1d77da69756f8d318b46032fc5db15c627b",
+      "screenshot": "desktop-mr-diff.png"
+    },
+    "connectedDesktopRefreshAndAppsReopen": {
+      "passed": true,
+      "ordinaryQaBuild": "1.0.2+112309",
+      "sameAccountAndDevice": true,
+      "screenshot": "find-n6-reconnected-app.png"
+    },
+    "cloudNativeHandbookAndSubdocument": {
+      "passed": true,
+      "ordinaryQaBuild": "1.0.2+112309",
+      "collaborationServiceAcceptedVisible": true,
+      "handbookScreenshot": "find-n6-cloud-handbook.png",
+      "subdocumentScreenshot": "find-n6-cloud-subdocument.png",
+      "editNotClaimed": true
+    }
+  },
+  "cloudReport": {
+    "projectId": "47ddd3e327dcc6609ac8bbb235f05224",
+    "documentId": "b233772e-18a0-472b-9cf0-165ad8ffc020",
+    "revision": 6,
+    "cloudSync": "accepted",
+    "agentRealtimeConnected": true
+  },
+  "hostCommits": [
+    "f44e0297",
+    "cb7347b7",
+    "1e7dfe53"
+  ],
+  "ciCommit": "388ea1d77da69756f8d318b46032fc5db15c627b",
+  "fullPublicAcceptancePassed": false,
+  "pending": [
+    "Physical folded outer display",
+    "Current release lifecycle and transport recovery regression",
+    "Production marketplace / signed release candidate"
+  ],
+  "observedLimitation": "A write committed while its reply failed; subsequent refresh displayed the result. No approval or merge recorded.",
+  "finalNetworkState": {
+    "wifiEnabled": true,
+    "hotspotConfigurationChanged": false,
+    "businessUsbReverse": false,
+    "defaultTransports": [
+      "CELLULAR"
+    ]
+  },
+  "installedOrdinaryQaBuild": "1.0.2+112309",
+  "ordinaryQaPayloadCheck": {
+    "build": "1.0.2+112309",
+    "integrationBindingInDartPayload": false,
+    "businessUsbReverse": false
+  },
+  "laterPhysicalFoldedAcceptance": "foldable-outer-display.json"
+}
