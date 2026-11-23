@@ -29,3 +29,21 @@ test('connection plans ancestors and selected descendants before writes and arch
  child.parentId=child.id;calls.length=0;
  await assert.rejects(()=>connectCloudDocumentTree(p,child.id,actor,async(d)=>{calls.push(d.id);return bind(d);}),/SMARTDOC_PARENT_CYCLE/);assert.deepEqual(calls,[]);
 });
+test('parent workflow links resolve only authorized children in the same cloud binding',async()=>{
+ const parent=await newProject(actor,'Version','Parent'),child=await newProject(actor,'Requirement','Child');
+ parent.lifecycle={kind:'version',children:[{projectId:child.id,title:child.title}],handbookId:'',agentEnabled:true};
+ child.lifecycle={kind:'requirement',parentId:parent.id,children:[],handbookId:'',agentEnabled:true};
+ const handbook=createDocument(parent,'Parent','handbook',['Preserve original']),target=createDocument(child,'Child','handbook',['Child body']);
+ editDocument(parent,handbook.id,handbook.revision,[{op:'link',text:'子需求🔗',projectId:child.id,documentId:target.id}],actor,false,'Child process link');
+ bind(handbook);bind(target);
+ const original=handbook.body.docState,before=nativeProjection(handbook.body);
+ delete child.members[actor.id];assert.equal(upgradeCloudDocumentLinks(parent,handbook,actor,[child]),false);
+ child.members[actor.id]='owner';child.lifecycle.parentId='unrelated';assert.equal(upgradeCloudDocumentLinks(parent,handbook,actor,[child]),false);
+ child.lifecycle.parentId=parent.id;
+ for(const field of ['origin','subject','workspaceId'] as const){const value=target.cloud![field];target.cloud![field]='different';assert.equal(upgradeCloudDocumentLinks(parent,handbook,actor,[child]),false);target.cloud![field]=value;}
+ const result=await connectCloudDocumentTree(parent,handbook.id,actor,async d=>({resourceUri:cloudResourceUri(d),cloud:d.cloud!}),[child]);
+ assert.ok(result.upgradedDocumentIds.includes(handbook.id));
+ const after=nativeProjection(handbook.body);assert.deepEqual(after.map((b:any)=>[b.id,b.text]),before.map((b:any)=>[b.id,b.text]));
+ assert.equal(after.at(-1).runs[0].attributes.href,cloudResourceUri(target));assert.equal(handbook.versions.at(-2)!.body.docState,original);
+ const revision=handbook.revision;assert.equal(upgradeCloudDocumentLinks(parent,handbook,actor,[child]),false);assert.equal(handbook.revision,revision);
+});

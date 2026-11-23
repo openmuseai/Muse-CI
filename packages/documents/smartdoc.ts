@@ -109,9 +109,9 @@ export function editDocument(p: Project, id: string, revision: number, edits: an
   return doc;
 }
 
-// Upgrade only links to connected documents in this project. Text, block IDs,
-// formatting and previous revisions survive. Arbitrary hrefs are not changed.
-export function upgradeCloudDocumentLinks(p:Project,doc:SmartDocRecord,actor:Principal){
+// Upgrade connected local documents and explicitly authorized child processes.
+// Text, block IDs, formatting and previous revisions survive.
+export function upgradeCloudDocumentLinks(p:Project,doc:SmartDocRecord,actor:Principal,linkedProjects:Project[]=[]){
   if(!doc.cloud)return false;
   let changed=false;
   const body=session(doc.body,state=>{
@@ -121,7 +121,10 @@ export function upgradeCloudDocumentLinks(p:Project,doc:SmartDocRecord,actor:Pri
       const delta=block.runs.map((run:any)=>{
         const href=run.attributes?.href;
         const match=typeof href==='string'?/^muse:\/\/ci\/([A-Za-z0-9_-]+)\/document\/([A-Za-z0-9_-]+)$/.exec(href):null;
-        const target=match?.[1]===p.id?p.documents?.[match[2]]:undefined;
+        const linked=match&&linkedProjects.find(child=>child.id===match[1]&&child.members[actor.id]&&child.lifecycle?.parentId===p.id&&p.lifecycle?.children.some(c=>c.projectId===child.id));
+        const candidate=linked?.documents?.[match![2]];
+        const sameCloud=candidate?.cloud&&candidate.cloud.origin===doc.cloud!.origin&&candidate.cloud.subject===doc.cloud!.subject&&candidate.cloud.workspaceId===doc.cloud!.workspaceId;
+        const target=match?.[1]===p.id?p.documents?.[match[2]]:sameCloud?candidate:undefined;
         if(target?.cloud&&typeof run.insert==='string'){upgraded=true;return {retain:run.insert.length,attributes:{href:cloudResourceUri(target)}};}
         return {retain:typeof run.insert==='string'?run.insert.length:1};
       });

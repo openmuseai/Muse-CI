@@ -263,7 +263,12 @@ export class CIService {
             if(['ci_repository_bind','ci_graph_save','ci_document_edit','ci_agent_document_edit','ci_document_publish','ci_document_cloud_connect','ci_run_command'].includes(name)&&Object.values(p.mrOperations||{}).some(op=>op.status==='prepared'))fail('MR_OPERATION_RECONCILIATION_REQUIRED');
             if(name==='ci_document_cloud_connect'){
                 if(p.members[actor.id]!=='owner')fail('PROJECT_OWNER_REQUIRED');if(active(p))fail('RUN_ACTIVE_PLAN_LOCKED');
-                const result=await connectCloudDocumentTree(p,a.documentId,actor);
+                const linkedProjects:Project[]=[];
+                for(const child of p.lifecycle?.children||[]){
+                    try{linkedProjects.push(await this.store.get(child.projectId,actor));}
+                    catch(error){if(!['PROJECT_ACCESS_DENIED','PROJECT_NOT_FOUND'].includes((error as Error).message))throw error;}
+                }
+                const result=await connectCloudDocumentTree(p,a.documentId,actor,undefined,linkedProjects);
                 for(const id of result.changedDocumentIds)invalidateDocumentConsumers(p,id);
                 event(p,'document.cloud_connected',{documentId:a.documentId,...result,actor:actor.id});return result;
             }
