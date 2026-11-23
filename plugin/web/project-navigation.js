@@ -42,7 +42,7 @@ async function action(b){const action=b.dataset.projectAction,value=b.dataset.va
  if(action==='versions')return dialog('选择版本',project()?`<p>${esc(project().title)} · 版本是最小交付单元</p><div class="project-options">${project().versions.map(v=>button('select-version',v.hierarchy.versionName+' · '+v.title,v.id,'project-option')).join('')||'<p>尚未创建版本。</p>'}</div>${button('new-version','创建新版本','','btn')}${button('migrate','关联历史版本','','btn secondary')}`:'<p>请先选择项目。</p>');
  if(action==='select-version')return selectProject(projectId,value);
  if(action==='new-version')return newVersion();
- if(action==='deliveries')return dialog('版本交付物',deliveries());
+ if(action==='deliveries')return dialog('版本交付物',sidebar());
  if(action==='document'){const d=catalog.deliveries.find(d=>d.id===value);if(!d)throw Error('交付物不属于当前版本。');close();return root.CILifecycle.openDocument(d.id,d.workflowId);}
  if(action==='mr'){const d=catalog.deliveries.find(d=>d.id===value&&d.kind==='mr');if(!d)throw Error('MR 不属于当前版本。');close();await R.select(d.workflowId);root.dispatchEvent(new CustomEvent('ci:hierarchy-navigate'));return root.CILifecycle.openRepository();}
  if(action==='register')return dialog('初始化或导入项目',`<p>受信工作区：${esc(catalog.workspace?.title||'当前工作区')}。在所选目录创建或读取 .muse-project-&lt;ID&gt;/project.json；子目录可注册独立子项目。</p><form id="project-register"><label>项目 ID<input name="id" required pattern="[a-z0-9][a-z0-9._-]{0,79}" placeholder="muse-ci"></label><label>项目名称<input name="title" required maxlength="100"></label><label>工作区内目录<input name="home" required placeholder="Muse-CI 或 ."></label><button type="submit" class="btn">读取配置并注册</button></form>`);
