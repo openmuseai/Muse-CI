@@ -20,11 +20,14 @@ test('retained input material and runner instructions are metadata in canvas res
  const context:any={digest:'context',skills:[{id:'skill',instructions,sha256:digest(instructions)}],standards:[{name:'standard',content:material,sha256}]};
  const snapshot={sourceDigest:'source',boundMaterials:[{name:'fixed.sydoc',content:material,sha256,type:'application/json'}],projectContext:context};
  p.graph.nodes[0].attempts.push({id:1,status:'succeeded',revision:1,inputSnapshot:snapshot,startedAt:'test',logs:[],artifacts:[]});
- p.runs.push({id:'run',projectContext:context} as any);
+ p.runs.push({id:'run',projectContext:context,documentReferences:[{nodeId:'review',pin:{documentId:'fixed',revision:3,sha256,content:material}}]} as any);
  const view=projectWithArtifactMetadata(p),projected=view.graph.nodes[0].attempts[0].inputSnapshot;
  assert.ok(Buffer.byteLength(JSON.stringify(view))<100000);
  assert.equal(projected.sourceDigest,'source');assert.equal(projected.boundMaterials[0].sha256,sha256);assert.equal(projected.boundMaterials[0].contentAvailable,true);assert.equal('content' in projected.boundMaterials[0],false);
  assert.equal('instructions' in projected.projectContext.skills[0],false);assert.equal('content' in view.runs[0].projectContext.standards[0],false);
+ const reference=(view.runs[0] as any).documentReferences[0];
+ assert.equal(reference.nodeId,'review');assert.equal(reference.pin.documentId,'fixed');assert.equal(reference.pin.revision,3);assert.equal(reference.pin.sha256,sha256);assert.equal(reference.pin.contentAvailable,true);assert.equal('content' in reference.pin,false);
+ assert.equal((p.runs[0] as any).documentReferences[0].pin.content,material,'immutable pinned run document remains complete in storage');
  assert.equal(snapshot.boundMaterials[0].content,material);assert.equal(context.skills[0].instructions,instructions);
  assert.deepEqual(projectWithArtifactMetadata(view as any),view,'metadata projection is idempotent for compatibility adapters');
 });

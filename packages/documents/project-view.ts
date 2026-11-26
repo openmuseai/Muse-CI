@@ -21,7 +21,10 @@ function snapshotMetadata(snapshot:any){
 }
 export function projectWithArtifactMetadata(project:Project){
  return {...project,
-  runs:project.runs.map(run=>({...run,...(run.projectContext?{projectContext:contextMetadata(run.projectContext)}:{})})),
+  runs:project.runs.map(run=>({...run,
+   ...(run.projectContext?{projectContext:contextMetadata(run.projectContext)}:{}),
+   ...((run as any).documentReferences?{documentReferences:(run as any).documentReferences.map((reference:any)=>({...reference,pin:contentMetadata(reference.pin)}))}:{}),
+  })),
   graph:{...project.graph,nodes:project.graph.nodes.map(node=>({...node,attempts:node.attempts.map(attempt=>({...attempt,
    inputSnapshot:snapshotMetadata(attempt.inputSnapshot),
    artifacts:attempt.artifacts.map(artifact=>contentMetadata(artifact)),
