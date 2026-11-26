@@ -14,7 +14,8 @@
     "stack:stop": "node scripts/stack.mjs stop",
     "pilot:mobile": "tsx scripts/start-mobile-pilot.ts --wait",
     "plugin:test": "npm --prefix plugin test",
-    "plugin:build": "npm --prefix plugin run pack"
+    "plugin:build": "npm --prefix plugin run pack",
+    "desktop:check": "node scripts/desktop_feature_check.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/client": "2.3.1",
