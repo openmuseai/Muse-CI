@@ -14,3 +14,17 @@ test('large retained execution artifacts stay out of the canvas while immutable 
  assert.equal(attempts[0].artifacts[0].sha256,sha256);assert.deepEqual(attempts[0].inputSnapshot,{pinnedRevision:1});assert.equal(attempts[0].logs[0].text,'real retained log');
  assert.equal(node.attempts[0].artifacts[0].content,content);assert.equal(artifactView(p,node.id,1,0).artifact.content,content);assert.equal(artifactView(p,node.id,12,0).artifact.sha256,sha256);
 });
+test('retained input material and runner instructions are metadata in canvas responses, with source bytes unchanged',async()=>{
+ const p=await newProject({id:'payload-test'},'Input payload acceptance','Keep current navigation bounded');
+ const material='bound document'.repeat(100000),instructions='instructions'.repeat(100000),sha256=digest(material);
+ const context:any={digest:'context',skills:[{id:'skill',instructions,sha256:digest(instructions)}],standards:[{name:'standard',content:material,sha256}]};
+ const snapshot={sourceDigest:'source',boundMaterials:[{name:'fixed.sydoc',content:material,sha256,type:'application/json'}],projectContext:context};
+ p.graph.nodes[0].attempts.push({id:1,status:'succeeded',revision:1,inputSnapshot:snapshot,startedAt:'test',logs:[],artifacts:[]});
+ p.runs.push({id:'run',projectContext:context} as any);
+ const view=projectWithArtifactMetadata(p),projected=view.graph.nodes[0].attempts[0].inputSnapshot;
+ assert.ok(Buffer.byteLength(JSON.stringify(view))<100000);
+ assert.equal(projected.sourceDigest,'source');assert.equal(projected.boundMaterials[0].sha256,sha256);assert.equal(projected.boundMaterials[0].contentAvailable,true);assert.equal('content' in projected.boundMaterials[0],false);
+ assert.equal('instructions' in projected.projectContext.skills[0],false);assert.equal('content' in view.runs[0].projectContext.standards[0],false);
+ assert.equal(snapshot.boundMaterials[0].content,material);assert.equal(context.skills[0].instructions,instructions);
+ assert.deepEqual(projectWithArtifactMetadata(view as any),view,'metadata projection is idempotent for compatibility adapters');
+});

@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 const cwd = fileURLToPath(new URL('../', import.meta.url));
 for (const [command, args] of [
   ['npm', ['test', '--prefix', 'plugin']],
+  [process.execPath, ['--import', 'tsx', '--test', 'tests/project-view.test.ts']],
   [process.execPath, ['node_modules/typescript/bin/tsc', '--noEmit']],
   ['npm', ['run', 'build', '--prefix', 'plugin']],
 ]) {
