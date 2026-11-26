@@ -6,9 +6,11 @@ let mode='',sequence=0,lastInput='',selectedDocument='',navigationFailed=false;
 const tr=(zh,en)=>document.documentElement.lang.startsWith('en')?en:zh;
 const navigate=value=>root.CIBridge.desktopNavigation?.select(value);
 const groups=[['核心交付物','Deliverables',['version-prd','product-design','ui-design','solution','implementation','test-cases','test-report','requirement-plan']],['需求与审阅','Requirements and review',['feature-prd','mr']]];
-function render(){
+function render(force=false){
  if(mode!=='navigation')return;
  let pane=document.getElementById('desktop-plugin-navigation');if(!pane){pane=document.createElement('aside');pane.id='desktop-plugin-navigation';pane.setAttribute('aria-label','Muse-CI');document.body.append(pane);}
+ // Live catalog/state events must not replace an open native select.
+ if(force!==true && document.activeElement?.tagName==='SELECT' && pane.contains?.(document.activeElement))return;
  const N=root.CIProjectNav,catalog=N?.catalog,project=N?.project(),version=N?.version();
  if(!R.connected&&!R.error){pane.innerHTML=`<div class="desktop-nav-state" role="status">${tr('正在连接项目…','Connecting to projects…')}</div>`;return;}
  if(!R.connected){pane.innerHTML=`<div class="desktop-nav-state" role="status">${esc(tr('连接暂不可用，请检查当前账号与后端。','Connection unavailable. Check your account and backend.'))}<button data-desktop-retry>${tr('重试','Retry')}</button></div>`;return;}
@@ -36,8 +38,9 @@ async function input(){
  }catch{if(token===sequence){lastInput='';navigationFailed=true;render();}}
 }
 document.addEventListener('change',e=>{if(mode!=='navigation')return;const target=e.target;
- if(target.id==='desktop-ci-project'||target.id==='desktop-ci-version')void(async()=>{try{await root.CIProjectNav.selectProject(target.id==='desktop-ci-project'?target.value:root.CIProjectNav.project().id,target.id==='desktop-ci-version'?target.value:undefined);await navigate({projectId:R.project.id});render();}catch(error){R.error=error.message;render();}})();
+ if(target.id==='desktop-ci-project'||target.id==='desktop-ci-version')void(async()=>{try{await root.CIProjectNav.selectProject(target.id==='desktop-ci-project'?target.value:root.CIProjectNav.project().id,target.id==='desktop-ci-version'?target.value:undefined);await navigate({projectId:R.project.id});navigationFailed=false;render(true);}catch(error){R.error=error.message;navigationFailed=true;render(true);}})();
 });
 document.addEventListener('click',e=>{const b=e.target.closest('[data-desktop-document]');if(b){selectedDocument=b.dataset.desktopDocument;void navigate({projectId:b.dataset.workflow,documentId:selectedDocument,deliveryKind:b.dataset.kind}).catch(()=>{navigationFailed=true;render();});render();}else if(e.target.closest('[data-desktop-retry]'))void R.reconnect().then(render).catch(render);});
+document.addEventListener('focusout',()=>void Promise.resolve().then(()=>render()));
 root.addEventListener('ci:desktop-input',()=>void input());root.addEventListener('ci:desktop-context',render);root.addEventListener('ci:catalog',render);root.addEventListener('ci:state',render);void R.ready.then(()=>input());
 })(globalThis);
