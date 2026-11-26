@@ -33,7 +33,7 @@ async function input(){
   if(selection.projectId&&R.project?.id!==selection.projectId)await R.select(selection.projectId);
   if(token!==sequence)return;
   selectedDocument=selection.documentId||'';
-  if(mode==='workspace'&&selection.documentId){if(selection.deliveryKind==='mr')await root.CILifecycle.openRepository();else await root.CILifecycle.openDocument(selection.documentId,selection.projectId);}
+  if(mode==='workspace'&&selection.documentId){if(selection.deliveryKind==='mr')await root.CILifecycle.openRepository();else await root.CILifecycle.openDocument(selection.documentId,selection.projectId,undefined,{inline:true});}
   navigationFailed=false;render();
  }catch{if(token===sequence){lastInput='';navigationFailed=true;render();}}
 }

@@ -6,3 +6,10 @@
 [data-host-theme="dark"] .desktop-version-card small{color:#a7d0b6}
 [data-host-theme="dark"] .desktop-document-tree button:hover,[data-host-theme="dark"] .desktop-document-tree button[aria-current=page]{background:#2c3d32;color:#a7d0b6}
 [data-host-theme="dark"] .topbar,[data-host-theme="dark"] .project-dialog,[data-host-theme="dark"] input,[data-host-theme="dark"] select,[data-host-theme="dark"] textarea{background:var(--surface);color:var(--ink);border-color:var(--line)}
+/* Embedded workspace uses the same palette, including the existing workflow UI. */
+.ci-desktop-workspace[data-host-theme="dark"] :is(.workflow-page,.flow-toolbar,.flow-subbar,.lc-context,.topbar,.panel,.flow-node,.zoom-controls,.project-dialog,.lifecycle-dialog,.sd-reader,.sd-reader-toolbar,.drawer-body,.drawer-head){background:#202723;color:#e0e8e2;border-color:#39473f}
+.ci-desktop-workspace[data-host-theme="dark"] :is(.flow-lane,.node-result,.drawer-tabs,.drawer-footer,.material-item,.node-log,.artifact-item,.step-config-actions button,.project-context button,.flow-draft,.flow-local,.lc-version,.lc-node-docs>button,.root-doc,.sd-collaboration,.project-option,.flow-history button,.node-template-list button,pre){background:#26322b;color:#c9d9ce;border-color:#39473f}
+.ci-desktop-workspace[data-host-theme="dark"] :is(h1,h2,h3,.node-title,.lane-title,.lc-context strong,.flow-toolbar strong,.node-result strong,.sd-reader-document){color:#e0e8e2}
+.ci-desktop-workspace[data-host-theme="dark"] :is(.small,.muted,.hint,.flow-subtitle,.node-description,.lane-description){color:#a5b3a8}
+.ci-desktop-workspace[data-host-theme="dark"] .btn.primary{background:#326451;color:#fff}
+.ci-desktop-workspace[data-host-theme="dark"] [data-ui].mobile-nav{background:#202723;color:#c9d9ce;border-color:#39473f}
